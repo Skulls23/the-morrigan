@@ -5,19 +5,83 @@ using UnityEngine.AI;
 
 public class EnemyPathFinding : MonoBehaviour
 {
+    [SerializeField] 
+    private const float MAX_RANGE_ROAMING = 15f;
+
     private NavMeshAgent agent;
+     
+    private Vector3 startingPosition;
+    private Vector3 roamPosition;
+
     private GameObject player;
 
-    // Start is called before the first frame update
-    void Start()
+    private float reachedPositionDistance = 1f;
+
+    private bool isPlayerInArea = false;
+
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        //startingPosition = transform.position;
+        roamPosition = RandomNavmeshLocation(10f);
         player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //agent.SetDestination(player.transform.position);
+        if(isPlayerInArea)
+        {
+            agent.SetDestination(player.transform.position);
+        }
+        else
+        {
+            roam();
+        }
+    }
+
+    //Select a random position to go (roaming)
+    public Vector3 RandomNavmeshLocation(float radius)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * radius + transform.position;
+
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
+    }
+
+    public void roam()
+    {
+        agent.SetDestination(roamPosition);
+
+        //reached destination
+        if (Vector3.Distance(transform.position, roamPosition) <= reachedPositionDistance)
+        {
+            roamPosition = RandomNavmeshLocation(MAX_RANGE_ROAMING);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            isPlayerInArea = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInArea = false;
+        }
     }
 }
