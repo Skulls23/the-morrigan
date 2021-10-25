@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyPathFinding : MonoBehaviour
 {
-    [SerializeField] 
-    private const float MAX_RANGE_ROAMING = 15f;
+    public float MAX_RANGE_ROAMING = 15f;
 
     private NavMeshAgent agent;
+     
      
     private Vector3 startingPosition;
     private Vector3 roamPosition;
@@ -23,8 +23,8 @@ public class EnemyPathFinding : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         //startingPosition = transform.position;
-        roamPosition = RandomNavmeshLocation(10f);
         player = GameObject.Find("Player");
+        roamPosition = VerifyNewPathIsPossible();
     }
 
     private void Update()
@@ -35,12 +35,15 @@ public class EnemyPathFinding : MonoBehaviour
         }
         else
         {
-            roam();
+            agent.SetDestination(roamPosition);
+            //reached destination
+            if (Vector3.Distance(transform.position, roamPosition) <= reachedPositionDistance)
+                roamPosition = VerifyNewPathIsPossible();
         }
     }
 
     //Select a random position to go (roaming)
-    public Vector3 RandomNavmeshLocation(float radius)
+    public Vector3 RandomRoamingDestination(float radius)
     {
         Vector3 randomDirection = Random.insideUnitSphere * radius + transform.position;
 
@@ -50,18 +53,27 @@ public class EnemyPathFinding : MonoBehaviour
         {
             finalPosition = hit.position;
         }
+
         return finalPosition;
     }
 
-    public void roam()
+    //Verify if the path given from RandomRoamingDestination is possible and find another destination if not
+    public Vector3 VerifyNewPathIsPossible()
     {
-        agent.SetDestination(roamPosition);
+        Vector3 destination = RandomRoamingDestination(MAX_RANGE_ROAMING);
 
-        //reached destination
-        if (Vector3.Distance(transform.position, roamPosition) <= reachedPositionDistance)
+        if(name == "Melee Enemy (9)")
+            Debug.Log(name + " position : " + transform.position + " destination :" + destination);
+
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(destination, path);
+        while (path.status == NavMeshPathStatus.PathPartial || path.status == NavMeshPathStatus.PathInvalid)
         {
-            roamPosition = RandomNavmeshLocation(MAX_RANGE_ROAMING);
+            destination = RandomRoamingDestination(MAX_RANGE_ROAMING);
+            agent.CalculatePath(destination, path);
         }
+
+        return destination;
     }
 
     private void OnTriggerEnter(Collider other)

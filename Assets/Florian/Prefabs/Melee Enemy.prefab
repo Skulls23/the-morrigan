@@ -14,11 +14,10 @@ GameObject:
   - component: {fileID: 8183164595944291347}
   - component: {fileID: 9060465410954732147}
   - component: {fileID: 1927715570778390579}
-  - component: {fileID: 5005267790362883044}
   - component: {fileID: 2282792919579988922}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melee Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a8a5bbe099c28bc4087b4949a9539075, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,18 +134,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5005267790362883044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2892164246802294563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56739436aeb5e5743be873520f7d4043, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2282792919579988922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a179a592a2144146906d543854be04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MAX_RANGE_ROAMING: 50
