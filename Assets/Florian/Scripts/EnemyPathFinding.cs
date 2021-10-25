@@ -5,10 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyPathFinding : MonoBehaviour
 {
-    public float MAX_RANGE_ROAMING = 15f;
+    public float detectionRadius = 15f;
 
     private NavMeshAgent agent;
-     
      
     private Vector3 startingPosition;
     private Vector3 roamPosition;
@@ -36,6 +35,7 @@ public class EnemyPathFinding : MonoBehaviour
         else
         {
             agent.SetDestination(roamPosition);
+
             //reached destination
             if (Vector3.Distance(transform.position, roamPosition) <= reachedPositionDistance)
                 roamPosition = VerifyNewPathIsPossible();
@@ -60,16 +60,13 @@ public class EnemyPathFinding : MonoBehaviour
     //Verify if the path given from RandomRoamingDestination is possible and find another destination if not
     public Vector3 VerifyNewPathIsPossible()
     {
-        Vector3 destination = RandomRoamingDestination(MAX_RANGE_ROAMING);
-
-        if(name == "Melee Enemy (9)")
-            Debug.Log(name + " position : " + transform.position + " destination :" + destination);
+        Vector3 destination = RandomRoamingDestination(detectionRadius);
 
         NavMeshPath path = new NavMeshPath();
         agent.CalculatePath(destination, path);
         while (path.status == NavMeshPathStatus.PathPartial || path.status == NavMeshPathStatus.PathInvalid)
         {
-            destination = RandomRoamingDestination(MAX_RANGE_ROAMING);
+            destination = RandomRoamingDestination(detectionRadius);
             agent.CalculatePath(destination, path);
         }
 
