@@ -5,24 +5,35 @@ using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
-    [Header("Components")]
+    [Header("COMPONENTS")]
     private Rigidbody rb;
     private Animator anim;
     private RotatePlayer rP;
     
-    [Header("Values")]
+    [Header("VALUES")]
+    private Vector2 movementValue;
+    private Vector2 direction;
+    Vector2 animValue;
     [SerializeField]
-    private Vector2 dir;
-    [SerializeField]
-    Vector2 dirAbs;
+    float currentSpeed;
 
-    [Header("Game Design")]
+    [Header("Speeds")]
+    [Header("GAME DESIGN")]
+    
     [SerializeField]
-    private float speed;
+    private float walkSpeed;
+    [SerializeField]
+    private float jogSpeed;
+    [SerializeField]
+    private float runSpeed;
+
+    [Header("Transitions")]
     [SerializeField, Range(0,1)]
     private float startWalkingValue;
     [SerializeField, Range(0, 1)]
     private float startJogingValue;
+    [SerializeField]
+    private float animationTransitionTime;
 
 
     // Start is called before the first frame update
@@ -48,33 +59,49 @@ public class CharacterMovement : MonoBehaviour
     //Event getting the values on controller left joystic, keyboard arrows and WASD
     public void OnMove(InputAction.CallbackContext context)
     {
-        dir = context.ReadValue<Vector2>();
-        rP.dir = dir;
-        dirAbs = RoundValues();
+        movementValue = CheckInput(context.ReadValue<Vector2>());
+        direction = movementValue.normalized;
+        rP.dir = direction;
+        animValue = ConvertMoveToAnimValues(movementValue);
+        currentSpeed = GetSpeedFromAnimValue(animValue);
     }
 
     //Updates the animator movement layer and the player velocity
     private void ApplyMovement()
     {
-        anim.SetFloat(HashTable.moveH, dirAbs.x <= dirAbs.y ? dirAbs.y : dirAbs.x, 0.2f, Time.fixedDeltaTime);
-        rb.velocity = new Vector3(dir.x * speed, rb.velocity.y, dir.y * speed);
+        anim.SetFloat(HashTable.moveH, animValue.x <= animValue.y ? animValue.y : animValue.x, animationTransitionTime, Time.fixedDeltaTime);
+        rb.velocity = new Vector3(direction.x * currentSpeed, rb.velocity.y, direction.y * currentSpeed);
+    }
+
+    private Vector2 CheckInput(Vector2 moveValue)
+    {
+        if (Mathf.Abs(moveValue.x) < startWalkingValue && Mathf.Abs(moveValue.y) < startWalkingValue)
+            return Vector2.zero;
+        return moveValue;
     }
 
     //Round values for game design purpose
-    private Vector2 RoundValues()
+    private Vector2 ConvertMoveToAnimValues(Vector2 moveValue)
     {
-        Vector2 tempDirAbs = new Vector2(Mathf.Abs(dir.x), Mathf.Abs(dir.y));
+        Vector2 tempAnimValue = new Vector2(Mathf.Abs(moveValue.x), Mathf.Abs(moveValue.y));
 
-        if (tempDirAbs.x > startWalkingValue)
-            if (tempDirAbs.x > startJogingValue) tempDirAbs.x = 1;
-            else tempDirAbs.x = 0.5f;
-        else tempDirAbs.x = 0;
+        if (tempAnimValue.x > startWalkingValue)
+            if (tempAnimValue.x > startJogingValue) tempAnimValue.x = 1;
+            else tempAnimValue.x = 0.5f;
 
-        if (tempDirAbs.y > startWalkingValue)
-            if (tempDirAbs.y > startJogingValue) tempDirAbs.y = 1;
-            else tempDirAbs.y = 0.5f;
-        else tempDirAbs.y = 0;
+        if (tempAnimValue.y > startWalkingValue)
+            if (tempAnimValue.y > startJogingValue) tempAnimValue.y = 1;
+            else tempAnimValue.y = 0.5f;
 
-        return tempDirAbs;
+        return tempAnimValue;
+    }
+
+    private float GetSpeedFromAnimValue(Vector2 animValue)
+    {
+        if (animValue.x == 1 || animValue.y == 1)
+            return jogSpeed;
+        if (animValue.x == 0.5f || animValue.y == 0.5f)
+            return walkSpeed;
+        return 0;
     }
 }
