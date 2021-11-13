@@ -13,9 +13,13 @@ public class CharacterMovement : MonoBehaviour
     [Header("VALUES")]
     private Vector2 movementValue;
     private Vector2 direction;
-    Vector2 animValue;
+    private float animValue;
     [SerializeField]
-    float currentSpeed;
+    private float currentSpeed;
+    [SerializeField]
+    private bool runInput;
+    [SerializeField]
+    private bool isRunning;
 
     [Header("Speeds")]
     [Header("GAME DESIGN")]
@@ -26,14 +30,14 @@ public class CharacterMovement : MonoBehaviour
     private float jogSpeed;
     [SerializeField]
     private float runSpeed;
-
-    [Header("Transitions")]
-    [SerializeField, Range(0,1)]
+    [SerializeField, Range(0, 1)]
     private float startWalkingValue;
     [SerializeField, Range(0, 1)]
     private float startJogingValue;
+
+    [Header("Transitions")]
     [SerializeField]
-    private float animationTransitionTime;
+    private float transitionSpeed;
 
 
     // Start is called before the first frame update
@@ -53,6 +57,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animValue = ConvertMoveToAnimValues(movementValue);
+        currentSpeed = GetSpeedFromAnimValue(animValue);
         ApplyMovement();
     }
 
@@ -62,14 +68,17 @@ public class CharacterMovement : MonoBehaviour
         movementValue = CheckInput(context.ReadValue<Vector2>());
         direction = movementValue.normalized;
         rP.dir = direction;
-        animValue = ConvertMoveToAnimValues(movementValue);
-        currentSpeed = GetSpeedFromAnimValue(animValue);
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        runInput = context.performed;
     }
 
     //Updates the animator movement layer and the player velocity
     private void ApplyMovement()
     {
-        anim.SetFloat(HashTable.moveH, animValue.x <= animValue.y ? animValue.y : animValue.x, animationTransitionTime, Time.fixedDeltaTime);
+        anim.SetFloat(HashTable.moveH, animValue, transitionSpeed, Time.fixedDeltaTime);
         rb.velocity = new Vector3(direction.x * currentSpeed, rb.velocity.y, direction.y * currentSpeed);
     }
 
@@ -81,26 +90,37 @@ public class CharacterMovement : MonoBehaviour
     }
 
     //Round values for game design purpose
-    private Vector2 ConvertMoveToAnimValues(Vector2 moveValue)
+    private float ConvertMoveToAnimValues(Vector2 moveValue)
     {
         Vector2 tempAnimValue = new Vector2(Mathf.Abs(moveValue.x), Mathf.Abs(moveValue.y));
 
-        if (tempAnimValue.x > startWalkingValue)
-            if (tempAnimValue.x > startJogingValue) tempAnimValue.x = 1;
-            else tempAnimValue.x = 0.5f;
+        if (runInput && tempAnimValue != Vector2.zero)
+        {
+            isRunning = true;
+            tempAnimValue.x = 1.5f;
+        }
+        else
+        {
+            isRunning = false;
+            if (tempAnimValue.x > startWalkingValue)
+                if (tempAnimValue.x > startJogingValue) tempAnimValue.x = 1;
+                else tempAnimValue.x = 0.5f;
 
-        if (tempAnimValue.y > startWalkingValue)
-            if (tempAnimValue.y > startJogingValue) tempAnimValue.y = 1;
-            else tempAnimValue.y = 0.5f;
-
-        return tempAnimValue;
+            if (tempAnimValue.y > startWalkingValue)
+                if (tempAnimValue.y > startJogingValue) tempAnimValue.y = 1;
+                else tempAnimValue.y = 0.5f;
+        }
+        float greaterValue = tempAnimValue.x <= tempAnimValue.y ? tempAnimValue.y : tempAnimValue.x;
+        return greaterValue;
     }
 
-    private float GetSpeedFromAnimValue(Vector2 animValue)
+    private float GetSpeedFromAnimValue(float animValue)
     {
-        if (animValue.x == 1 || animValue.y == 1)
+        if (animValue == 1.5f)
+            return runSpeed;
+        if (animValue == 1)
             return jogSpeed;
-        if (animValue.x == 0.5f || animValue.y == 0.5f)
+        if (animValue == 0.5f)
             return walkSpeed;
         return 0;
     }

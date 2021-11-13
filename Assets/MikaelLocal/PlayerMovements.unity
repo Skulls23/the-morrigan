@@ -223,6 +223,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionId
+      value: 83f8ede8-0170-40c2-bef0-6f41d8b377a4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionName
+      value: Player/Run[/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1092159459}
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnRun
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113833, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3771863629266113844, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -273,15 +313,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
       propertyPath: jogSpeed
-      value: 4
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: jogToRun
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
       propertyPath: runSpeed
-      value: 9
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: idleToJog
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: idleToRun
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
       propertyPath: walkSpeed
       value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: walkToJog
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: walkToRun
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: idleToWalk
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: transitionSpeed
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
       propertyPath: startJogingValue
@@ -294,6 +362,18 @@ PrefabInstance:
     - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
       propertyPath: animationTransitionTime
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: animationTransitionSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863630293807221, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771863630293807221, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.96
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
@@ -393,3 +473,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1092159459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3771863629266113847, guid: e32ddd557ae6b4145b4814e095e96c86, type: 3}
+  m_PrefabInstance: {fileID: 890630297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d93fb0a942e7d49a3bb4c5d84dd4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
