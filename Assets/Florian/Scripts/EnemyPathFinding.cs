@@ -5,16 +5,16 @@ using UnityEngine.AI;
 
 public class EnemyPathFinding : MonoBehaviour
 {
-    public float detectionRadius = 15f;
+    public float roamingRadius = 15f;
+
+    [SerializeField]
+    private float stoppingRange = 5f;
 
     private NavMeshAgent agent;
      
-    private Vector3 startingPosition;
     private Vector3 roamPosition;
 
     private GameObject player;
-
-    private float reachedPositionDistance = 1f;
 
     private bool isPlayerInArea = false;
 
@@ -28,16 +28,20 @@ public class EnemyPathFinding : MonoBehaviour
 
     private void Update()
     {
-        if(isPlayerInArea)
+        if (isPlayerInArea)
         {
-            agent.SetDestination(player.transform.position);
+            //reached destination
+            if (Vector3.Distance(transform.position, player.transform.position) > stoppingRange)
+                agent.SetDestination(player.transform.position);
+            else
+                agent.ResetPath();
+                
         }
         else
         {
             agent.SetDestination(roamPosition);
 
-            //reached destination
-            if (Vector3.Distance(transform.position, roamPosition) <= reachedPositionDistance)
+            if (Vector3.Distance(transform.position, roamPosition) <= stoppingRange)
                 roamPosition = VerifyNewPathIsPossible();
         }
     }
@@ -60,13 +64,13 @@ public class EnemyPathFinding : MonoBehaviour
     //Verify if the path given from RandomRoamingDestination is possible and find another destination if not
     public Vector3 VerifyNewPathIsPossible()
     {
-        Vector3 destination = RandomRoamingDestination(detectionRadius);
+        Vector3 destination = RandomRoamingDestination(roamingRadius);
 
         NavMeshPath path = new NavMeshPath();
         agent.CalculatePath(destination, path);
         while (path.status == NavMeshPathStatus.PathPartial || path.status == NavMeshPathStatus.PathInvalid)
         {
-            destination = RandomRoamingDestination(detectionRadius);
+            destination = RandomRoamingDestination(roamingRadius);
             agent.CalculatePath(destination, path);
         }
 
