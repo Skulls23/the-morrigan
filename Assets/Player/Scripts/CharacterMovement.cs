@@ -35,6 +35,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField, Range(0, 1)]
     private float startJogingValue;
 
+    [SerializeField]
+    private float rayLength;
+    [SerializeField]
+    private float slopeForce;
+
     [Header("Transitions")]
     [SerializeField]
     private float transitionSpeed;
@@ -79,7 +84,26 @@ public class CharacterMovement : MonoBehaviour
     private void ApplyMovement()
     {
         anim.SetFloat(HashTable.moveH, animValue, transitionSpeed, Time.fixedDeltaTime);
-        rb.velocity = new Vector3(direction.x * currentSpeed, rb.velocity.y, direction.y * currentSpeed);
+        rb.velocity = new Vector3(direction.x * currentSpeed, rb.velocity.y, direction.y * currentSpeed); 
+    }
+
+    private bool OnSlope()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.8f / 2 * rayLength))
+            if (hit.normal != Vector3.up)
+                return true;
+        return false;
+    }
+
+    private float SlopeManagement()
+    {
+        if (currentSpeed!=0 && OnSlope())
+        {
+            return -1.8f / 2 * slopeForce * Time.deltaTime;
+        }
+        return rb.velocity.y;
     }
 
     private Vector2 CheckInput(Vector2 moveValue)
