@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyPathFinding : MonoBehaviour
+public class EnemyRoaming : MonoBehaviour
 {
+    public bool bRoam;
+
     public float roamingRadius = 15f;
 
     [SerializeField]
@@ -21,7 +23,6 @@ public class EnemyPathFinding : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        //startingPosition = transform.position;
         player = GameObject.Find("Player");
         roamPosition = VerifyNewPathIsPossible();
     }
@@ -34,8 +35,7 @@ public class EnemyPathFinding : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) > stoppingRange)
                 agent.SetDestination(player.transform.position);
             else
-                agent.ResetPath();
-                
+                agent.ResetPath(); 
         }
         else
         {
