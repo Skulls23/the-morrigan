@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyCheckpoints : MonoBehaviour
+public class CheckpointsGuard : MonoBehaviour
 {
     public List<GameObject> lCheckpoints;
 

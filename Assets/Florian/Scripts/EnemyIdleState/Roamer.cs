@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyRoaming : MonoBehaviour
+public class Roamer : MonoBehaviour
 {
     public bool bRoam;
 
