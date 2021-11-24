@@ -5,43 +5,25 @@ using UnityEngine.AI;
 
 public class Roamer : MonoBehaviour
 {
-    public bool bRoam;
-
     public float roamingRadius = 15f;
 
-    [SerializeField]
-    private float stoppingRange = 5f;
-
     private NavMeshAgent agent;
-     
     private Vector3 roamPosition;
-
-    private GameObject player;
-
-    private bool isPlayerInArea = false;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.Find("Player");
         roamPosition = VerifyNewPathIsPossible();
     }
 
     private void Update()
     {
-        if (isPlayerInArea)
-        {
-            //reached destination
-            if (Vector3.Distance(transform.position, player.transform.position) > stoppingRange)
-                agent.SetDestination(player.transform.position);
-            else
-                agent.ResetPath(); 
-        }
-        else
+        if (!GetComponent<Enemy>().IsPlayerInArea)
         {
             agent.SetDestination(roamPosition);
 
-            if (Vector3.Distance(transform.position, roamPosition) <= stoppingRange)
+            Debug.Log(name + " " + Vector3.Distance(transform.position, roamPosition) + " " + GetComponent<Enemy>().MinDistFromTarget);
+            if (Vector3.Distance(transform.position, roamPosition) <= GetComponent<Enemy>().MinDistFromTarget)
                 roamPosition = VerifyNewPathIsPossible();
         }
     }
@@ -75,26 +57,5 @@ public class Roamer : MonoBehaviour
         }
 
         return destination;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            isPlayerInArea = true;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInArea = false;
-        }
     }
 }

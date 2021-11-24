@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1408213088255155230}
   - component: {fileID: 4486939806360044521}
   - component: {fileID: 669458882482170340}
+  - component: {fileID: 6588321075405698116}
   m_Layer: 3
   m_Name: Guard
   m_TagString: Enemy
@@ -30,8 +31,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2407575604951071502}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26, y: 2.973497, z: -10.45}
+  m_LocalRotation: {x: -0, y: -0.4177359, z: -0, w: 0.9085685}
+  m_LocalPosition: {x: 38.54436, y: 2.9874947, z: -1.6644512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -148,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifePoints: 100
+  minDistFromTarget: 0
 --- !u!114 &669458882482170340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +166,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &6588321075405698116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407575604951071502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a535a52d9833934aa3eceae58d8715b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
