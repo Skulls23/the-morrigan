@@ -24,16 +24,14 @@ public class Enemy : Actor
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("here");
             isPlayerInArea = true;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInArea = true;
-        }
+       
     }
 
     private void OnTriggerExit(Collider other)

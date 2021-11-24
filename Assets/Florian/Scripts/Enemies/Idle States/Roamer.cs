@@ -20,6 +20,7 @@ public class Roamer : MonoBehaviour
     {
         if (!GetComponent<Enemy>().IsPlayerInArea)
         {
+            
             agent.SetDestination(roamPosition);
 
             if (Vector3.Distance(transform.position, roamPosition) <= GetComponent<Enemy>().MinDistFromTarget)
