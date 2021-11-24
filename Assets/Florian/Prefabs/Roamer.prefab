@@ -147,7 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a179a592a2144146906d543854be04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 15
+  bRoam: 0
+  roamingRadius: 15
+  stoppingRange: 5
 --- !u!114 &3967296019264954308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +163,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifePoints: 100
+  agent: {fileID: 1927715570778390579}
+  player: {fileID: 0}
