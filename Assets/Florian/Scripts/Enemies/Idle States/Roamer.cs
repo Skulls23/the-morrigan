@@ -22,7 +22,6 @@ public class Roamer : MonoBehaviour
         {
             agent.SetDestination(roamPosition);
 
-            Debug.Log(name + " " + Vector3.Distance(transform.position, roamPosition) + " " + GetComponent<Enemy>().MinDistFromTarget);
             if (Vector3.Distance(transform.position, roamPosition) <= GetComponent<Enemy>().MinDistFromTarget)
                 roamPosition = VerifyNewPathIsPossible();
         }

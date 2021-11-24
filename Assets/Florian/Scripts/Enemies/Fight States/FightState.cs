@@ -7,6 +7,7 @@ public class FightState : MonoBehaviour
 {
     private NavMeshAgent agent;
     private GameObject player;
+    private Vector3 playerPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -18,12 +19,12 @@ public class FightState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerPosition = player.transform.GetChild(1).transform.position;
         if (GetComponent<Enemy>().IsPlayerInArea)
         {
-            Debug.Log(name + " player here");
             //reached destination
-            if (Vector3.Distance(transform.position, player.transform.position) > GetComponent<Enemy>().MinDistFromTarget)
-                agent.SetDestination(player.transform.position);
+            if (Vector3.Distance(transform.position, playerPosition) > GetComponent<Enemy>().MinDistFromTarget)
+                agent.SetDestination(playerPosition);
             else
                 agent.ResetPath();
         }

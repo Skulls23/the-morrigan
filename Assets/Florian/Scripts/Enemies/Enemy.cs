@@ -30,7 +30,10 @@ public class Enemy : Actor
 
     private void OnTriggerStay(Collider other)
     {
-
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInArea = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -46,5 +49,9 @@ public class Enemy : Actor
         get {return this.minDistFromTarget;}
         set {this.minDistFromTarget = value;}
     }
-    public bool IsPlayerInArea { get; set; }
+    public bool IsPlayerInArea 
+    {
+        get { return this.isPlayerInArea; }
+        set { this.isPlayerInArea = value; }
+    }
 }
