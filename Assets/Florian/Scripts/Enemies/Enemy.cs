@@ -24,7 +24,6 @@ public class Enemy : Actor
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("here");
             isPlayerInArea = true;
         }
     }
