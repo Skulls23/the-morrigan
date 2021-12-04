@@ -7,7 +7,6 @@ public class CheckpointsGuard : MonoBehaviour
 {
     public List<GameObject> lCheckpoints;
     public List<float> lWaitEachCP;
-    public float speed;
 
     private NavMeshAgent agent;
     private int i = 0;
@@ -17,7 +16,6 @@ public class CheckpointsGuard : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
         agent.SetDestination(lCheckpoints[i].transform.position); 
     }
 
@@ -41,5 +39,28 @@ public class CheckpointsGuard : MonoBehaviour
         yield return new WaitForSeconds(time);
         agent.SetDestination(lCheckpoints[i].transform.position);
         isWaiting = false;
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GetComponent<Enemy>().IsPlayerInArea = true;
+            i--;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GetComponent<Enemy>().IsPlayerInArea = false;
+        }
     }
 }

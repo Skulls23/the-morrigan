@@ -1685,7 +1685,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3970827788311768010, guid: b8987a284281e9d47a425568d12f40ea, type: 3}
       propertyPath: m_Name
-      value: warzombie_f_pedroso
+      value: CREnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4346227049122427248, guid: b8987a284281e9d47a425568d12f40ea, type: 3}
       propertyPath: m_RootOrder
@@ -1767,7 +1767,6 @@ MonoBehaviour:
   - 1
   - 5
   - 2
-  speed: 30
 --- !u!114 &8056735833920579292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1792,8 +1791,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d603615d4fda4b458afe32ce4101a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 0
-  minDistFromTarget: 0
+  lifePoints: 100
+  minDistFromTarget: 3
 --- !u!136 &8056735833920579294
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1846,3 +1845,16 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &8056735833920579298
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056735833920579290}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 1, z: 0}

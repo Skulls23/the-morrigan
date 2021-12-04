@@ -20,27 +20,6 @@ public class Enemy : Actor
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInArea = true;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-       
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInArea = false;
-        }
-    }
-
     public float MinDistFromTarget
     {
         get {return this.minDistFromTarget;}
