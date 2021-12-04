@@ -44,7 +44,7 @@ public class CheckpointsGuard : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.GetType() == typeof(SphereCollider))
         {
             GetComponent<Enemy>().IsPlayerInArea = true;
             i--;
@@ -58,7 +58,7 @@ public class CheckpointsGuard : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.GetType() == typeof(SphereCollider))
         {
             GetComponent<Enemy>().IsPlayerInArea = false;
         }
