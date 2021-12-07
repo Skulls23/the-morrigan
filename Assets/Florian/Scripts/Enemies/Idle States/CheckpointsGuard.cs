@@ -7,10 +7,11 @@ public class CheckpointsGuard : MonoBehaviour
 {
     public List<GameObject> lCheckpoints;
     public List<float> lWaitEachCP;
-
+    
     private NavMeshAgent agent;
     private int i = 0;
     private bool isWaiting = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class CheckpointsGuard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GetComponent<Enemy>().IsPlayerInArea)
+        if (!GetComponent<Enemy>().IsPlayerInZone || !GetComponent<Enemy>().IsPlayerSpotted)
         {
             if (agent.remainingDistance == 0 && !isWaiting)
             {
@@ -41,26 +42,24 @@ public class CheckpointsGuard : MonoBehaviour
         isWaiting = false;
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && other.GetType() == typeof(SphereCollider))
+        if (other.CompareTag("Player"))
         {
-            GetComponent<Enemy>().IsPlayerInArea = true;
+            GetComponent<Enemy>().IsPlayerSpotted = true;
             i--;
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    public void zoneColliderAlert(bool state)
     {
-
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && other.GetType() == typeof(SphereCollider))
+        Debug.Log(state);
+        if(state)
+            GetComponent<Enemy>().IsPlayerInZone = true;
+        else
         {
-            GetComponent<Enemy>().IsPlayerInArea = false;
+            GetComponent<Enemy>().IsPlayerInZone = false;
+            GetComponent<Enemy>().IsPlayerSpotted = false;
         }
     }
 }

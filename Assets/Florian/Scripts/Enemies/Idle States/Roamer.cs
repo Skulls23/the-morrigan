@@ -18,7 +18,7 @@ public class Roamer : MonoBehaviour
 
     private void Update()
     {
-        if (!GetComponent<Enemy>().IsPlayerInArea)
+        if (!GetComponent<Enemy>().IsPlayerInZone || !GetComponent<Enemy>().IsPlayerSpotted)
         {
             
             agent.SetDestination(roamPosition);

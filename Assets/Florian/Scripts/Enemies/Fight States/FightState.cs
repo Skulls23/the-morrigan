@@ -20,7 +20,7 @@ public class FightState : MonoBehaviour
     void Update()
     {
         playerPosition = player.transform.GetChild(1).transform.position;
-        if (GetComponent<Enemy>().IsPlayerInArea)
+        if (GetComponent<Enemy>().IsPlayerInZone && GetComponent<Enemy>().IsPlayerSpotted)
         {
             //reached destination
             if (Vector3.Distance(transform.position, playerPosition) > GetComponent<Enemy>().MinDistFromTarget)
