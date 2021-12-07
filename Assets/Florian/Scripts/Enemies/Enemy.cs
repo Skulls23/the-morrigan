@@ -9,18 +9,6 @@ public class Enemy : Actor
     private bool isPlayerSpotted = false;
     [SerializeField] protected float minDistFromTarget;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public float MinDistFromTarget
     {
         get {return this.minDistFromTarget;}

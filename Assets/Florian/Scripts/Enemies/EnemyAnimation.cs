@@ -17,13 +17,9 @@ public class EnemyAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(agent.velocity.magnitude != 0f)
-        {
-            setDirection(1);
-        }
     }
 
-    void setDirection(int direction)
+    public void setDirection(int direction)
     {
         anim.SetInteger("Direction", direction);
     }

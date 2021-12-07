@@ -17,7 +17,8 @@ public class CheckpointsGuard : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(lCheckpoints[i].transform.position); 
+        agent.SetDestination(lCheckpoints[i].transform.position);
+        GetComponent<EnemyAnimation>().setDirection(1);
     }
 
     // Update is called once per frame
@@ -25,10 +26,11 @@ public class CheckpointsGuard : MonoBehaviour
     {
         if (!GetComponent<Enemy>().IsPlayerInZone || !GetComponent<Enemy>().IsPlayerSpotted)
         {
-            if (agent.remainingDistance == 0 && !isWaiting)
+            if (agent.remainingDistance < 1f && !isWaiting)
             {
-                StartCoroutine(Wait(lWaitEachCP[i++]));
                 isWaiting = true;
+                GetComponent<EnemyAnimation>().setDirection(0);
+                StartCoroutine(Wait(lWaitEachCP[i++]));
             }
             if (i >= lCheckpoints.Count)
                 i = 0;
@@ -39,6 +41,7 @@ public class CheckpointsGuard : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         agent.SetDestination(lCheckpoints[i].transform.position);
+        GetComponent<EnemyAnimation>().setDirection(1);
         isWaiting = false;
     }
 
@@ -53,7 +56,6 @@ public class CheckpointsGuard : MonoBehaviour
 
     public void zoneColliderAlert(bool state)
     {
-        Debug.Log(state);
         if(state)
             GetComponent<Enemy>().IsPlayerInZone = true;
         else
