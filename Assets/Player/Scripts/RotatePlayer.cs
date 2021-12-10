@@ -5,8 +5,10 @@ using UnityEngine;
 public class RotatePlayer : MonoBehaviour
 {
     public Vector2 dir;
-    private Vector2 currentDirection;
     public float rotationSpeed = 10;
+    public Vector3 targetDir;
+
+    public Camera cam;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +26,12 @@ public class RotatePlayer : MonoBehaviour
     {
         if (dir != Vector2.zero)
         {
-            currentDirection = dir;
-            Quaternion tr = Quaternion.LookRotation(new Vector3(currentDirection.x, 0, currentDirection.y));
+            targetDir = cam.transform.forward *  dir.y;
+            targetDir += cam.transform.right * dir.x;
+            targetDir.y = 0;
+            targetDir.Normalize();
+            Debug.DrawRay(transform.position, targetDir, Color.green);
+            Quaternion tr = Quaternion.LookRotation(targetDir);
             Quaternion targetRotation = Quaternion.Slerp(GetComponent<Animator>().rootRotation, tr, Time.deltaTime * rotationSpeed);
             transform.rotation = targetRotation;
         } 

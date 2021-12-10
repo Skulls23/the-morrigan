@@ -9,9 +9,10 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody rb;
     private Animator anim;
     private RotatePlayer rP;
+    public Transform cameraFocus;
     
     [Header("VALUES")]
-    private Vector2 movementValue;
+    public Vector2 movementValue;
     private Vector2 direction;
     private float animValue;
     [SerializeField]
@@ -84,7 +85,7 @@ public class CharacterMovement : MonoBehaviour
     private void ApplyMovement()
     {
         anim.SetFloat(HashTable.moveH, animValue, transitionSpeed, Time.fixedDeltaTime);
-        rb.velocity = new Vector3(direction.x * currentSpeed, rb.velocity.y, direction.y * currentSpeed); 
+        rb.velocity = rP.transform.forward * currentSpeed /** new Vector3(direction.x * currentSpeed, rb.velocity.y, direction.y * currentSpeed)*/; 
     }
 
     private bool OnSlope()
