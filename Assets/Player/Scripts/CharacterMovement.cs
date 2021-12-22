@@ -58,7 +58,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -85,7 +85,11 @@ public class CharacterMovement : MonoBehaviour
     private void ApplyMovement()
     {
         anim.SetFloat(HashTable.moveH, animValue, transitionSpeed, Time.fixedDeltaTime);
-        rb.velocity = rP.transform.forward * currentSpeed /** new Vector3(direction.x * currentSpeed, rb.velocity.y, direction.y * currentSpeed)*/; 
+        rb.velocity = rP.transform.forward * currentSpeed;
+        if (OnSlope())
+        {
+            rb.velocity = new Vector3(rb.velocity.x,SlopeManagement(),rb.velocity.z);
+        }
     }
 
     private bool OnSlope()
@@ -142,11 +146,11 @@ public class CharacterMovement : MonoBehaviour
     private float GetSpeedFromAnimValue(float animValue)
     {
         if (animValue == 1.5f)
-            return runSpeed;
+            return runSpeed * transform.localScale.x;
         if (animValue == 1)
-            return jogSpeed;
+            return jogSpeed * transform.localScale.x;
         if (animValue == 0.5f)
-            return walkSpeed;
+            return walkSpeed * transform.localScale.x;
         return 0;
     }
 }
