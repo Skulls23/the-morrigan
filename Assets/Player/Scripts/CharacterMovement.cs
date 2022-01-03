@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
     
     [Header("VALUES")]
     public Vector2 movementValue;
+    public Vector2 animationMovementValue;
     private Vector2 direction;
     private float animValue;
     [SerializeField]
@@ -62,17 +63,12 @@ public class CharacterMovement : MonoBehaviour
     {
         
     }
-
-    private void LateUpdate()
-    {
-        ApplyMovement();
-    }
-
     private void FixedUpdate()
     {
-        animValue = ConvertMoveToAnimValues(movementValue);
+        animationMovementValue = ConvertMoveToAnimValues(movementValue);
+        animValue = getGreaterAnimValue(animationMovementValue);
         currentSpeed = GetSpeedFromAnimValue(animValue);
-        
+        ApplyMovement();
     }
 
     //Event getting the values on controller left joystic, keyboard arrows and WASD
@@ -91,7 +87,17 @@ public class CharacterMovement : MonoBehaviour
     //Updates the animator movement layer and the player velocity
     private void ApplyMovement()
     {
-        anim.SetFloat(HashTable.moveH, animValue, transitionSpeed, Time.fixedDeltaTime);
+        if (isLockedOn)
+        {
+            anim.SetFloat(HashTable.moveV, animationMovementValue.x, transitionSpeed, Time.fixedDeltaTime);
+            anim.SetFloat(HashTable.moveH, animationMovementValue.y, transitionSpeed, Time.fixedDeltaTime);
+        }
+        else
+        {
+            anim.SetFloat(HashTable.moveV, animValue, transitionSpeed, Time.fixedDeltaTime);
+            anim.SetFloat(HashTable.moveH, 0, 0, Time.fixedDeltaTime);
+        }
+        
         Vector3 targetVelocity = Vector3.zero;
 
         if (isLockedOn)
@@ -139,7 +145,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     //Round values for game design purpose
-    private float ConvertMoveToAnimValues(Vector2 moveValue)
+    private Vector2 ConvertMoveToAnimValues(Vector2 moveValue)
     {
         Vector2 tempAnimValue = new Vector2(Mathf.Abs(moveValue.x), Mathf.Abs(moveValue.y));
 
@@ -159,8 +165,19 @@ public class CharacterMovement : MonoBehaviour
                 if (tempAnimValue.y > startJogingValue) tempAnimValue.y = 1;
                 else tempAnimValue.y = 0.5f;
         }
-        float greaterValue = tempAnimValue.x <= tempAnimValue.y ? tempAnimValue.y : tempAnimValue.x;
-        return greaterValue;
+        return tempAnimValue;
+    }
+
+    private float getGreaterAnimValue(Vector2 animValue)
+    {
+        if (isRunning)
+        {
+            return 1.5f;
+        }
+        if (animValue.y >= animValue.x)
+            return animValue.y;
+        else
+            return animValue.x;
     }
 
     private float GetSpeedFromAnimValue(float animValue)

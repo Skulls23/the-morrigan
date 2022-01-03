@@ -35,12 +35,18 @@ AnimatorController:
   m_Name: JCAnimator
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: move
+  - m_Name: forward
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: sideways
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -73,7 +79,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
     m_Threshold: 0.5
-    m_Position: {x: 0, y: 0}
+    m_Position: {x: 0, y: 0.5}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -81,7 +87,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 96fcacff43e468349a1e1d17f3c5068c, type: 3}
     m_Threshold: 1
-    m_Position: {x: -1, y: 0}
+    m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -89,18 +95,18 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 5abaecd923ec3d54382cafccd0921171, type: 3}
     m_Threshold: 1.5
-    m_Position: {x: 0, y: 0}
+    m_Position: {x: 0, y: 1.5}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: move
     m_Mirror: 0
-  m_BlendParameter: move
-  m_BlendParameterY: Blend
+  m_BlendParameter: sideways
+  m_BlendParameterY: forward
   m_MinThreshold: 0
   m_MaxThreshold: 1.5
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
-  m_BlendType: 0
+  m_BlendType: 3
 --- !u!1107 &8504618159901459981
 AnimatorStateMachine:
   serializedVersion: 6
