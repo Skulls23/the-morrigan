@@ -9,11 +9,14 @@ public class RotatePlayer : MonoBehaviour
     public Vector3 targetDir;
     public GameObject target;
 
+    private Transform parent;
+    public bool LockedOn;
+
     public Camera cam;
     // Start is called before the first frame update
     void Start()
     {
-        
+        parent = GetComponentsInParent<Transform>()[1];
     }
 
     // Update is called once per frame
@@ -28,23 +31,23 @@ public class RotatePlayer : MonoBehaviour
 
         if (target)
         {
-            Vector3 dir = target.transform.position - transform.position;
+            Vector3 dir = target.transform.position - parent.transform.position;
             dir.Normalize();
             dir.y = 0;
-            transform.rotation = Quaternion.LookRotation(dir);
+            parent.transform.rotation = Quaternion.LookRotation(dir);
             return;
         }
 
         if (dir != Vector2.zero)
         {
-            targetDir = cam.transform.forward *  dir.y;
+            targetDir = cam.transform.forward * dir.y;
             targetDir += cam.transform.right * dir.x;
             targetDir.y = 0;
             targetDir.Normalize();
             Debug.DrawRay(transform.position, targetDir, Color.green);
             Quaternion tr = Quaternion.LookRotation(targetDir);
             Quaternion targetRotation = Quaternion.Slerp(GetComponent<Animator>().rootRotation, tr, Time.deltaTime * rotationSpeed);
-            transform.rotation = targetRotation;
+            parent.transform.rotation = targetRotation;
         } 
     }
 }

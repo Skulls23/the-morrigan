@@ -21,6 +21,8 @@ public class CharacterMovement : MonoBehaviour
     private bool runInput;
     [SerializeField]
     private bool isRunning;
+    [SerializeField]
+    private bool isLockedOn;
 
     [Header("Speeds")]
     [Header("GAME DESIGN")]
@@ -58,14 +60,19 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
+    private void LateUpdate()
+    {
+        ApplyMovement();
     }
 
     private void FixedUpdate()
     {
         animValue = ConvertMoveToAnimValues(movementValue);
         currentSpeed = GetSpeedFromAnimValue(animValue);
-        ApplyMovement();
+        
     }
 
     //Event getting the values on controller left joystic, keyboard arrows and WASD
@@ -85,11 +92,24 @@ public class CharacterMovement : MonoBehaviour
     private void ApplyMovement()
     {
         anim.SetFloat(HashTable.moveH, animValue, transitionSpeed, Time.fixedDeltaTime);
-        rb.velocity = rP.transform.forward * currentSpeed;
-        if (OnSlope())
+        Vector3 targetVelocity = Vector3.zero;
+
+        if (isLockedOn)
+        {
+            targetVelocity = rP.transform.forward * direction.y * currentSpeed;
+            targetVelocity += rP.transform.right * direction.x * currentSpeed;
+        }
+        else
+        {
+            targetVelocity = rP.transform.forward * currentSpeed;
+        }
+
+        rb.velocity = targetVelocity;
+
+        /*if (OnSlope())
         {
             rb.velocity = new Vector3(rb.velocity.x,SlopeManagement(),rb.velocity.z);
-        }
+        }*/
     }
 
     private bool OnSlope()
