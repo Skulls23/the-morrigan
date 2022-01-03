@@ -29,7 +29,7 @@ public class RotatePlayer : MonoBehaviour
     private void RotateTowardDirection()
     {
 
-        if (target)
+        if (LockedOn)
         {
             Vector3 dir = target.transform.position - parent.transform.position;
             dir.Normalize();

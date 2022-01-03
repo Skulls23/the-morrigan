@@ -10,7 +10,9 @@ public class CharacterMovement : MonoBehaviour
     private Animator anim;
     private RotatePlayer rP;
     public Transform cameraFocus;
-    
+    public GameObject CharacterCam;
+    public GameObject LockOnCamera;
+
     [Header("VALUES")]
     public Vector2 movementValue;
     public Vector2 animationMovementValue;
@@ -23,6 +25,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private bool isRunning;
     [SerializeField]
+    private bool lockInput;
+    [SerializeField]
     private bool isLockedOn;
 
     [Header("Speeds")]
@@ -34,6 +38,10 @@ public class CharacterMovement : MonoBehaviour
     private float jogSpeed;
     [SerializeField]
     private float runSpeed;
+    [SerializeField]
+    private float strafeWalkSpeed;
+    [SerializeField]
+    private float strafeJogSpeed;
     [SerializeField, Range(0, 1)]
     private float startWalkingValue;
     [SerializeField, Range(0, 1)]
@@ -84,13 +92,31 @@ public class CharacterMovement : MonoBehaviour
         runInput = context.performed;
     }
 
+    public void OnLock(InputAction.CallbackContext context)
+    {
+        lockInput = !lockInput;
+        isLockedOn = lockInput;
+        rP.LockedOn = isLockedOn;
+        LockLogic(isLockedOn);
+    }
+
+    private void LockLogic(bool isLockedOn)
+    {
+        if (isLockedOn)
+            LockOnCamera.SetActive(true);
+        else
+        {
+            LockOnCamera.SetActive(false);
+        }
+    }
+
     //Updates the animator movement layer and the player velocity
     private void ApplyMovement()
     {
         if (isLockedOn)
         {
-            anim.SetFloat(HashTable.moveV, animationMovementValue.x, transitionSpeed, Time.fixedDeltaTime);
-            anim.SetFloat(HashTable.moveH, animationMovementValue.y, transitionSpeed, Time.fixedDeltaTime);
+            anim.SetFloat(HashTable.moveV, animationMovementValue.y, transitionSpeed, Time.fixedDeltaTime);
+            anim.SetFloat(HashTable.moveH, animationMovementValue.x, transitionSpeed, Time.fixedDeltaTime);
         }
         else
         {
@@ -147,6 +173,8 @@ public class CharacterMovement : MonoBehaviour
     //Round values for game design purpose
     private Vector2 ConvertMoveToAnimValues(Vector2 moveValue)
     {
+        float xSign = Mathf.Sign(moveValue.x);
+        float ySign = Mathf.Sign(moveValue.y);
         Vector2 tempAnimValue = new Vector2(Mathf.Abs(moveValue.x), Mathf.Abs(moveValue.y));
 
         if (runInput && tempAnimValue != Vector2.zero)
@@ -165,11 +193,20 @@ public class CharacterMovement : MonoBehaviour
                 if (tempAnimValue.y > startJogingValue) tempAnimValue.y = 1;
                 else tempAnimValue.y = 0.5f;
         }
+
+        if (isLockedOn)
+        {
+            tempAnimValue.x *= xSign;
+            tempAnimValue.y *= ySign;
+        }
+
         return tempAnimValue;
-    }
+    }  
 
     private float getGreaterAnimValue(Vector2 animValue)
     {
+        animValue.x = Mathf.Abs(animValue.x);
+        animValue.y = Mathf.Abs(animValue.y);
         if (isRunning)
         {
             return 1.5f;
@@ -184,10 +221,21 @@ public class CharacterMovement : MonoBehaviour
     {
         if (animValue == 1.5f)
             return runSpeed * transform.localScale.x;
-        if (animValue == 1)
-            return jogSpeed * transform.localScale.x;
-        if (animValue == 0.5f)
-            return walkSpeed * transform.localScale.x;
+        if (isLockedOn)
+        {
+            if (animValue == 1)
+                return strafeJogSpeed * transform.localScale.x;
+            if (animValue == 0.5f)
+                return strafeWalkSpeed * transform.localScale.x;
+        }
+        else
+        {
+            if (animValue == 1)
+                return jogSpeed * transform.localScale.x;
+            if (animValue == 0.5f)
+                return walkSpeed * transform.localScale.x;
+        }
+        
         return 0;
     }
 }
