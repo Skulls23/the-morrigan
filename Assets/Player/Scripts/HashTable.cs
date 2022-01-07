@@ -7,10 +7,12 @@ public static class HashTable
 {
     public static int moveV { get; set; }
     public static int moveH { get; set; }
+    public static int isLockOn { get; set; }
 
     public static void Init()
     {
         moveV = Animator.StringToHash("forward");
         moveH = Animator.StringToHash("sideways");
+        isLockOn = Animator.StringToHash("isLockOn");
     }
 }

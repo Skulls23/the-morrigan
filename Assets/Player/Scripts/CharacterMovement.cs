@@ -96,6 +96,7 @@ public class CharacterMovement : MonoBehaviour
     {
         lockInput = !lockInput;
         isLockedOn = lockInput;
+        anim.SetBool(HashTable.isLockOn, isLockedOn);
         rP.LockedOn = isLockedOn;
         LockLogic(isLockedOn);
     }
