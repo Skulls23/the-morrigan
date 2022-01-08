@@ -94,11 +94,14 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnLock(InputAction.CallbackContext context)
     {
-        lockInput = !lockInput;
-        isLockedOn = lockInput;
-        anim.SetBool(HashTable.isLockOn, isLockedOn);
-        rP.LockedOn = isLockedOn;
-        LockLogic(isLockedOn);
+        if (rP.target)
+        {
+            lockInput = !lockInput;
+            isLockedOn = lockInput;
+            anim.SetBool(HashTable.isLockOn, isLockedOn);
+            rP.LockedOn = isLockedOn;
+            LockLogic(isLockedOn);
+        }
     }
 
     private void LockLogic(bool isLockedOn)
@@ -139,29 +142,29 @@ public class CharacterMovement : MonoBehaviour
 
         rb.velocity = targetVelocity;
 
-        /*if (OnSlope())
+        if (OnSlope())
         {
             rb.velocity = new Vector3(rb.velocity.x,SlopeManagement(),rb.velocity.z);
-        }*/
+        }
+        else
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        }
     }
 
     private bool OnSlope()
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.8f / 2 * rayLength))
-            if (hit.normal != Vector3.up)
+        if (Physics.Raycast(cameraFocus.position, Vector3.down, out hit, 1.8f / 2 * rayLength))
+            if (hit.normal != Vector3.up && hit.distance > 4.1f)
                 return true;
         return false;
     }
 
     private float SlopeManagement()
     {
-        if (currentSpeed!=0 && OnSlope())
-        {
-            return -1.8f / 2 * slopeForce * Time.deltaTime;
-        }
-        return rb.velocity.y;
+        return -slopeForce;
     }
 
     private Vector2 CheckInput(Vector2 moveValue)
