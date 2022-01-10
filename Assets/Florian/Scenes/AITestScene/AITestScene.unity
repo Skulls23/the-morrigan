@@ -505,8 +505,8 @@ GameObject:
   m_Component:
   - component: {fileID: 651641798}
   - component: {fileID: 651641800}
-  - component: {fileID: 651641799}
   - component: {fileID: 651641801}
+  - component: {fileID: 651641799}
   m_Layer: 0
   m_Name: wall
   m_TagString: Untagged
@@ -537,9 +537,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 651641797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b563c70bfa7d884bb55a23fb37a15ef, type: 3}
+  m_Script: {fileID: 11500000, guid: a722a7757bae627429a749a8004f7706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AlwaysShowCollider: 1
+  IncludeCollidersInChildren: 1
+  GizmoColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &651641800
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -562,9 +565,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 651641797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe3d400f2515af44c9366fc3de32bbcb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0057592023c792640b5f8a070706dc2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listGuard:
+  - {fileID: 1058162661}
 --- !u!1 &840013331
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +609,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 883626367}
-  - component: {fileID: 883626368}
   m_Layer: 0
   m_Name: Zones of non following
   m_TagString: Untagged
@@ -627,21 +631,6 @@ Transform:
   m_Father: {fileID: 1283937776}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &883626368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883626366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a722a7757bae627429a749a8004f7706, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AlwaysShowCollider: 1
-  IncludeCollidersInChildren: 1
-  GizmoColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &938471043
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +921,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016979095}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1058162650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2109072325066287248, guid: 284420ef345482046a455f8e9192cc48, type: 3}
+  m_PrefabInstance: {fileID: 8253876108593843786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1058162659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058162650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77951b5989323941bdec1d4541fdd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoints: 3
+  minDistFromTarget: 5
+--- !u!114 &1058162660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058162650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e751bd5eb6dc5442a6a4c331d8622ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1058162661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058162650}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c197dc81026d8d48b9c5d4935bd3283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lCheckpoints:
+  - {fileID: 1666841066}
+  - {fileID: 938471043}
+  - {fileID: 1362081874}
+  lWaitEachCP:
+  - 3
+  - 2
+  - 4
+--- !u!114 &1058162662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058162650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d4040e9d2fd6a4ba5f98ccea2c753d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1135042771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,5 +2506,9 @@ PrefabInstance:
       propertyPath: lCheckpoints.Array.data[2]
       value: 
       objectReference: {fileID: 1362081874}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2109072325066287249, guid: 284420ef345482046a455f8e9192cc48, type: 3}
+    - {fileID: 2109072325066287254, guid: 284420ef345482046a455f8e9192cc48, type: 3}
+    - {fileID: 2109072325066287255, guid: 284420ef345482046a455f8e9192cc48, type: 3}
+    - {fileID: 1884212465899051191, guid: 284420ef345482046a455f8e9192cc48, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 284420ef345482046a455f8e9192cc48, type: 3}
