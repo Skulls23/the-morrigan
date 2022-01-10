@@ -7,6 +7,8 @@ public class EnemyAnimation : MonoBehaviour
 {
     Animator anim;
     NavMeshAgent agent;
+
+    bool isAttacking = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,20 @@ public class EnemyAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && isAttacking)
+        {
+            isAttacking = false;
+        }
+    }
+
+    public void attack()
+    {
+        if(!isAttacking)
+        {
+            anim.ResetTrigger("Attack");
+            anim.SetTrigger("Attack");
+            isAttacking = true;
+        }
     }
 
     public void setDirection(int direction)

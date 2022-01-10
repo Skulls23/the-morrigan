@@ -432,6 +432,7 @@ GameObject:
   - component: {fileID: 74090727454738202}
   - component: {fileID: 74090727454738201}
   - component: {fileID: 74090727454738200}
+  - component: {fileID: 1261033563568968364}
   m_Layer: 0
   m_Name: JeuneCelte
   m_TagString: Untagged
@@ -643,6 +644,19 @@ MonoBehaviour:
   rayLength: 10
   slopeForce: 0.00001
   transitionSpeed: 0.2
+--- !u!114 &1261033563568968364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74090727454738199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1da5c508d30d148916cde819f4156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 6
 --- !u!1 &74090727640420124
 GameObject:
   m_ObjectHideFlags: 0
