@@ -12,19 +12,25 @@ public class FightState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("JeuneCelte");
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerPosition = player.transform.GetChild(1).transform.position;
+        playerPosition = player.transform.position;
         if (GetComponent<Enemy>().IsPlayerInZone && GetComponent<Enemy>().IsPlayerSpotted)
         {
             //reached destination
             if (Vector3.Distance(transform.position, playerPosition) > GetComponent<Enemy>().MinDistFromTarget)
                 agent.SetDestination(playerPosition);
+            /*else if (Vector3.Distance(transform.position, playerPosition) <= GetComponent<Enemy>().MinDistFromTarget)
+            {
+                Debug.Log("j'attaque");
+                GetComponent<EnemyAnimation>().setDirection(0);
+                GetComponent<EnemyAnimation>().attack();
+            }*/
             else
                 agent.ResetPath();
         }

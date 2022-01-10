@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageHandler : MonoBehaviour
+public class DamageOnEnemyHandler : MonoBehaviour
 {
     public int damage;
     Enemy enemy;

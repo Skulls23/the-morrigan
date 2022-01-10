@@ -50,7 +50,6 @@ public class CheckpointsGuard : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GetComponent<Enemy>().IsPlayerSpotted = true;
-            i--;
         }
     }
 
@@ -60,8 +59,18 @@ public class CheckpointsGuard : MonoBehaviour
             GetComponent<Enemy>().IsPlayerInZone = true;
         else
         {
-            GetComponent<Enemy>().IsPlayerInZone = false;
-            GetComponent<Enemy>().IsPlayerSpotted = false;
+            //if the player left the zone but was followed by the AI.
+            if (GetComponent<Enemy>().IsPlayerSpotted == true)
+            {
+                GetComponent<Enemy>().IsPlayerInZone = false;
+                GetComponent<Enemy>().IsPlayerSpotted = false;
+                i--;
+            }
+            else
+            {
+                GetComponent<Enemy>().IsPlayerInZone = false;
+                GetComponent<Enemy>().IsPlayerSpotted = false;
+            }
         }
     }
 }
