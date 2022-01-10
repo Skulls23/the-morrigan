@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{1993EB49-3FFE-4F42-B35F-FF394BC80181}" SchemaVersion="94">
+	<AudioObjects>
+		<WorkUnit Name="Character" ID="{1993EB49-3FFE-4F42-B35F-FF394BC80181}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="10"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<ActorMixer Name="CHA_Vocals" ID="{FCF661B6-DAB1-460C-9F9F-AB0A6C11FFFA}" ShortID="132813533">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Character" ID="{B9DE8C68-AF1D-4AEA-B914-5FCDFABDEC16}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+						</Reference>
+					</ReferenceList>
+				</ActorMixer>
+				<ActorMixer Name="CHA_Footsteps" ID="{B7801E65-A8C4-42E1-9167-49B7245F27CA}" ShortID="61736342">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Character" ID="{B9DE8C68-AF1D-4AEA-B914-5FCDFABDEC16}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+						</Reference>
+					</ReferenceList>
+				</ActorMixer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
