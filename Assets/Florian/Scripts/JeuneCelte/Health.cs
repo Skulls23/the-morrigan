@@ -5,8 +5,12 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int healthMax;
+    [SerializeField] private int healingValue;
+
     private int health;
     private int corruptedHealth;
+    
+    private int healToDo;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +42,12 @@ public class Health : MonoBehaviour
 
     public void heal(int add, float timeBetweenHeal)
     {
-        InvokeRepeating("addHealth", 3, 1f);
+        if (add == 0)
+            healToDo = healingValue;
+        else
+            healToDo = add;
+
+        InvokeRepeating("invokeHeal", 0f, timeBetweenHeal);
     }
 
     public void stopHeal()
@@ -74,23 +83,25 @@ public class Health : MonoBehaviour
             Debug.Log("Dead");
     }
 
-    private void addHealth(int add, float timeBetweenHeal)
+    private void invokeHeal()
+    {
+        if (healToDo == 0)
+            CancelInvoke();
+        else
+            addHealth(1);
+
+        healToDo--;
+    }
+
+    private void addHealth(int add)
     {
 
-        if (corruptedHealth > 0 && corruptedHealth <= add)
-        {
-            add -= corruptedHealth;
-            corruptedHealth = 0;
-            health += add;
-        }
-        else if (corruptedHealth > 0 && corruptedHealth > add)
-        {
+        if (corruptedHealth >= add)
             corruptedHealth -= add;
-        }
         else
             health += add;
 
-        if (health > healthMax)
+        if (health >= healthMax)
             health = healthMax;
     }
 }
