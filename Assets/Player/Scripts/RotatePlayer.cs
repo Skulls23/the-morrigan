@@ -8,11 +8,14 @@ public class RotatePlayer : MonoBehaviour
     public float rotationSpeed = 10;
     public Vector3 targetDir;
     public GameObject target;
+    public GameObject target2;
     public GameObject LockPoint;
+    public GameObject LockPoint2;
 
     private Transform parent;
     private CharacterMovement CM;
     public bool LockedOn;
+    public bool ennemy2;
 
     public Camera cam;
     // Start is called before the first frame update
@@ -40,7 +43,17 @@ public class RotatePlayer : MonoBehaviour
         if (LockedOn)
         {
             LockPoint.transform.position = new Vector3((CM.LockStartPoint.transform.position.x + target.transform.position.x) / 2, (CM.LockStartPoint.transform.position.y + target.transform.position.y) / 2, (CM.LockStartPoint.transform.position.z + target.transform.position.z) / 2);
-            Vector3 dir = target.transform.position - parent.transform.position;
+            LockPoint2.transform.position = new Vector3((CM.LockStartPoint.transform.position.x + target2.transform.position.x) / 2, (CM.LockStartPoint.transform.position.y + target2.transform.position.y) / 2, (CM.LockStartPoint.transform.position.z + target2.transform.position.z) / 2);
+            Vector3 dir;
+            if (!ennemy2)
+            {
+                dir = target.transform.position - parent.transform.position;
+            }
+            else
+            {
+                dir = target2.transform.position - parent.transform.position;
+            }
+            
             dir.Normalize();
             dir.y = 0;
             parent.transform.rotation = Quaternion.LookRotation(dir);
