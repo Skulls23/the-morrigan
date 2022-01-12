@@ -8,8 +8,10 @@ public class RotatePlayer : MonoBehaviour
     public float rotationSpeed = 10;
     public Vector3 targetDir;
     public GameObject target;
+    public GameObject LockPoint;
 
     private Transform parent;
+    private CharacterMovement CM;
     public bool LockedOn;
 
     public Camera cam;
@@ -17,6 +19,7 @@ public class RotatePlayer : MonoBehaviour
     void Start()
     {
         parent = GetComponentsInParent<Transform>()[1];
+        CM = parent.GetComponent<CharacterMovement>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class RotatePlayer : MonoBehaviour
 
         if (LockedOn)
         {
+            LockPoint.transform.position = new Vector3((CM.LockStartPoint.transform.position.x + target.transform.position.x) / 2, (CM.LockStartPoint.transform.position.y + target.transform.position.y) / 2, (CM.LockStartPoint.transform.position.z + target.transform.position.z) / 2);
             Vector3 dir = target.transform.position - parent.transform.position;
             dir.Normalize();
             dir.y = 0;

@@ -117,7 +117,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090726402902221}
-  m_LocalRotation: {x: -0.19583142, y: -0.79814905, z: 0.34434935, w: -0.4539072}
+  m_LocalRotation: {x: -0.21321966, y: -0.77384084, z: 0.33386195, w: -0.49421045}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 74090727454738201}
   - component: {fileID: 74090727454738200}
   - component: {fileID: 1261033563568968364}
+  - component: {fileID: 8653220988523044124}
   m_Layer: 0
   m_Name: JeuneCelte
   m_TagString: Untagged
@@ -625,6 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFocus: {fileID: 74090727679950786}
+  LockStartPoint: {fileID: 0}
   CharacterCam: {fileID: 74090727917379912}
   LockOnCamera: {fileID: 0}
   movementValue: {x: 0, y: 0}
@@ -634,9 +636,9 @@ MonoBehaviour:
   isRunning: 0
   lockInput: 0
   isLockedOn: 0
-  walkSpeed: 1.8
-  jogSpeed: 4.5
-  runSpeed: 7
+  walkSpeed: 1.55
+  jogSpeed: 3.2
+  runSpeed: 5
   strafeWalkSpeed: 1.5
   strafeJogSpeed: 2.5
   startWalkingValue: 0.3
@@ -657,6 +659,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthMax: 6
+--- !u!114 &8653220988523044124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74090727454738199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a87505213a07c46aceffc7402be5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 74090727454738199}
 --- !u!1 &74090727640420124
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,8 +699,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727640420124}
-  m_LocalRotation: {x: 0.36833653, y: -0.33790937, z: 0.14578523, w: 0.85375184}
-  m_LocalPosition: {x: 6.159981, y: 13.499829, z: -6.5627737}
+  m_LocalRotation: {x: -0.21321878, y: -0.77384144, z: 0.33386055, w: -0.49421084}
+  m_LocalPosition: {x: -8.166044, y: 13.499829, z: 3.7856405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7786438567276139986}
@@ -862,7 +877,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727916511402}
-  m_LocalRotation: {x: -0.18754266, y: -0.8042805, z: 0.3297745, w: -0.45739418}
+  m_LocalRotation: {x: -0.20419493, y: -0.77978563, z: 0.319731, w: -0.49800703}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -938,7 +953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727917379912}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.735693, y: 13.499829, z: 4.6015654}
+  m_LocalPosition: {x: -8.166044, y: 13.499829, z: 3.7856405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 74090726402902223}
@@ -1087,8 +1102,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090728293399728}
-  m_LocalRotation: {x: 0.05190354, y: -0.45375288, z: 0.023545183, w: 0.8893031}
-  m_LocalPosition: {x: 22.362022, y: -6.134142, z: -15.187738}
+  m_LocalRotation: {x: 0.17528783, y: 0.81578827, z: -0.31733006, w: 0.45062783}
+  m_LocalPosition: {x: 0.5469842, y: 0, z: 1.0065701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 74090727226942995}
@@ -1279,6 +1294,7 @@ MonoBehaviour:
   rotationSpeed: 8
   targetDir: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  LockPoint: {fileID: 0}
   LockedOn: 0
   cam: {fileID: 74090727640420128}
 --- !u!1 &3014848504033895295

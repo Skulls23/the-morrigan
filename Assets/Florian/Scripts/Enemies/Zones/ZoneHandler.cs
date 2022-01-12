@@ -12,7 +12,7 @@ public class ZoneHandler : MonoBehaviour
         {
             foreach(CheckpointsGuard guard in listGuard)
             {
-                guard.zoneColliderAlert(true);
+                guard.ZoneColliderAlert(true);
             }
         }
     }
@@ -23,7 +23,7 @@ public class ZoneHandler : MonoBehaviour
         {
             foreach (CheckpointsGuard guard in listGuard)
             {
-                guard.zoneColliderAlert(false);
+                guard.ZoneColliderAlert(false);
             }
         }
     }

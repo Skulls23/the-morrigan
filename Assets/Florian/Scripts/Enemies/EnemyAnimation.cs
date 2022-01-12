@@ -25,7 +25,7 @@ public class EnemyAnimation : MonoBehaviour
         }
     }
 
-    public void attack()
+    public void Attack()
     {
         if(!isAttacking)
         {
@@ -35,7 +35,7 @@ public class EnemyAnimation : MonoBehaviour
         }
     }
 
-    public void setDirection(int direction)
+    public void SetDirection(int direction)
     {
         anim.SetInteger("Direction", direction);
     }

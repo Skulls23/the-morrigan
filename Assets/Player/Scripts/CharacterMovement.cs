@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
     private Animator anim;
     private RotatePlayer rP;
     public Transform cameraFocus;
+    public Transform LockStartPoint;
     public GameObject CharacterCam;
     public GameObject LockOnCamera;
 
