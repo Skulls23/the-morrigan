@@ -8,7 +8,42 @@
 						<Property Name="Color" Type="int16" Value="10"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
-					<ObjectInclusionList/>
+					<ObjectInclusionList>
+						<ObjectRef Name="Character" ID="{1993EB49-3FFE-4F42-B35F-FF394BC80181}" WorkUnitID="{1993EB49-3FFE-4F42-B35F-FF394BC80181}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SB_Environment" ID="{ECA13650-B7EE-49FD-B672-0DB01ECE3D55}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="4"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="Environment" ID="{23C2685D-3004-4AF7-A2DE-1047948EFDA9}" WorkUnitID="{23C2685D-3004-4AF7-A2DE-1047948EFDA9}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SB_Weapon" ID="{3D0BE8C8-1322-4EB7-A053-0BA08B6162AD}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="24"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="Weapon" ID="{71046C9D-6EEA-4491-ACFC-B775F9E497D9}" WorkUnitID="{71046C9D-6EEA-4491-ACFC-B775F9E497D9}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SB_Enemies" ID="{7BB564ED-7A76-44FE-96E3-0A711DA11490}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="14"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="Enemies" ID="{0023E464-B0B4-4315-AC51-9D22328D05D4}" WorkUnitID="{0023E464-B0B4-4315-AC51-9D22328D05D4}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>

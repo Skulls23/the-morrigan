@@ -15,11 +15,20 @@ namespace AK
     {
         static const AkUniqueID INIT = 1355168291U;
         static const AkUniqueID SB_CHARACTER = 660045834U;
+        static const AkUniqueID SB_ENEMIES = 1907550163U;
+        static const AkUniqueID SB_ENVIRONMENT = 40556624U;
+        static const AkUniqueID SB_WEAPON = 649986797U;
     } // namespace BANKS
 
     namespace BUSSES
     {
+        static const AkUniqueID CHARACTER = 436743010U;
+        static const AkUniqueID ENEMIES = 2242381963U;
+        static const AkUniqueID ENVIRONMENT = 1229948536U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID REVERB = 348963605U;
+        static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID WEAPON = 3893417221U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES
