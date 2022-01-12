@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthExample : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private float timeBetweenHealedHeart;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class HealthExample : MonoBehaviour
         //Heal
         if (Input.GetKeyUp(KeyCode.P))
         {
-            player.GetComponent<Health>().Heal(3, 1f);
+            player.GetComponent<Health>().Heal(3, timeBetweenHealedHeart);
         }
     }
 }

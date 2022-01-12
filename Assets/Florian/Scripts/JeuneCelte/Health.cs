@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(health + " | " + corruptedHealth + " | " + healthMax);
+        Debug.Log(health + " | " + corruptedHealth + " | " + healthMax);
     }
 
     public int GetHealthMax()
@@ -44,7 +44,7 @@ public class Health : MonoBehaviour
     /// Heal x hearths container
     /// Corrupted hearth container are healed first
     /// </summary>
-    /// <param name="add">The number of health container healed</param>
+    /// <param name="add">The number of health container healed, if 0, the var healingValue is took</param>
     /// <param name="timeBetweenHeal">The time between two heart to be healed</param>
     public void Heal(int add, float timeBetweenHeal)
     {
