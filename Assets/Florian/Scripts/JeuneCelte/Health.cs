@@ -35,11 +35,15 @@ public class Health : MonoBehaviour
     {
         return health;
     }
-    public void addHealth(int add)
+
+    public void heal(int add, float timeBetweenHeal)
     {
-        health += add;
-        if(health > healthMax)
-            health = healthMax;
+        InvokeRepeating("addHealth", 3, 1f);
+    }
+
+    public void stopHeal()
+    {
+        CancelInvoke();
     }
 
     public int getCorruptedHealth()
@@ -63,10 +67,30 @@ public class Health : MonoBehaviour
             health--;
             corruptedHealth--;
         }
-        else if(health != 0)
+        else if (health != 0)
             health--;
 
         if (health == 0)
             Debug.Log("Dead");
+    }
+
+    private void addHealth(int add, float timeBetweenHeal)
+    {
+
+        if (corruptedHealth > 0 && corruptedHealth <= add)
+        {
+            add -= corruptedHealth;
+            corruptedHealth = 0;
+            health += add;
+        }
+        else if (corruptedHealth > 0 && corruptedHealth > add)
+        {
+            corruptedHealth -= add;
+        }
+        else
+            health += add;
+
+        if (health > healthMax)
+            health = healthMax;
     }
 }
