@@ -70,11 +70,45 @@ MonoBehaviour:
         ObjectType: 7
       Path: Default Work Unit\SB_Weapon
   EventWwu:
+  - PhysicalPath: Events\Character.wwu
+    ParentPhysicalPath: Events\Default Work Unit.wwu
+    guid: d514b497d5567249a1d704f1ac17beed
+    GuidInternal: 
+    m_lastTime: -8585595976827594505
+    List:
+    - name: CHA_Foosteps_Run
+      guid: 6c36f3730844ca448e15b2ba74792f0e
+      id: 1513434547
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: CHA_Foosteps_Run
+        ObjectType: 3
+      Path: Default Work Unit\Character\CHA_Foosteps_Run
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: CHA_Footsteps_Walk
+      guid: aa67c0646e24d74ca7190a6c4d4fad51
+      id: 1295890699
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: CHA_Footsteps_Walk
+        ObjectType: 3
+      Path: Default Work Unit\Character\CHA_Footsteps_Walk
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: c24ca9f72b7e9e41b0faaf4cd98959ee
     GuidInternal: 
-    m_lastTime: -8585600383047760830
+    m_lastTime: -8585596020452627390
     List: []
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
@@ -91,11 +125,59 @@ MonoBehaviour:
     m_lastTime: -8585600383048379174
     List: []
   SwitchWwu:
+  - PhysicalPath: Switches\Character.wwu
+    ParentPhysicalPath: Switches\Default Work Unit.wwu
+    guid: 0cc86f0ef4f8744f991a84aa059304db
+    GuidInternal: 
+    m_lastTime: -8585595981186806235
+    List:
+    - name: CHA_Footsteps_Run
+      guid: 04bb6f35f5e2e341880ea7a805bfc478
+      id: 269589991
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: CHA_Footsteps_Run
+        ObjectType: 11
+      Path: Default Work Unit\Character\CHA_Footsteps_Run
+      values:
+      - name: Mud_Run
+        guid: 165897fc14074e44a5645a4860da6c72
+        id: 2889795631
+        PathAndIcons:
+        - ElementName: Mud_Run
+          ObjectType: 10
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: CHA_Footsteps_Walk
+      guid: cb5d3e14748954488e61bb4ed34ce63d
+      id: 1295890699
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: CHA_Footsteps_Walk
+        ObjectType: 11
+      Path: Default Work Unit\Character\CHA_Footsteps_Walk
+      values:
+      - name: Mud_Walk
+        guid: 45ff0d58df780d4ebbfac304d3913691
+        id: 1926448339
+        PathAndIcons:
+        - ElementName: Mud_Walk
+          ObjectType: 10
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 9f961d665f229f49a27f05e0d5b68983
     GuidInternal: 
-    m_lastTime: -8585600383049177042
+    m_lastTime: -8585596022546582013
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu

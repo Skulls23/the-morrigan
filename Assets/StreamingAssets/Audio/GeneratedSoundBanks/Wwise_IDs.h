@@ -11,6 +11,36 @@
 
 namespace AK
 {
+    namespace EVENTS
+    {
+        static const AkUniqueID CHA_FOOSTEPS_RUN = 1513434547U;
+        static const AkUniqueID CHA_FOOTSTEPS_WALK = 1295890699U;
+    } // namespace EVENTS
+
+    namespace SWITCHES
+    {
+        namespace CHA_FOOTSTEPS_RUN
+        {
+            static const AkUniqueID GROUP = 269589991U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID MUD_RUN = 2889795631U;
+            } // namespace SWITCH
+        } // namespace CHA_FOOTSTEPS_RUN
+
+        namespace CHA_FOOTSTEPS_WALK
+        {
+            static const AkUniqueID GROUP = 1295890699U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID MUD_WALK = 1926448339U;
+            } // namespace SWITCH
+        } // namespace CHA_FOOTSTEPS_WALK
+
+    } // namespace SWITCHES
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;

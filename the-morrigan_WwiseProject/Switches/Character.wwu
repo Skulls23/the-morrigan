@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{0E6FC80C-F8F4-4F74-991A-84AA059304DB}" SchemaVersion="94" RootDocumentID="{661D969F-225F-499F-A27F-05E0D5B68983}">
+	<Switches>
+		<WorkUnit Name="Character" ID="{0E6FC80C-F8F4-4F74-991A-84AA059304DB}" OwnerID="{661D969F-225F-499F-A27F-05E0D5B68983}" PersistMode="Nested">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="10"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<SwitchGroup Name="CHA_Footsteps_Walk" ID="{143E5DCB-8974-4854-8E61-BB4ED34CE63D}">
+					<ChildrenList>
+						<Switch Name="Mud_Walk" ID="{580DFF45-78DF-4E0D-BBFA-C304D3913691}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="CHA_Footsteps_Run" ID="{356FBB04-E2F5-41E3-880E-A7A805BFC478}">
+					<ChildrenList>
+						<Switch Name="Mud_Run" ID="{FC975816-0714-444E-A564-5A4860DA6C72}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</Switches>
+</WwiseDocument>

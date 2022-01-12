@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{97B414D5-56D5-4972-A1D7-04F1AC17BEED}" SchemaVersion="94" RootDocumentID="{F7A94CC2-7E2B-419E-B0FA-AF4CD98959EE}">
+	<Events>
+		<WorkUnit Name="Character" ID="{97B414D5-56D5-4972-A1D7-04F1AC17BEED}" OwnerID="{F7A94CC2-7E2B-419E-B0FA-AF4CD98959EE}" PersistMode="Nested">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="10"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="CHA_Footsteps_Walk" ID="{64C067AA-246E-4CD7-A719-0A6C4D4FAD51}">
+					<ChildrenList>
+						<Action Name="" ID="{2E210DAD-5A60-4288-9FB6-743DC6F24E5C}" ShortID="278055638">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="CHA_Footsteps_Walk" ID="{E5C66438-31FC-437B-B21A-22650CC9A2DB}" WorkUnitID="{1993EB49-3FFE-4F42-B35F-FF394BC80181}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="CHA_Foosteps_Run" ID="{73F3366C-4408-44CA-8E15-B2BA74792F0E}">
+					<ChildrenList>
+						<Action Name="" ID="{ED541E09-97E6-4445-87FA-FF159A921F63}" ShortID="845139252">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="CHA_Footsteps_Run" ID="{0723E3F9-D538-45DD-85EA-C6BC7384BB32}" WorkUnitID="{1993EB49-3FFE-4F42-B35F-FF394BC80181}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
