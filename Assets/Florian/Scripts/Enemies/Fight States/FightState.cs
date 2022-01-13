@@ -28,8 +28,8 @@ public class FightState : MonoBehaviour
             /*else if (Vector3.Distance(transform.position, playerPosition) <= GetComponent<Enemy>().MinDistFromTarget)
             {
                 Debug.Log("j'attaque");
-                GetComponent<EnemyAnimation>().setDirection(0);
-                GetComponent<EnemyAnimation>().attack();
+                GetComponent<EnemyAnimation>().SetDirection(0);
+                GetComponent<EnemyAnimation>().Attack();
             }*/
             else
                 agent.ResetPath();
