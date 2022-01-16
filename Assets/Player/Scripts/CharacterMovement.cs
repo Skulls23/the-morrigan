@@ -23,11 +23,13 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private bool dodgeInput;
     [SerializeField]
+    private bool attackInput;
+    [SerializeField]
     private bool isRunning;
     [SerializeField]
     public bool isLockedOn;
     [SerializeField]
-    public bool isDodging;
+    public bool isActing;
 
     [Header("Speeds")]
     [Header("GAME DESIGN")]
@@ -46,6 +48,8 @@ public class CharacterMovement : MonoBehaviour
     private float dashSpeed;
     [SerializeField]
     private float dashLockMovementTime;
+    [SerializeField]
+    private float attackLockMovementTime;
     [SerializeField, Range(0, 1)]
     private float startWalkingValue;
     [SerializeField, Range(0, 1)]
@@ -67,6 +71,8 @@ public class CharacterMovement : MonoBehaviour
     [Header("Stamina Costs")]
     [SerializeField]
     private float dodgeStaminaCost;
+    [SerializeField]
+    private float attackStaminaCost;
 
 
     // Start is called before the first frame update
@@ -89,7 +95,7 @@ public class CharacterMovement : MonoBehaviour
         animationMovementValue = ConvertMoveToAnimValues(movementValue);
         animValue = getGreaterAnimValue(animationMovementValue);
         currentSpeed = GetSpeedFromAnimValue(animValue);
-        if (!isDodging)
+        if (!isActing)
         {
             ApplyMovement();
         }
@@ -115,13 +121,14 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnDodge(InputAction.CallbackContext context)
     {
-        if (context.performed && !isDodging && SM.UseStamina(dodgeStaminaCost))
+        if (context.performed && !isActing && SM.UseStamina(dodgeStaminaCost))
         {
             Vector3 dashDir = new Vector3(direction.x, 0, direction.y);
             anim.applyRootMotion = true;
-            isDodging = true;
+            isActing = true;
             dodgeInput = context.performed;
             anim.SetTrigger(HashTable.dodged);
+            anim.SetBool("isDodging", true);
             if (isLockedOn)
             {
                 anim.SetFloat(HashTable.dirX, movementValue.x, 0, Time.fixedDeltaTime);
@@ -134,19 +141,37 @@ public class CharacterMovement : MonoBehaviour
             }
             
             //rb.velocity = dashDir * dashSpeed;
-            StartCoroutine("LockMovementTimer");
+            StartCoroutine(IELockMovementTimer(dashLockMovementTime));
 
             //TO DO Multiplicator of speed for GD purpose
         }
         
     }
 
-    IEnumerator LockMovementTimer()
+    public void OnAttack(InputAction.CallbackContext context)
     {
-        yield return new WaitForSeconds(dashLockMovementTime);
-        anim.applyRootMotion = false;
-        isDodging = false;
+        if (context.performed)
+        {
+            anim.SetBool("hasAttacked", true);
+            if (!isActing && SM.UseStamina(attackStaminaCost))
+            {
+                rb.velocity = Vector3.zero;
+                anim.applyRootMotion = true;
+                isActing = true;
+                attackInput = context.performed;
+                anim.SetTrigger(HashTable.attacked);
+                StartCoroutine(IELockMovementTimer(attackLockMovementTime));
+            }
+        }
+    }
 
+    IEnumerator IELockMovementTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        anim.applyRootMotion = false;
+        isActing = false;
+        anim.SetBool("isDodging", false);
+        anim.SetBool("hasAttacked", false);
     }
 
     //Updates the animator movement layer and the player velocity

@@ -12,6 +12,7 @@ public static class HashTable
     public static int isLockOn { get; set; }
 
     public static int dodged { get; set; }
+    public static int attacked { get; set; }
 
     public static void Init()
     {
@@ -21,5 +22,6 @@ public static class HashTable
         dirZ = Animator.StringToHash("dirZ");
         isLockOn = Animator.StringToHash("isLockOn");
         dodged = Animator.StringToHash("dodged");
+        attacked = Animator.StringToHash("attacked");
     }
 }

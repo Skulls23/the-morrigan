@@ -6,6 +6,7 @@ public class RotatePlayer : MonoBehaviour
 {
     public Vector2 dir;
     public float rotationSpeed = 10;
+    public float animationSpeed = 0;
     public Vector3 targetDir;
     public GameObject lockPoint;
     public GameObject lockPoint2;
@@ -27,6 +28,7 @@ public class RotatePlayer : MonoBehaviour
         parent = GetComponentsInParent<Transform>()[1];
         CM = parent.GetComponent<CharacterMovement>();
         CamController = parent.GetComponent<CameraController>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -44,6 +46,7 @@ public class RotatePlayer : MonoBehaviour
     private void FixedUpdate()
     {
         RotateTowardDirection();
+        anim.SetFloat("attackAnimationSpeed", animationSpeed);
     }
 
     //Rotate the players towards his facing direction
@@ -70,7 +73,7 @@ public class RotatePlayer : MonoBehaviour
             return;
         }
 
-        if (dir != Vector2.zero && !CM.isDodging)
+        if (dir != Vector2.zero && !CM.isActing)
         {
             targetDir = cam.transform.forward * dir.y;
             targetDir += cam.transform.right * dir.x;

@@ -19,7 +19,7 @@ public class AnimationChecker : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponentInParent<CharacterMovement>().isDodging = true;
+        animator.GetComponentInParent<CharacterMovement>().isActing = true;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
