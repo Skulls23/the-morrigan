@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{5AE14DEB-1DF8-41EF-94D9-F2C517E06F09}" SchemaVersion="94" RootDocumentID="{F7A94CC2-7E2B-419E-B0FA-AF4CD98959EE}">
+	<Events>
+		<WorkUnit Name="Weapon" ID="{5AE14DEB-1DF8-41EF-94D9-F2C517E06F09}" OwnerID="{F7A94CC2-7E2B-419E-B0FA-AF4CD98959EE}" PersistMode="Nested">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="24"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="WEA_Hit_Woosh" ID="{5FF45867-9486-4F38-AC58-0808E7F2856B}">
+					<ChildrenList>
+						<Action Name="" ID="{9DE96A9A-5172-416D-9502-DE8F889F7362}" ShortID="535231278">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="WEA_Hit_Woosh" ID="{52F29B17-AEBA-48A6-87E7-83625CD0B5C9}" WorkUnitID="{71046C9D-6EEA-4491-ACFC-B775F9E497D9}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
