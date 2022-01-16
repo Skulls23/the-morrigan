@@ -17,21 +17,21 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 92673d0b73d3d44bbcbe074fcabd6532
     GuidInternal: 
-    m_lastTime: -8585600383048269472
+    m_lastTime: -8585597846315912176
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 56cc6f82bab91343b6d9965832e6c7b8
     GuidInternal: 
-    m_lastTime: -8585597822237227535
+    m_lastTime: -8585596207589935688
     List: []
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 074b89c517e9af48b14160cbbcffc261
     GuidInternal: 
-    m_lastTime: -8585597814459936361
+    m_lastTime: -8585596207589925709
     List:
     - name: SB_Character
       guid: da0219f992848d4c80c1e2fed2f04e62
@@ -74,7 +74,7 @@ MonoBehaviour:
     ParentPhysicalPath: Events\Default Work Unit.wwu
     guid: d514b497d5567249a1d704f1ac17beed
     GuidInternal: 
-    m_lastTime: -8585595976827594505
+    m_lastTime: -8585592327526846152
     List:
     - name: CHA_Foosteps_Run
       guid: 6c36f3730844ca448e15b2ba74792f0e
@@ -104,17 +104,31 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: CHA_Hit_Vocals_001
+      guid: 59a63b4c9bb9aa4b8fc53114e4daf566
+      id: 1532425848
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: CHA_Hit_Vocals_001
+        ObjectType: 3
+      Path: Default Work Unit\Character\CHA_Hit_Vocals_001
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: c24ca9f72b7e9e41b0faaf4cd98959ee
     GuidInternal: 
-    m_lastTime: -8585592363968775421
+    m_lastTime: -8585592327526915962
     List: []
   - PhysicalPath: Events\Environment.wwu
     ParentPhysicalPath: Events\Default Work Unit.wwu
     guid: 37599d9e74f8744cbf528070d94a4481
     GuidInternal: 
-    m_lastTime: -8585592357523352472
+    m_lastTime: -8585592327526836178
     List:
     - name: ENV_Amb_Forest
       guid: dfdfaee779b6884ab675a34b6ce77904
@@ -134,33 +148,47 @@ MonoBehaviour:
     ParentPhysicalPath: Events\Default Work Unit.wwu
     guid: eb4de15af81def4194d9f2c517e06f09
     GuidInternal: 
-    m_lastTime: -8585592368955381833
+    m_lastTime: -8585592327526905986
     List:
-    - name: WEA_Hit_001
-      guid: 59a63b4c9bb9aa4b8fc53114e4daf566
-      id: 3741830316
+    - name: WEA_Hit_Flesh
+      guid: 308755f86b623a4a80612a9f595ed203
+      id: 2627352527
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: Weapon
         ObjectType: 12
-      - ElementName: WEA_Hit_001
+      - ElementName: WEA_Hit_Flesh
         ObjectType: 3
-      Path: Default Work Unit\Weapon\WEA_Hit_001
+      Path: Default Work Unit\Weapon\WEA_Hit_Flesh
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-    - name: WEA_Hit_Woosh
+    - name: WEA_Hit_Swoosh
       guid: 6758f45f8694384fac580808e7f2856b
-      id: 3363186981
+      id: 3270747314
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: Weapon
         ObjectType: 12
-      - ElementName: WEA_Hit_Woosh
+      - ElementName: WEA_Hit_Swoosh
         ObjectType: 3
-      Path: Default Work Unit\Weapon\WEA_Hit_Woosh
+      Path: Default Work Unit\Weapon\WEA_Hit_Swoosh
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: WEA_Hit_WeakPoint
+      guid: 3fe51054313fa3458af4befd68e40456
+      id: 2569330039
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Weapon
+        ObjectType: 12
+      - ElementName: WEA_Hit_WeakPoint
+        ObjectType: 3
+      Path: Default Work Unit\Weapon\WEA_Hit_WeakPoint
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -169,21 +197,21 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 802be5602199ed41934ba0d4256e7ed4
     GuidInternal: 
-    m_lastTime: -8585600383049117219
+    m_lastTime: -8585597846316011913
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: fa06dd752adb7b47b7080503c40f8eca
     GuidInternal: 
-    m_lastTime: -8585600383048379174
+    m_lastTime: -8585597846315842363
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Character.wwu
     ParentPhysicalPath: Switches\Default Work Unit.wwu
     guid: 0cc86f0ef4f8744f991a84aa059304db
     GuidInternal: 
-    m_lastTime: -8585595981186806235
+    m_lastTime: -8585595174612380982
     List:
     - name: CHA_Footsteps_Run
       guid: 04bb6f35f5e2e341880ea7a805bfc478
@@ -231,14 +259,14 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 9f961d665f229f49a27f05e0d5b68983
     GuidInternal: 
-    m_lastTime: -8585596022546582013
+    m_lastTime: -8585595174612351063
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 2c9169ce3118b348848c590f2ce8af39
     GuidInternal: 
-    m_lastTime: -8585600383049057370
+    m_lastTime: -8585597846315483322
     List: []
   ExpandedItems:
   - /the-morrigan_WwiseProject

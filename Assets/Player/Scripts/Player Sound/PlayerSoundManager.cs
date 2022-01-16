@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class PlayerSoundManager : MonoBehaviour
 {
-   /* public Animator CharacterAnimator;
+   public Animator CharacterAnimator;
 
     private void Start()
     {
         CharacterAnimator = CharacterAnimator.GetComponent<Animator>();
     }
 
-    void PlayFoostepWalk()
+    void PlayHitVocals001()
     {
-        AkSoundEngine.PostEvent("CHA_Footsteps_Walk", gameObject);
+        AkSoundEngine.PostEvent("CHA_Hit_Vocals_001", gameObject);
         Debug.Log("bite");
-    }*/
+    }
+    
 }

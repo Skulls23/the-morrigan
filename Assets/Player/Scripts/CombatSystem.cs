@@ -44,7 +44,7 @@ public class CombatSystem : MonoBehaviour
                 break;
             }
         }
-        Debug.LogAssertion(entityType);
+        Debug.Log(entityType);
     }
 
     private void ResetColor()
