@@ -9,13 +9,7 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody rb;
     private Animator anim;
     private RotatePlayer rP;
-    public Transform cameraFocus;
-    public Transform LockStartPoint;
-    public GameObject CharacterCam;
-    public GameObject LockOnCamera;
-    public GameObject LockOnCamera2;
-    public GameObject VFXProto;
-    public GameObject VFXProto2;
+    private StaminaManager SM;
 
     [Header("VALUES")]
     public Vector2 movementValue;
@@ -27,11 +21,13 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private bool runInput;
     [SerializeField]
+    private bool dodgeInput;
+    [SerializeField]
     private bool isRunning;
     [SerializeField]
-    private bool lockInput;
+    public bool isLockedOn;
     [SerializeField]
-    private bool isLockedOn;
+    public bool isDodging;
 
     [Header("Speeds")]
     [Header("GAME DESIGN")]
@@ -46,6 +42,10 @@ public class CharacterMovement : MonoBehaviour
     private float strafeWalkSpeed;
     [SerializeField]
     private float strafeJogSpeed;
+    [SerializeField]
+    private float dashSpeed;
+    [SerializeField]
+    private float dashLockMovementTime;
     [SerializeField, Range(0, 1)]
     private float startWalkingValue;
     [SerializeField, Range(0, 1)]
@@ -56,9 +56,17 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private float slopeForce;
 
+    public bool isRootMotionActive;
+
+    
+
     [Header("Transitions")]
     [SerializeField]
     private float transitionSpeed;
+
+    [Header("Stamina Costs")]
+    [SerializeField]
+    private float dodgeStaminaCost;
 
 
     // Start is called before the first frame update
@@ -68,19 +76,28 @@ public class CharacterMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
         rP = GetComponentInChildren<RotatePlayer>();
+        SM = GetComponent<StaminaManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        isRootMotionActive = anim.applyRootMotion;
     }
     private void FixedUpdate()
     {
         animationMovementValue = ConvertMoveToAnimValues(movementValue);
         animValue = getGreaterAnimValue(animationMovementValue);
         currentSpeed = GetSpeedFromAnimValue(animValue);
-        ApplyMovement();
+        if (!isDodging)
+        {
+            ApplyMovement();
+        }
+    }
+
+    public void OnAnimatorMove()
+    {
+        transform.position += anim.deltaPosition;
     }
 
     //Event getting the values on controller left joystic, keyboard arrows and WASD
@@ -96,44 +113,40 @@ public class CharacterMovement : MonoBehaviour
         runInput = context.performed;
     }
 
-    public void OnLock(InputAction.CallbackContext context)
+    public void OnDodge(InputAction.CallbackContext context)
     {
-        if (rP.target)
+        if (context.performed && !isDodging && SM.UseStamina(dodgeStaminaCost))
         {
-            lockInput = !lockInput;
-            isLockedOn = lockInput;
-            anim.SetBool(HashTable.isLockOn, isLockedOn);
-            rP.LockedOn = isLockedOn;
-            LockLogic(isLockedOn);
-        }
-    }
-
-    public void OnChangeLock(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            LockOnCamera2.SetActive(!LockOnCamera2.activeInHierarchy);
-            rP.ennemy2 = !rP.ennemy2;
-            VFXProto.SetActive(!rP.ennemy2);
-            VFXProto2.SetActive(rP.ennemy2);
-        }
-    }
-
-    private void LockLogic(bool isLockedOn)
-    {
-        if (isLockedOn)
-        {
-            LockOnCamera.SetActive(true);
-            VFXProto.SetActive(true);
-        }
+            Vector3 dashDir = new Vector3(direction.x, 0, direction.y);
+            anim.applyRootMotion = true;
+            isDodging = true;
+            dodgeInput = context.performed;
+            anim.SetTrigger(HashTable.dodged);
+            if (isLockedOn)
+            {
+                anim.SetFloat(HashTable.dirX, movementValue.x, 0, Time.fixedDeltaTime);
+                anim.SetFloat(HashTable.dirZ, movementValue.y, 0, Time.fixedDeltaTime);
+            }
+            else
+            {
+                anim.SetFloat(HashTable.dirX, 0, 0, Time.fixedDeltaTime);
+                anim.SetFloat(HashTable.dirZ, 1, 0, Time.fixedDeltaTime);
+            }
             
-        else
-        {
-            LockOnCamera.SetActive(false);
-            LockOnCamera2.SetActive(false);
-            VFXProto.SetActive(false);
-            VFXProto2.SetActive(false);
+            //rb.velocity = dashDir * dashSpeed;
+            StartCoroutine("LockMovementTimer");
+
+            //TO DO Multiplicator of speed for GD purpose
         }
+        
+    }
+
+    IEnumerator LockMovementTimer()
+    {
+        yield return new WaitForSeconds(dashLockMovementTime);
+        anim.applyRootMotion = false;
+        isDodging = false;
+
     }
 
     //Updates the animator movement layer and the player velocity
@@ -177,8 +190,8 @@ public class CharacterMovement : MonoBehaviour
     private bool OnSlope()
     {
         RaycastHit hit;
-
-        if (Physics.Raycast(cameraFocus.position, Vector3.down, out hit, 1.8f / 2 * rayLength))
+        //camera focus
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.8f / 2 * rayLength))
             if (hit.normal != Vector3.up && hit.distance > 4.1f)
                 return true;
         return false;

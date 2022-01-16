@@ -7,13 +7,15 @@ public class RotatePlayer : MonoBehaviour
     public Vector2 dir;
     public float rotationSpeed = 10;
     public Vector3 targetDir;
-    public GameObject target;
-    public GameObject target2;
-    public GameObject LockPoint;
-    public GameObject LockPoint2;
+    public GameObject lockPoint;
+    public GameObject lockPoint2;
+    public GameObject middlePoint;
+    public GameObject middlePoint2;
 
     private Transform parent;
     private CharacterMovement CM;
+    private CameraController CamController;
+    private Animator anim;
     public bool LockedOn;
     public bool ennemy2;
 
@@ -21,14 +23,22 @@ public class RotatePlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         parent = GetComponentsInParent<Transform>()[1];
         CM = parent.GetComponent<CharacterMovement>();
+        CamController = parent.GetComponent<CameraController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void OnAnimatorMove()
+    {
+        if(CM.isRootMotionActive)
+            CM.OnAnimatorMove();
     }
 
     private void FixedUpdate()
@@ -42,16 +52,16 @@ public class RotatePlayer : MonoBehaviour
 
         if (LockedOn)
         {
-            LockPoint.transform.position = new Vector3((CM.LockStartPoint.transform.position.x + target.transform.position.x) / 2, (CM.LockStartPoint.transform.position.y + target.transform.position.y) / 2, (CM.LockStartPoint.transform.position.z + target.transform.position.z) / 2);
-            LockPoint2.transform.position = new Vector3((CM.LockStartPoint.transform.position.x + target2.transform.position.x) / 2, (CM.LockStartPoint.transform.position.y + target2.transform.position.y) / 2, (CM.LockStartPoint.transform.position.z + target2.transform.position.z) / 2);
+            middlePoint.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + lockPoint.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + lockPoint.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + lockPoint.transform.position.z) / 2);
+            middlePoint2.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + lockPoint2.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + lockPoint2.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + lockPoint2.transform.position.z) / 2);
             Vector3 dir;
             if (!ennemy2)
             {
-                dir = target.transform.position - parent.transform.position;
+                dir = lockPoint.transform.position - parent.transform.position;
             }
             else
             {
-                dir = target2.transform.position - parent.transform.position;
+                dir = lockPoint2.transform.position - parent.transform.position;
             }
             
             dir.Normalize();
@@ -60,7 +70,7 @@ public class RotatePlayer : MonoBehaviour
             return;
         }
 
-        if (dir != Vector2.zero)
+        if (dir != Vector2.zero && !CM.isDodging)
         {
             targetDir = cam.transform.forward * dir.y;
             targetDir += cam.transform.right * dir.x;

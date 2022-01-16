@@ -66,7 +66,7 @@ public class Health : MonoBehaviour
 
     public int GetCorruptedHealth()
     {
-        return health;
+        return corruptedHealth;
     }
 
     /// <summary>
