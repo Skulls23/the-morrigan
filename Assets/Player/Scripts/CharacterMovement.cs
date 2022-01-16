@@ -13,6 +13,9 @@ public class CharacterMovement : MonoBehaviour
     public Transform LockStartPoint;
     public GameObject CharacterCam;
     public GameObject LockOnCamera;
+    public GameObject LockOnCamera2;
+    public GameObject VFXProto;
+    public GameObject VFXProto2;
 
     [Header("VALUES")]
     public Vector2 movementValue;
@@ -105,13 +108,31 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    public void OnChangeLock(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            LockOnCamera2.SetActive(!LockOnCamera2.activeInHierarchy);
+            rP.ennemy2 = !rP.ennemy2;
+            VFXProto.SetActive(!rP.ennemy2);
+            VFXProto2.SetActive(rP.ennemy2);
+        }
+    }
+
     private void LockLogic(bool isLockedOn)
     {
         if (isLockedOn)
+        {
             LockOnCamera.SetActive(true);
+            VFXProto.SetActive(true);
+        }
+            
         else
         {
             LockOnCamera.SetActive(false);
+            LockOnCamera2.SetActive(false);
+            VFXProto.SetActive(false);
+            VFXProto2.SetActive(false);
         }
     }
 
