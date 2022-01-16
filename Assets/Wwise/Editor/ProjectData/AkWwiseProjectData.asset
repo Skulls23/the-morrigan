@@ -108,8 +108,62 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: c24ca9f72b7e9e41b0faaf4cd98959ee
     GuidInternal: 
-    m_lastTime: -8585596020452627390
+    m_lastTime: -8585592363968775421
     List: []
+  - PhysicalPath: Events\Environment.wwu
+    ParentPhysicalPath: Events\Default Work Unit.wwu
+    guid: 37599d9e74f8744cbf528070d94a4481
+    GuidInternal: 
+    m_lastTime: -8585592357523352472
+    List:
+    - name: ENV_Amb_Forest
+      guid: dfdfaee779b6884ab675a34b6ce77904
+      id: 2234303157
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: ENV_Amb_Forest
+        ObjectType: 3
+      Path: Default Work Unit\Environment\ENV_Amb_Forest
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+  - PhysicalPath: Events\Weapon.wwu
+    ParentPhysicalPath: Events\Default Work Unit.wwu
+    guid: eb4de15af81def4194d9f2c517e06f09
+    GuidInternal: 
+    m_lastTime: -8585592368955381833
+    List:
+    - name: WEA_Hit_001
+      guid: 59a63b4c9bb9aa4b8fc53114e4daf566
+      id: 3741830316
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Weapon
+        ObjectType: 12
+      - ElementName: WEA_Hit_001
+        ObjectType: 3
+      Path: Default Work Unit\Weapon\WEA_Hit_001
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: WEA_Hit_Woosh
+      guid: 6758f45f8694384fac580808e7f2856b
+      id: 3363186981
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Weapon
+        ObjectType: 12
+      - ElementName: WEA_Hit_Woosh
+        ObjectType: 3
+      Path: Default Work Unit\Weapon\WEA_Hit_Woosh
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 

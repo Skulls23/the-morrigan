@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSoundManager : MonoBehaviour
 {
-    public Animator CharacterAnimator;
+   /* public Animator CharacterAnimator;
 
     private void Start()
     {
@@ -15,5 +15,5 @@ public class PlayerSoundManager : MonoBehaviour
     {
         AkSoundEngine.PostEvent("CHA_Footsteps_Walk", gameObject);
         Debug.Log("bite");
-    }
+    }*/
 }
