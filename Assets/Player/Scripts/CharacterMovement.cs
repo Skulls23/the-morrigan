@@ -153,14 +153,17 @@ public class CharacterMovement : MonoBehaviour
         if (context.performed)
         {
             anim.SetBool("hasAttacked", true);
-            if (!isActing && SM.UseStamina(attackStaminaCost))
+            if (SM.UseStamina(attackStaminaCost))
             {
-                rb.velocity = Vector3.zero;
-                anim.applyRootMotion = true;
-                isActing = true;
-                attackInput = context.performed;
-                anim.SetTrigger(HashTable.attacked);
-                StartCoroutine(IELockMovementTimer(attackLockMovementTime));
+                if (!isActing)
+                {
+                    rb.velocity = Vector3.zero;
+                    anim.applyRootMotion = true;
+                    isActing = true;
+                    attackInput = context.performed;
+                    anim.SetTrigger(HashTable.attacked);
+                    StartCoroutine(IELockMovementTimer(attackLockMovementTime));
+                }
             }
         }
     }

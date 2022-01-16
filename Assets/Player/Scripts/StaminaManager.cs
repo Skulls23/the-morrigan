@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StaminaManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class StaminaManager : MonoBehaviour
     public float timeBeforeStartingRegenAgain;
     public float staminaPerSecond;
 
+    public Image staminaBar;
+
     Coroutine staminaRegen;
     bool sRRunning;
 
@@ -27,7 +30,7 @@ public class StaminaManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        staminaBar.fillAmount = currentStamina / 100;
     }
 
     public bool UseStamina(float value)
