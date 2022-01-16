@@ -15,6 +15,8 @@ namespace AK
     {
         static const AkUniqueID CHA_FOOSTEPS_RUN = 1513434547U;
         static const AkUniqueID CHA_FOOTSTEPS_WALK = 1295890699U;
+        static const AkUniqueID WEA_HIT_001 = 3741830316U;
+        static const AkUniqueID WEA_HIT_WOOSH = 3363186981U;
     } // namespace EVENTS
 
     namespace SWITCHES
