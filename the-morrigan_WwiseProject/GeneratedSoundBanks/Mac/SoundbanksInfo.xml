@@ -15,39 +15,53 @@
 			<ObjectPath>\SoundBanks\Default Work Unit\SB_Environment</ObjectPath>
 			<ShortName>SB_Environment</ShortName>
 			<Path>SB_Environment.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2234303157" Name="ENV_Amb_Forest" ObjectPath="\Events\Default Work Unit\Environment\ENV_Amb_Forest" DurationType="Infinite"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="846639440" Language="SFX">
+					<ShortName>Ambiance\Forest\AMB_Foret.wav</ShortName>
+					<Path>SFX\Ambiance\Forest\AMB_Foret_10C4C929.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
 		</SoundBank>
 		<SoundBank Id="649986797" Language="SFX">
 			<ObjectPath>\SoundBanks\Default Work Unit\SB_Weapon</ObjectPath>
 			<ShortName>SB_Weapon</ShortName>
 			<Path>SB_Weapon.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3741830316" Name="WEA_Hit_001" ObjectPath="\Events\Default Work Unit\Weapon\WEA_Hit_001" DurationType="OneShot" DurationMin="2.118926" DurationMax="2.378414"/>
-				<Event Id="3363186981" Name="WEA_Hit_Woosh" ObjectPath="\Events\Default Work Unit\Weapon\WEA_Hit_Woosh" DurationType="OneShot" DurationMin="1.587401" DurationMax="2.000000"/>
+				<Event Id="2627352527" Name="WEA_Hit_Flesh" ObjectPath="\Events\Default Work Unit\Weapon\WEA_Hit_Flesh" DurationType="OneShot" DurationMin="0.322176" DurationMax="0.430053"/>
+				<Event Id="3270747314" Name="WEA_Hit_Swoosh" ObjectPath="\Events\Default Work Unit\Weapon\WEA_Hit_Swoosh" DurationType="OneShot" DurationMin="1.887748" DurationMax="2.244924"/>
+				<Event Id="2569330039" Name="WEA_Hit_WeakPoint" ObjectPath="\Events\Default Work Unit\Weapon\WEA_Hit_WeakPoint" DurationType="OneShot" DurationMin="0.322176" DurationMax="0.430053"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="35759809" Language="SFX">
-					<ShortName>Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 03.wav</ShortName>
-					<Path>SFX\Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 03_10C4C929.wem</Path>
+				<File Id="20872145" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_WeakPoint\Hit_Point_faible_1.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_WeakPoint\Hit_Point_faible_1_10C4C929.wem</Path>
 				</File>
-				<File Id="83675876" Language="SFX">
-					<ShortName>Weapon\Hit\Woosh\Swoosh - Tube 03.wav</ShortName>
-					<Path>SFX\Weapon\Hit\Woosh\Swoosh - Tube 03_10C4C929.wem</Path>
+				<File Id="34403879" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_WeakPoint\Hit_Point_faible_2.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_WeakPoint\Hit_Point_faible_2_10C4C929.wem</Path>
 				</File>
-				<File Id="303650371" Language="SFX">
-					<ShortName>Weapon\Hit\Woosh\Swoosh - Tube 01.wav</ShortName>
-					<Path>SFX\Weapon\Hit\Woosh\Swoosh - Tube 01_10C4C929.wem</Path>
+				<File Id="341367600" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_Swoosh\Swoosh - Tube 03.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_Swoosh\Swoosh - Tube 03_10C4C929.wem</Path>
 				</File>
-				<File Id="492637660" Language="SFX">
-					<ShortName>Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 02.wav</ShortName>
-					<Path>SFX\Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 02_10C4C929.wem</Path>
+				<File Id="360018865" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_WeakPoint\Hit_Point_faible_3.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_WeakPoint\Hit_Point_faible_3_10C4C929.wem</Path>
 				</File>
-				<File Id="639001636" Language="SFX">
-					<ShortName>Weapon\Hit\Woosh\Swoosh - Tube 02.wav</ShortName>
-					<Path>SFX\Weapon\Hit\Woosh\Swoosh - Tube 02_10C4C929.wem</Path>
+				<File Id="437693067" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_Flesh\FleshHit_BW.76444.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_Flesh\FleshHit_BW.76444_10C4C929.wem</Path>
 				</File>
-				<File Id="979545146" Language="SFX">
-					<ShortName>Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 04.wav</ShortName>
-					<Path>SFX\Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 04_10C4C929.wem</Path>
+				<File Id="661713981" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_Swoosh\Swoosh - Tube 02.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_Swoosh\Swoosh - Tube 02_10C4C929.wem</Path>
+				</File>
+				<File Id="938171357" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_Swoosh\Swoosh - Tube 01.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_Swoosh\Swoosh - Tube 01_10C4C929.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
@@ -58,8 +72,13 @@
 			<IncludedEvents>
 				<Event Id="1513434547" Name="CHA_Foosteps_Run" ObjectPath="\Events\Default Work Unit\Character\CHA_Foosteps_Run" DurationType="OneShot" DurationMin="0.278406" DurationMax="0.590625"/>
 				<Event Id="1295890699" Name="CHA_Footsteps_Walk" ObjectPath="\Events\Default Work Unit\Character\CHA_Footsteps_Walk" DurationType="OneShot" DurationMin="0.464010" DurationMax="0.758854"/>
+				<Event Id="1532425848" Name="CHA_Hit_Vocals_001" ObjectPath="\Events\Default Work Unit\Character\CHA_Hit_Vocals_001" DurationType="OneShot" DurationMin="2.118926" DurationMax="2.378414"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="35759809" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 03.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 03_10C4C929.wem</Path>
+				</File>
 				<File Id="65779296" Language="SFX">
 					<ShortName>Footsteps\Mud\Run\Dry Sticks 2-08.wav</ShortName>
 					<Path>SFX\Footsteps\Mud\Run\Dry Sticks 2-08_10C4C929.wem</Path>
@@ -88,6 +107,10 @@
 					<ShortName>Footsteps\Mud\Walk\Dry sticks 2.wav</ShortName>
 					<Path>SFX\Footsteps\Mud\Walk\Dry sticks 2_10C4C929.wem</Path>
 				</File>
+				<File Id="492637660" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 02.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 02_10C4C929.wem</Path>
+				</File>
 				<File Id="513906415" Language="SFX">
 					<ShortName>Footsteps\Mud\Walk\Dry sticks 4.wav</ShortName>
 					<Path>SFX\Footsteps\Mud\Walk\Dry sticks 4_10C4C929.wem</Path>
@@ -107,6 +130,10 @@
 				<File Id="965969051" Language="SFX">
 					<ShortName>Footsteps\Mud\Walk\Dry sticks 3.wav</ShortName>
 					<Path>SFX\Footsteps\Mud\Walk\Dry sticks 3_10C4C929.wem</Path>
+				</File>
+				<File Id="979545146" Language="SFX">
+					<ShortName>Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 04.wav</ShortName>
+					<Path>SFX\Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 04_10C4C929.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

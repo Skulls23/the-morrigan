@@ -6,6 +6,56 @@
 				<Property Name="Color" Type="int16" Value="4"/>
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
+			<ChildrenList>
+				<ActorMixer Name="ENV_Amb" ID="{41656A76-A06A-464B-BFBB-56AFA2B37384}" ShortID="941192182">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Environment" ID="{1FEECA6E-8E9D-4624-862F-A2FCBA60D00A}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<RandomSequenceContainer Name="Env_Amb_Forest" ID="{F6E3C1DA-DC82-4D23-BC6F-71675DE82590}" ShortID="932235565">
+							<PropertyList>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="AMB_Foret" ID="{4439E42B-A182-4B3C-A6B3-782B3C65E6A1}" ShortID="472372759">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Environment" ID="{1FEECA6E-8E9D-4624-862F-A2FCBA60D00A}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Foret" ID="{AB360656-BBD6-4BE8-8910-D1BED9E8AD5B}" ShortID="846639440">
+											<Language>SFX</Language>
+											<AudioFile>Ambiance\Forest\AMB_Foret.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Foret" ID="{AB360656-BBD6-4BE8-8910-D1BED9E8AD5B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+					</ChildrenList>
+				</ActorMixer>
+			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
 </WwiseDocument>

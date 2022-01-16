@@ -17,15 +17,16 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<RandomSequenceContainer Name="WEA_Hit_Woosh" ID="{52F29B17-AEBA-48A6-87E7-83625CD0B5C9}" ShortID="357400231">
+						<RandomSequenceContainer Name="WEA_Hit_Flesh" ID="{48634478-2AA6-4229-B93E-CD3D4C557F04}" ShortID="799386844">
 							<PropertyList>
 								<Property Name="Pitch" Type="int32">
 									<ModifierList>
 										<ModifierInfo>
-											<Modifier Name="" ID="{5D22C5F7-DC71-4F94-BD2F-624C18E2D03A}">
+											<Modifier Name="" ID="{248965C8-552D-4322-96F0-A93D9490EE85}">
 												<PropertyList>
 													<Property Name="Enabled" Type="bool" Value="True"/>
-													<Property Name="Max" Type="Real64" Value="400"/>
+													<Property Name="Max" Type="Real64" Value="100"/>
+													<Property Name="Min" Type="Real64" Value="-400"/>
 												</PropertyList>
 											</Modifier>
 										</ModifierInfo>
@@ -41,7 +42,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Swoosh - Tube 01" ID="{BF4452EB-443C-4214-931D-F1B9617AEDF2}" ShortID="530134065">
+								<Sound Name="FleshHit_BW_76444" ID="{74BE5931-E5DF-4369-8F7D-A51BBFC81A86}" ShortID="875684321">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
@@ -51,65 +52,26 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Swoosh - Tube 01" ID="{5894BEA8-8651-4E93-AB4C-9BF7F370E441}" ShortID="303650371">
+										<AudioFileSource Name="FleshHit_BW_76444" ID="{BFA3EC3C-AD43-4BCA-B4DA-1693B5026EDF}" ShortID="437693067">
 											<Language>SFX</Language>
-											<AudioFile>Weapon\Hit\Woosh\Swoosh - Tube 01.wav</AudioFile>
+											<AudioFile>Weapon\Hit\Hit_Flesh\FleshHit_BW.76444.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Swoosh - Tube 01" ID="{5894BEA8-8651-4E93-AB4C-9BF7F370E441}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Swoosh - Tube 02" ID="{B6002B11-3E62-4EE2-886E-808FC4B7E331}" ShortID="192999605">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Swoosh - Tube 02" ID="{FA58B191-CE83-488E-BF24-AEBAB8B9ED79}" ShortID="639001636">
-											<Language>SFX</Language>
-											<AudioFile>Weapon\Hit\Woosh\Swoosh - Tube 02.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Swoosh - Tube 02" ID="{FA58B191-CE83-488E-BF24-AEBAB8B9ED79}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Swoosh - Tube 03" ID="{0B7ECA20-B1EE-4B36-A38C-ECED5D45EF40}" ShortID="150200553">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Swoosh - Tube 03" ID="{9BCC033A-A4D6-458A-8131-2136D1B6142F}" ShortID="83675876">
-											<Language>SFX</Language>
-											<AudioFile>Weapon\Hit\Woosh\Swoosh - Tube 03.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Swoosh - Tube 03" ID="{9BCC033A-A4D6-458A-8131-2136D1B6142F}" Platform="Linked"/>
+										<ActiveSource Name="FleshHit_BW_76444" ID="{BFA3EC3C-AD43-4BCA-B4DA-1693B5026EDF}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
-						<RandomSequenceContainer Name="WEA_Hit_001" ID="{2E675812-4076-474C-837C-7ABF64EBA13C}" ShortID="664334618">
+						<RandomSequenceContainer Name="WEA_Hit_WeakPoint" ID="{5FAE4E2E-95E8-4913-9BE7-7844D1D69664}" ShortID="252999784">
 							<PropertyList>
 								<Property Name="Pitch" Type="int32">
 									<ModifierList>
 										<ModifierInfo>
-											<Modifier Name="" ID="{4D8EC0A2-C46F-497F-8949-4FF5F0871B5A}">
+											<Modifier Name="" ID="{18C28887-954A-4CFC-8566-B9395B01183B}">
 												<PropertyList>
 													<Property Name="Enabled" Type="bool" Value="True"/>
-													<Property Name="Max" Type="Real64" Value="100"/>
-													<Property Name="Min" Type="Real64" Value="-100"/>
+													<Property Name="Min" Type="Real64" Value="-200"/>
 												</PropertyList>
 											</Modifier>
 										</ModifierInfo>
@@ -125,14 +87,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Fighter vocal - Female A - Heavy Attack 02" ID="{D8725E84-1D77-4FC3-BE47-ACCBA5657A9A}" ShortID="302281393">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>-200</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+								<Sound Name="Hit_Point_faible_1" ID="{C94A4DBA-26CC-44B1-B782-1AAA675E027E}" ShortID="96506586">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
@@ -142,23 +97,16 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Fighter vocal - Female A - Heavy Attack 02" ID="{8A93BBDD-0B94-4E2A-8A5C-6D2335F0ABFE}" ShortID="492637660">
+										<AudioFileSource Name="Hit_Point_faible_1" ID="{88E6D6EC-E15C-47CB-8E16-A3112A274092}" ShortID="20872145">
 											<Language>SFX</Language>
-											<AudioFile>Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 02.wav</AudioFile>
+											<AudioFile>Weapon\Hit\Hit_WeakPoint\Hit_Point_faible_1.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Fighter vocal - Female A - Heavy Attack 02" ID="{8A93BBDD-0B94-4E2A-8A5C-6D2335F0ABFE}" Platform="Linked"/>
+										<ActiveSource Name="Hit_Point_faible_1" ID="{88E6D6EC-E15C-47CB-8E16-A3112A274092}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Fighter vocal - Female A - Heavy Attack 03" ID="{F1782AF8-25DB-452C-8947-408A670C40BE}" ShortID="865771285">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>-200</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+								<Sound Name="Hit_Point_faible_2" ID="{C6DD0C91-2947-464E-8526-881575FAC72A}" ShortID="39474176">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
@@ -168,23 +116,16 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Fighter vocal - Female A - Heavy Attack 03" ID="{307C842E-F5FE-41E5-BE6B-1AE7DB93EF69}" ShortID="35759809">
+										<AudioFileSource Name="Hit_Point_faible_2" ID="{53CC5CEA-AADC-496C-8163-B3A5D444E57D}" ShortID="34403879">
 											<Language>SFX</Language>
-											<AudioFile>Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 03.wav</AudioFile>
+											<AudioFile>Weapon\Hit\Hit_WeakPoint\Hit_Point_faible_2.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Fighter vocal - Female A - Heavy Attack 03" ID="{307C842E-F5FE-41E5-BE6B-1AE7DB93EF69}" Platform="Linked"/>
+										<ActiveSource Name="Hit_Point_faible_2" ID="{53CC5CEA-AADC-496C-8163-B3A5D444E57D}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Fighter vocal - Female A - Heavy Attack 04" ID="{D64179AC-3077-4B2C-B928-279CA4262081}" ShortID="957855278">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>-200</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+								<Sound Name="Hit_Point_faible_3" ID="{B4C961EB-2313-4F77-B611-915FB8BE8DC6}" ShortID="575664558">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
@@ -194,13 +135,97 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Fighter vocal - Female A - Heavy Attack 04" ID="{B4D2AE3A-A478-47FE-966C-20BF662AF086}" ShortID="979545146">
+										<AudioFileSource Name="Hit_Point_faible_3" ID="{96ABE9A2-E9A3-4DA8-BF56-467CD4EA3A1E}" ShortID="360018865">
 											<Language>SFX</Language>
-											<AudioFile>Weapon\Hit\Hit_001\Fighter vocal - Female A - Heavy Attack 04.wav</AudioFile>
+											<AudioFile>Weapon\Hit\Hit_WeakPoint\Hit_Point_faible_3.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Fighter vocal - Female A - Heavy Attack 04" ID="{B4D2AE3A-A478-47FE-966C-20BF662AF086}" Platform="Linked"/>
+										<ActiveSource Name="Hit_Point_faible_3" ID="{96ABE9A2-E9A3-4DA8-BF56-467CD4EA3A1E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Wea_Hit_Swoosh" ID="{38CC269F-66FB-4F4A-9FDA-0233F5A214CD}" ShortID="885325153">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{58FF5A87-9355-4766-9B96-325BB415507D}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="100"/>
+													<Property Name="Min" Type="Real64" Value="-200"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Swoosh - Tube 01" ID="{880DDAA2-E2B0-4AC9-A3F1-67AE9176261C}" ShortID="1067009311">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Swoosh - Tube 01" ID="{E9950075-2828-4BE6-81A6-FD1D8B6F77BD}" ShortID="938171357">
+											<Language>SFX</Language>
+											<AudioFile>Weapon\Hit\Hit_Swoosh\Swoosh - Tube 01.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Swoosh - Tube 01" ID="{E9950075-2828-4BE6-81A6-FD1D8B6F77BD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Swoosh - Tube 02" ID="{6DE9F437-7AA3-4C82-9E38-520BE1C76AB7}" ShortID="773396440">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Swoosh - Tube 02" ID="{A6A7E803-A4EE-4BE4-9898-E1781778CF49}" ShortID="661713981">
+											<Language>SFX</Language>
+											<AudioFile>Weapon\Hit\Hit_Swoosh\Swoosh - Tube 02.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Swoosh - Tube 02" ID="{A6A7E803-A4EE-4BE4-9898-E1781778CF49}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Swoosh - Tube 03" ID="{82980050-965C-4B94-84DA-7A8E694029A6}" ShortID="1038110385">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Swoosh - Tube 03" ID="{A0C2AADA-25C0-428E-813F-1A24C146D87E}" ShortID="341367600">
+											<Language>SFX</Language>
+											<AudioFile>Weapon\Hit\Hit_Swoosh\Swoosh - Tube 03.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Swoosh - Tube 03" ID="{A0C2AADA-25C0-428E-813F-1A24C146D87E}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>

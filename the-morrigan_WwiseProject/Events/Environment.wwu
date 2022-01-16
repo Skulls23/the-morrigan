@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{9E9D5937-F874-4C74-BF52-8070D94A4481}" SchemaVersion="94" RootDocumentID="{F7A94CC2-7E2B-419E-B0FA-AF4CD98959EE}">
+	<Events>
+		<WorkUnit Name="Environment" ID="{9E9D5937-F874-4C74-BF52-8070D94A4481}" OwnerID="{F7A94CC2-7E2B-419E-B0FA-AF4CD98959EE}" PersistMode="Nested">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="4"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="ENV_Amb_Forest" ID="{E7AEDFDF-B679-4A88-B675-A34B6CE77904}">
+					<ChildrenList>
+						<Action Name="" ID="{FBFC1827-A32C-437F-873A-F6D3A55B4607}" ShortID="798190411">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Env_Amb_Forest" ID="{F6E3C1DA-DC82-4D23-BC6F-71675DE82590}" WorkUnitID="{23C2685D-3004-4AF7-A2DE-1047948EFDA9}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

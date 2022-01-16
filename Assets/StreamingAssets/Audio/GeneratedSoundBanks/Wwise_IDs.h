@@ -15,8 +15,11 @@ namespace AK
     {
         static const AkUniqueID CHA_FOOSTEPS_RUN = 1513434547U;
         static const AkUniqueID CHA_FOOTSTEPS_WALK = 1295890699U;
-        static const AkUniqueID WEA_HIT_001 = 3741830316U;
-        static const AkUniqueID WEA_HIT_WOOSH = 3363186981U;
+        static const AkUniqueID CHA_HIT_VOCALS_001 = 1532425848U;
+        static const AkUniqueID ENV_AMB_FOREST = 2234303157U;
+        static const AkUniqueID WEA_HIT_FLESH = 2627352527U;
+        static const AkUniqueID WEA_HIT_SWOOSH = 3270747314U;
+        static const AkUniqueID WEA_HIT_WEAKPOINT = 2569330039U;
     } // namespace EVENTS
 
     namespace SWITCHES

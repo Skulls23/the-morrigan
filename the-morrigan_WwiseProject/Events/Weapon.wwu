@@ -7,23 +7,34 @@
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
 			<ChildrenList>
-				<Event Name="WEA_Hit_Woosh" ID="{5FF45867-9486-4F38-AC58-0808E7F2856B}">
+				<Event Name="WEA_Hit_Swoosh" ID="{5FF45867-9486-4F38-AC58-0808E7F2856B}">
 					<ChildrenList>
 						<Action Name="" ID="{9DE96A9A-5172-416D-9502-DE8F889F7362}" ShortID="535231278">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="WEA_Hit_Woosh" ID="{52F29B17-AEBA-48A6-87E7-83625CD0B5C9}" WorkUnitID="{71046C9D-6EEA-4491-ACFC-B775F9E497D9}"/>
+									<ObjectRef Name="Wea_Hit_Swoosh" ID="{38CC269F-66FB-4F4A-9FDA-0233F5A214CD}" WorkUnitID="{71046C9D-6EEA-4491-ACFC-B775F9E497D9}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="WEA_Hit_001" ID="{4C3BA659-B99B-4BAA-8FC5-3114E4DAF566}">
+				<Event Name="WEA_Hit_Flesh" ID="{F8558730-626B-4A3A-8061-2A9F595ED203}">
 					<ChildrenList>
-						<Action Name="" ID="{A4B30366-D409-45C2-8828-0B5309EE05B5}" ShortID="427679909">
+						<Action Name="" ID="{9FC2D284-A504-4ACF-903E-24C9F1F01ACF}" ShortID="329407982">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="WEA_Hit_001" ID="{2E675812-4076-474C-837C-7ABF64EBA13C}" WorkUnitID="{71046C9D-6EEA-4491-ACFC-B775F9E497D9}"/>
+									<ObjectRef Name="WEA_Hit_Flesh" ID="{48634478-2AA6-4229-B93E-CD3D4C557F04}" WorkUnitID="{71046C9D-6EEA-4491-ACFC-B775F9E497D9}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="WEA_Hit_WeakPoint" ID="{5410E53F-3F31-45A3-8AF4-BEFD68E40456}">
+					<ChildrenList>
+						<Action Name="" ID="{0B2CBDB3-EF09-4B1C-B75A-A7ECCFAC8653}" ShortID="407011239">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="WEA_Hit_Flesh" ID="{48634478-2AA6-4229-B93E-CD3D4C557F04}" WorkUnitID="{71046C9D-6EEA-4491-ACFC-B775F9E497D9}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
