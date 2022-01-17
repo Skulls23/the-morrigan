@@ -7,6 +7,7 @@ public class CombatSystem : MonoBehaviour
     public GameObject spearHitPoint;
     public float sphereRadius;
     public int entityType;
+    private Color sphereColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,35 +28,41 @@ public class CombatSystem : MonoBehaviour
         if(colliders.Length == 0)
         {
             entityType = 0;
-            Gizmos.color = Color.blue;
+            sphereColor = Color.blue;
+            Debug.Log(entityType);
         }
-        foreach(Collider col in colliders)
+        else
         {
-            if(col.gameObject.tag == "Flesh")
+            foreach (Collider col in colliders)
             {
-                entityType = 1;
-                Gizmos.color = Color.red;
-                break;
-            }
-            if (col.gameObject.tag == "WeakPoint")
-            {
-                entityType = 2;
-                Gizmos.color = Color.magenta;
-                break;
+                Debug.Log(col.gameObject.name);
+                if (col.gameObject.tag == "Flesh")
+                {
+                    entityType = 1;
+                    sphereColor = Color.magenta;
+                    Debug.Log(entityType);
+                    return;
+                }
+                if (col.gameObject.tag == "WeakPoint")
+                {
+                    entityType = 2;
+                    sphereColor = Color.red;
+                    Debug.Log(entityType);
+                    return;
+                }
             }
         }
-        Debug.Log(entityType);
     }
 
     private void ResetColor()
     {
-        Gizmos.color = Color.green;
+        sphereColor = Color.green;
     }
 
     void OnDrawGizmos()
     {
         // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.green;
+        Gizmos.color = sphereColor;
         Gizmos.DrawWireSphere(spearHitPoint.transform.position, sphereRadius);
     }
 }
