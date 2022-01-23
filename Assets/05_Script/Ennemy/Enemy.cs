@@ -5,9 +5,13 @@ using UnityEngine.AI;
 
 public class Enemy : Actor
 {
+    [SerializeField]
+    private int id;
     private bool isPlayerInZone = false;
     private bool isPlayerSpotted = false;
     [SerializeField] protected float minDistFromTarget;
+
+    public GameObject LockPoint;
 
     public float MinDistFromTarget
     {
@@ -25,4 +29,11 @@ public class Enemy : Actor
         get { return this.isPlayerSpotted; }
         set { this.isPlayerSpotted = value; }
     }
+
+    public int GetId()
+    {
+        return id;
+    }
+
+
 }

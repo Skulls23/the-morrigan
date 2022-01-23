@@ -16,7 +16,6 @@ public class PlayerSoundManager : MonoBehaviour
     void PlayHitVocals001()
     {
         AkSoundEngine.PostEvent("CHA_Hit_Vocals_001", gameObject);
-        Debug.Log("bite");
     }
 
     void PlayHit()
