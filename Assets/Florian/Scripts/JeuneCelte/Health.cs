@@ -6,11 +6,13 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private int healthMax;
     [SerializeField] private int healingValue;
+    [SerializeField] private float timeToHeal;
 
     private int health;
     private int corruptedHealth;
     
     private int healToDo;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,15 +47,15 @@ public class Health : MonoBehaviour
     /// Corrupted hearth container are healed first
     /// </summary>
     /// <param name="add">The number of health container healed, if 0, the var healingValue is took</param>
-    /// <param name="timeBetweenHeal">The time between two heart to be healed</param>
-    public void Heal(int add, float timeBetweenHeal)
+    /// <param name="timeToHeal">The time between two heart to be healed</param>
+    public void Heal(int add)
     {
         if (add == 0)
             healToDo = healingValue;
         else
             healToDo = add;
 
-        InvokeRepeating("InvokeHeal", 0f, timeBetweenHeal);
+        Invoke("InvokeHeal", timeToHeal);
     }
 
     /// <summary>
@@ -107,22 +109,29 @@ public class Health : MonoBehaviour
         if (healToDo == 0)
             CancelInvoke();
         else
-            AddHealth();
-
-        healToDo--;
+            AddHealth(healToDo);
     }
 
     /// <summary>
     /// Convert corrupted health container into health
     /// Recover health if no corrupted health container exists
     /// </summary>
-    private void AddHealth()
+    private void AddHealth(int heal)
     {
 
-        if (corruptedHealth >= 1)
-            corruptedHealth -= 1;
-        else
-            health += 1;
+        if (corruptedHealth >= 1 && heal > corruptedHealth)
+        {
+            heal -= corruptedHealth;
+            corruptedHealth = 0;
+        }
+        else if(corruptedHealth >= 1 && heal <= corruptedHealth)
+        {
+            corruptedHealth -= heal;
+            heal = 0;
+        }
+
+        if(heal > 0)
+            health += heal;
 
         if (health >= healthMax)
             health = healthMax;
