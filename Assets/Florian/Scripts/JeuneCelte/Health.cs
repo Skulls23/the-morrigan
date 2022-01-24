@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int healthMax;
-    [SerializeField] private int healingValue;
+    [SerializeField] private int baseHealingValue;
     [SerializeField] private float timeToHeal;
 
     private int health;
@@ -32,43 +32,36 @@ public class Health : MonoBehaviour
         return healthMax;
     }
 
-    public void SetHealthMax(int num)
-    {
-        healthMax = num;
-    }
-
     public int GetHealth()
     {
         return health;
     }
 
+    public int GetCorruptedHealth()
+    {
+        return corruptedHealth;
+    }
+
+    public void SetHealthMax(int num)
+    {
+        healthMax = num;
+    }
+    
+
     /// <summary>
     /// Heal x hearths container
     /// Corrupted hearth container are healed first
     /// </summary>
-    /// <param name="add">The number of health container healed, if 0, the var healingValue is took</param>
+    /// <param name="add">The number of health container healed, if 0, the var baseHealingValue is took</param>
     /// <param name="timeToHeal">The time between two heart to be healed</param>
     public void Heal(int add)
     {
         if (add == 0)
-            healToDo = healingValue;
+            healToDo = baseHealingValue;
         else
             healToDo = add;
 
         Invoke("InvokeHeal", timeToHeal);
-    }
-
-    /// <summary>
-    /// Stop the healing process.
-    /// </summary>
-    public void StopHeal()
-    {
-        CancelInvoke();
-    }
-
-    public int GetCorruptedHealth()
-    {
-        return corruptedHealth;
     }
 
     /// <summary>
