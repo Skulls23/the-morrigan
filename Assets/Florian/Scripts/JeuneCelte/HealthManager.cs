@@ -7,13 +7,10 @@ public class HealthManager : MonoBehaviour
 {
     [SerializeField] private int baseHealingValue;
     [SerializeField] private float timeToHeal;
-    [SerializeField] private HealthUI healthUIScript;
+    [SerializeField] private readonly HealthUI healthUIScript;
     private Health healthScript;
 
     private int healToDo;
-    private Texture2D texNormal;
-    private Texture2D texCorrupted;
-    private Texture2D texEmpty;
 
 
 

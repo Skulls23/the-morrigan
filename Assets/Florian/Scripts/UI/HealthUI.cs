@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] private GameObject jeuneCelte;
-    [SerializeField] private int imageXSize;
-    [SerializeField] private int imageYSize;
+    [SerializeField] private readonly GameObject jeuneCelte;
+    [SerializeField] private readonly int imageXSize;
+    [SerializeField] private readonly int imageYSize;
 
     private float xSpace;
-    private float xPos;
     private float yPos;
 
     Texture2D texNormal;
@@ -46,7 +45,6 @@ public class HealthUI : MonoBehaviour
     private void CreatingHealthContainerBar()
     {
         xSpace = imageXSize;
-        xPos = 0;
         yPos = transform.position.y;
 
         imageList = new List<GameObject>();
@@ -77,7 +75,6 @@ public class HealthUI : MonoBehaviour
     {
 
         xSpace = imageXSize;
-        xPos = 0;
         yPos = transform.position.y;
 
         imageList = new List<GameObject>();
