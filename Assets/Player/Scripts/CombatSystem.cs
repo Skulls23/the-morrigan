@@ -35,7 +35,6 @@ public class CombatSystem : MonoBehaviour
         {
             foreach (Collider col in colliders)
             {
-                Debug.Log(col.gameObject.name);
                 if (col.gameObject.tag == "Flesh")
                 {
                     entityType = 1;

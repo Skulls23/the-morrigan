@@ -47,11 +47,11 @@
                 },
                 {
                     "name": "ChangeLockProto",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "9559714d-64c1-40c3-8f36-33fb1a49cadf",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": ""
                 },
                 {
                     "name": "Dodge",
@@ -319,20 +319,9 @@
                 {
                     "name": "",
                     "id": "aa134b24-2c34-4356-9d8d-2e0bcea47a98",
-                    "path": "<Gamepad>/rightStick/left",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad;Joystick",
-                    "action": "ChangeLockProto",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1af2a539-e5c4-43e1-938c-c0f2b7221889",
-                    "path": "<Gamepad>/rightStick/right",
-                    "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.2)",
                     "groups": "Gamepad",
                     "action": "ChangeLockProto",
                     "isComposite": false,

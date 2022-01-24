@@ -8,9 +8,11 @@ public class CameraController : MonoBehaviour
     Animator anim;
     RotatePlayer rP;
     CharacterMovement CM;
+    public DetectionConeController DDC;
 
     [SerializeField]
     private bool lockInput;
+    public GameObject lockedEnemy;
     public Transform cameraFocus;
     public Transform LockStartPoint;
     public GameObject CharacterCam;
@@ -19,6 +21,8 @@ public class CameraController : MonoBehaviour
     public GameObject VFXProto;
     public GameObject VFXProto2;
     public MeshCollider LockZone; // TO DO
+
+    public bool canSwapEnemy = true;
 
     // Start is called before the first frame update
     void Start()
@@ -36,24 +40,59 @@ public class CameraController : MonoBehaviour
 
     public void OnLock(InputAction.CallbackContext context)
     {
-        if (rP.lockPoint)
+        if (lockedEnemy == null)
         {
+            lockedEnemy = DDC.SelectTarget(context.ReadValue<Vector2>());
+            lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
+            LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
             lockInput = !lockInput;
             CM.isLockedOn = lockInput;
             anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
             rP.LockedOn = CM.isLockedOn;
             LockLogic(CM.isLockedOn);
         }
+        else
+        {
+            lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(false);
+            lockedEnemy = null;
+        }     
     }
 
     public void OnChangeLock(InputAction.CallbackContext context)
     {
-        if (context.performed && CM.isLockedOn)
+        if (CM.isLockedOn)
         {
-            LockOnCamera2.SetActive(!LockOnCamera2.activeInHierarchy);
-            rP.ennemy2 = !rP.ennemy2;
-            VFXProto.SetActive(!rP.ennemy2);
-            VFXProto2.SetActive(rP.ennemy2);
+            Vector2 joysticValue = context.ReadValue<Vector2>();
+            if ((Mathf.Abs(joysticValue.x) > 0.2f || Mathf.Abs(joysticValue.y) > 0.2f) && canSwapEnemy)
+            {
+                canSwapEnemy = false;
+                if (context.performed && CM.isLockedOn)
+                {
+                    GameObject tempEnemy = DDC.SelectTarget(context.ReadValue<Vector2>(), lockedEnemy);
+                    if (tempEnemy != null && lockedEnemy != tempEnemy)
+                    {
+                        lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(false);
+                        lockedEnemy = tempEnemy;
+
+                        if (LockOnCamera2.activeInHierarchy)
+                        {
+                            LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
+                        }
+                        else
+                        {
+                            LockOnCamera2.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
+                        }
+
+                        lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
+                        LockOnCamera2.SetActive(!LockOnCamera2.activeInHierarchy);
+                    }
+                }
+            }
+
+            if (!canSwapEnemy && (Mathf.Abs(joysticValue.x) < 0.1f && Mathf.Abs(joysticValue.y) < 0.1f))
+            {
+                canSwapEnemy = true;
+            }
         }
     }
 
