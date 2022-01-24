@@ -18,19 +18,19 @@ public class HealthExample : MonoBehaviour
         //Corruption
         if (Input.GetKeyUp(KeyCode.I))
         {
-            player.GetComponent<Health>().AddCorruptedHealth();
+            player.GetComponent<HealthManager>().AddCorruptedHealth();
         }
 
         //Damage
         if (Input.GetKeyUp(KeyCode.O))
         {
-            player.GetComponent<Health>().TakeDamage();
+            player.GetComponent<HealthManager>().TakeDamage();
         }
 
         //Heal
         if (Input.GetKeyUp(KeyCode.P))
         {
-            player.GetComponent<Health>().Heal(3);
+            player.GetComponent<HealthManager>().Heal(3);
         }
     }
 }

@@ -39,7 +39,7 @@ public class DamageOnPlayerSplash : MonoBehaviour
     {
         if(DamageOverTime == true)
         {
-            player.GetComponent<Health>().TakeDamage();
+            player.GetComponent<HealthManager>().TakeDamage();
         } 
     }
 }
