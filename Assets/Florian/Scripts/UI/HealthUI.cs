@@ -18,6 +18,17 @@ public class HealthUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        creatingHealthContainerBar();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void creatingHealthContainerBar()
+    {
         Texture2D tex = Resources.Load<Texture2D>("UI/heartNormal");
 
         xSpace = imageXSize;
@@ -26,29 +37,19 @@ public class HealthUI : MonoBehaviour
 
         imageList = new List<GameObject>();
 
-        for(int i = 0; i < jeuneCelte.GetComponent<Health>().GetHealthMax(); i++)
+        for (int i = 0; i < jeuneCelte.GetComponent<Health>().GetHealthMax(); i++)
         {
             imageList.Add(new GameObject("Container " + i));
-
 
             RectTransform trans = imageList[i].AddComponent<RectTransform>();
             trans.sizeDelta = new Vector2(imageXSize, imageYSize);
             trans.anchoredPosition = new Vector2(0.5f, 0.5f);
             trans.localPosition = new Vector3((i * xSpace), 0, 0);
-            trans.position = new Vector3(imageXSize/ 2 + (i * xSpace), yPos*2-imageYSize/2, 0);
-
+            trans.position = new Vector3(imageXSize / 2 + (i * xSpace), yPos * 2 - imageYSize / 2, 0);
 
             Image image = imageList[i].AddComponent<Image>();
             image.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             imageList[i].transform.SetParent(transform);
-
-            
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

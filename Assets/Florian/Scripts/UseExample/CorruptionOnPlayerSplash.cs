@@ -39,7 +39,7 @@ public class CorruptionOnPlayerSplash : MonoBehaviour
     {
         if (CorruptionOverTime == true)
         {
-            player.GetComponent<Health>().AddCorruptedHealth();
+            player.GetComponent<HealthManager>().AddCorruptedHealth();
         }
     }
 }
