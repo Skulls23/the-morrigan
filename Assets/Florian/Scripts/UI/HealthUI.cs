@@ -29,12 +29,6 @@ public class HealthUI : MonoBehaviour
         CreatingHealthContainerBar();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public List<GameObject> GetImageList()
     {
         return imageList;
@@ -45,6 +39,10 @@ public class HealthUI : MonoBehaviour
         return imageList[num];
     }
 
+    /// <summary>
+    /// Create the UI.
+    /// Called at first frame.
+    /// </summary>
     private void CreatingHealthContainerBar()
     {
         xSpace = imageXSize;
@@ -69,6 +67,12 @@ public class HealthUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Will recreate each heart box at each change.
+    /// </summary>
+    /// <param name="numNormal">The number of normal hearts</param>
+    /// <param name="NumCorrupted">The number of corrupted hearts</param>
+    /// <param name="numEmpty">The number of empty hearts</param>
     public void RefreshUI(int numNormal, int NumCorrupted, int numEmpty)
     {
 

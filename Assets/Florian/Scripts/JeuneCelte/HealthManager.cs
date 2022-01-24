@@ -67,6 +67,7 @@ public class HealthManager : MonoBehaviour
             healthScript.SetHealth(healthScript.GetHealth() - 1);
 
         CallRefresh();
+
         if (healthScript.GetHealth() == 0)
             Debug.Log("Dead");
     }
@@ -110,6 +111,9 @@ public class HealthManager : MonoBehaviour
         CallRefresh();
     }
 
+    /// <summary>
+    /// Call the RefreshUI method from healthUIScript
+    /// </summary>
     private void CallRefresh()
     {
         healthUIScript.RefreshUI(healthScript.GetHealth(), healthScript.GetCorruptedHealth(),

@@ -16,12 +16,6 @@ public class Health : MonoBehaviour
         corruptedHealth = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(health + " | " + corruptedHealth + " | " + healthMax);
-    }
-
     public int GetHealthMax()
     {
         return healthMax;
