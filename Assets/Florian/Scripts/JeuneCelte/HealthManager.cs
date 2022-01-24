@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class HealthManager : MonoBehaviour
     private Health healthScript;
 
     private int healToDo;
+    private Texture2D texNormal;
+    private Texture2D texCorrupted;
+    private Texture2D texEmpty;
+
 
 
     private void Start()
@@ -43,6 +48,8 @@ public class HealthManager : MonoBehaviour
         {
             healthScript.SetCorruptedHealth(healthScript.GetCorruptedHealth() + 1);
             healthScript.SetHealth(healthScript.GetHealth() - 1);
+            
+            CallRefresh();
         }
     }
 
@@ -54,11 +61,12 @@ public class HealthManager : MonoBehaviour
         if (healthScript.GetHealth() != 0 && healthScript.GetCorruptedHealth() != 0)
         {
             healthScript.SetCorruptedHealth(healthScript.GetCorruptedHealth() - 1);
-            healthScript.SetHealth(healthScript.GetHealth() - 1);
+            healthScript.SetHealth(healthScript.GetHealth() - 1); 
         }
         else if (healthScript.GetHealth() != 0)
             healthScript.SetHealth(healthScript.GetHealth() - 1);
 
+        CallRefresh();
         if (healthScript.GetHealth() == 0)
             Debug.Log("Dead");
     }
@@ -98,5 +106,13 @@ public class HealthManager : MonoBehaviour
 
         if (healthScript.GetHealth() >= healthScript.GetHealthMax())
             healthScript.SetHealth(healthScript.GetHealthMax());
+
+        CallRefresh();
+    }
+
+    private void CallRefresh()
+    {
+        /*healthUIScript.RefreshUI(healthScript.GetHealth(), healthScript.GetCorruptedHealth(),
+                healthScript.GetHealthMax() - (healthScript.GetHealth() + healthScript.GetCorruptedHealth()));*/ //PROBLEME ICI, A VOIR
     }
 }
