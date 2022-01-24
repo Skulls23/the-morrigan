@@ -112,7 +112,7 @@ public class HealthManager : MonoBehaviour
 
     private void CallRefresh()
     {
-        /*healthUIScript.RefreshUI(healthScript.GetHealth(), healthScript.GetCorruptedHealth(),
-                healthScript.GetHealthMax() - (healthScript.GetHealth() + healthScript.GetCorruptedHealth()));*/ //PROBLEME ICI, A VOIR
+        healthUIScript.RefreshUI(healthScript.GetHealth(), healthScript.GetCorruptedHealth(),
+                healthScript.GetHealthMax() - (healthScript.GetHealth() + healthScript.GetCorruptedHealth()));
     }
 }
