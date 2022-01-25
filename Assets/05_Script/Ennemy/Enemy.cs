@@ -6,9 +6,9 @@ using UnityEngine.AI;
 public class Enemy : Actor
 {
     [SerializeField]
-    private int id;
-    private bool isPlayerInZone = false;
-    private bool isPlayerSpotted = false;
+    protected int id;
+    protected bool isPlayerInZone = false;
+    protected bool isPlayerSpotted = false;
     [SerializeField] protected float minDistFromTarget;
 
     public GameObject LockPoint;
