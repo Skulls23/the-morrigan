@@ -93,10 +93,12 @@ public class HealthManager : MonoBehaviour
         if (healthScript.GetCorruptedHealth() >= 1 && heal > healthScript.GetCorruptedHealth())
         {
             heal -= healthScript.GetCorruptedHealth();
+            healthScript.SetHealth(healthScript.GetHealth() + healthScript.GetCorruptedHealth());
             healthScript.SetCorruptedHealth(0);
         }
         else if (healthScript.GetCorruptedHealth() >= 1 && heal <= healthScript.GetCorruptedHealth())
         {
+            healthScript.SetHealth(healthScript.GetHealth() + heal);
             healthScript.SetCorruptedHealth(healthScript.GetCorruptedHealth() - heal);
             heal = 0;
         }
@@ -106,6 +108,8 @@ public class HealthManager : MonoBehaviour
 
         if (healthScript.GetHealth() >= healthScript.GetHealthMax())
             healthScript.SetHealth(healthScript.GetHealthMax());
+
+        Debug.Log(healthScript.GetHealth() + " " + healthScript.GetCorruptedHealth() + " " + healthScript.GetHealthMax());
 
         CallRefresh();
     }
