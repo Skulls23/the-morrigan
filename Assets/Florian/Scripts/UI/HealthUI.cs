@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This is the UI script for the health.
+/// It has to be on a UI frame
+/// It is called by the HealthManager inside the Jeune Celte
+/// </summary>
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] private readonly GameObject jeuneCelte;
-    [SerializeField] private readonly int imageXSize;
-    [SerializeField] private readonly int imageYSize;
+    [SerializeField] private GameObject jeuneCelte;
+    [SerializeField] private int imageXSize;
+    [SerializeField] private int imageYSize;
 
     private float xSpace;
     private float yPos;
