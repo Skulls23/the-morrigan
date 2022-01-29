@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The is the life system of the Jeune Celte
+/// It has to be inside the Jeune Celte GameObject
+/// It will be called by the Health Manager
+/// </summary>
 public class Health : MonoBehaviour
 {
     [SerializeField] private int healthMax;

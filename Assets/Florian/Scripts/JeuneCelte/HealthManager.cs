@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// The is the bridge between the Health script and the HealthUI script.
+/// It has to be inside the Jeune Celte.
+/// </summary>
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private int baseHealingValue;
     [SerializeField] private float timeToHeal;
-    [SerializeField] private readonly HealthUI healthUIScript;
+    [SerializeField] private HealthUI healthUIScript;
     private Health healthScript;
 
     private int healToDo;
-
-
 
     private void Start()
     {
@@ -91,10 +93,12 @@ public class HealthManager : MonoBehaviour
         if (healthScript.GetCorruptedHealth() >= 1 && heal > healthScript.GetCorruptedHealth())
         {
             heal -= healthScript.GetCorruptedHealth();
+            healthScript.SetHealth(healthScript.GetHealth() + healthScript.GetCorruptedHealth());
             healthScript.SetCorruptedHealth(0);
         }
         else if (healthScript.GetCorruptedHealth() >= 1 && heal <= healthScript.GetCorruptedHealth())
         {
+            healthScript.SetHealth(healthScript.GetHealth() + heal);
             healthScript.SetCorruptedHealth(healthScript.GetCorruptedHealth() - heal);
             heal = 0;
         }
@@ -104,6 +108,8 @@ public class HealthManager : MonoBehaviour
 
         if (healthScript.GetHealth() >= healthScript.GetHealthMax())
             healthScript.SetHealth(healthScript.GetHealthMax());
+
+        Debug.Log(healthScript.GetHealth() + " " + healthScript.GetCorruptedHealth() + " " + healthScript.GetHealthMax());
 
         CallRefresh();
     }
