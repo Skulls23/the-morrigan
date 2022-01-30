@@ -24,12 +24,12 @@ public class CheckpointsGuard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GetComponent<Enemy>().IsPlayerInZone || !GetComponent<Enemy>().IsPlayerSpotted)
+        if (!GetComponent<Enemy1>().IsPlayerInZone || !GetComponent<Enemy1>().IsPlayerSpotted)
         {
             if (agent.remainingDistance < 1f && !isWaiting)
             {
                 isWaiting = true;
-                GetComponent<EnemyAnimation>().SetDirection(0);
+                /*GetComponent<EnemyAnimation>().SetDirection(0);*/
                 StartCoroutine(Wait(lWaitEachCP[i++]));
             }
             if (i >= lCheckpoints.Count)
