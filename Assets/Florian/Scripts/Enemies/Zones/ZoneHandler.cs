@@ -8,23 +8,17 @@ public class ZoneHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            foreach(CheckpointsGuard guard in listGuard)
-            {
-                guard.ZoneColliderAlert(true);
-            }
-        }
+        if(listGuard.Count != 0)
+            if (other.CompareTag("Player"))
+                foreach(CheckpointsGuard guard in listGuard)
+                    guard.ZoneColliderAlert(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            foreach (CheckpointsGuard guard in listGuard)
-            {
-                guard.ZoneColliderAlert(false);
-            }
-        }
+        if (listGuard.Count != 0)
+            if (other.CompareTag("Player"))
+                foreach (CheckpointsGuard guard in listGuard)
+                    guard.ZoneColliderAlert(false);
     }
 }
