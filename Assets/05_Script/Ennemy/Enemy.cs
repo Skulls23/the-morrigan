@@ -13,6 +13,16 @@ public class Enemy : Actor
 
     public GameObject LockPoint;
 
+    public Animator anim;
+
+    protected virtual void Start()
+    {
+        if (anim)
+        {
+            anim.SetFloat("vertical", 1);
+        }
+    }
+
     public float MinDistFromTarget
     {
         get {return this.minDistFromTarget;}

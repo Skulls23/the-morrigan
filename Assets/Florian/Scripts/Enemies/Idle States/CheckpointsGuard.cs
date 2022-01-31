@@ -18,7 +18,7 @@ public class CheckpointsGuard : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(lCheckpoints[i].transform.position);
-        GetComponent<EnemyAnimation>().SetDirection(1);
+        /*GetComponent<EnemyAnimation>().SetDirection(1);*/
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class CheckpointsGuard : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         agent.SetDestination(lCheckpoints[i].transform.position);
-        GetComponent<EnemyAnimation>().SetDirection(1);
+       /* GetComponent<EnemyAnimation>().SetDirection(1);*/
         isWaiting = false;
     }
 
