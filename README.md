@@ -1,6 +1,7 @@
 # the-morrigan
 
-Master HIC 2021-2022 Game Project
+Master HIC 2021-2022 Game Project<br/>
+REMINDER TO MYSELF : Use git lfs once the project is done!<br/>
 
 ## Getting started
 
