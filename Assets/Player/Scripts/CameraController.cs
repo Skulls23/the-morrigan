@@ -18,8 +18,6 @@ public class CameraController : MonoBehaviour
     public GameObject CharacterCam;
     public GameObject LockOnCamera;
     public GameObject LockOnCamera2;
-    public GameObject VFXProto;
-    public GameObject VFXProto2;
     public MeshCollider LockZone; // TO DO
 
     public bool canSwapEnemy = true;
@@ -36,6 +34,22 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void FixedUpdate()
+    {
+        if (CM.isLockedOn)
+        {
+            CharacterCam.GetComponent<Cinemachine.CinemachineFreeLook>().UpdateCameraState(Vector3.up, Time.fixedDeltaTime);
+            /*if (LockOnCamera2.activeInHierarchy)
+            {
+                LockOnCamera2.GetComponent<Cinemachine.CinemachineFreeLook>().ForceCameraPosition(CharacterCam.transform.position, CharacterCam.transform.rotation);
+            }
+            else
+            {
+                LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().ForceCameraPosition(CharacterCam.transform.position, CharacterCam.transform.rotation);
+            }*/
+        }
     }
 
     public void OnLock(InputAction.CallbackContext context)
@@ -101,15 +115,12 @@ public class CameraController : MonoBehaviour
         if (isLockedOn)
         {
             LockOnCamera.SetActive(true);
-            VFXProto.SetActive(true);
         }
 
         else
         {
             LockOnCamera.SetActive(false);
             LockOnCamera2.SetActive(false);
-            VFXProto.SetActive(false);
-            VFXProto2.SetActive(false);
         }
     }
 }
