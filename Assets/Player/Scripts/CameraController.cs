@@ -58,7 +58,7 @@ public class CameraController : MonoBehaviour
         {
             lockedEnemy = DDC.SelectTarget(context.ReadValue<Vector2>());
             lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
-            LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
+            //LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
             lockInput = !lockInput;
             CM.isLockedOn = lockInput;
             anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
@@ -88,14 +88,14 @@ public class CameraController : MonoBehaviour
                         lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(false);
                         lockedEnemy = tempEnemy;
 
-                        if (LockOnCamera2.activeInHierarchy)
+                        /*if (LockOnCamera2.activeInHierarchy)
                         {
                             LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
                         }
                         else
                         {
                             LockOnCamera2.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
-                        }
+                        }*/
 
                         lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
                         LockOnCamera2.SetActive(!LockOnCamera2.activeInHierarchy);
