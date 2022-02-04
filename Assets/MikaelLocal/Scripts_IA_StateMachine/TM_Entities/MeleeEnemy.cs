@@ -15,7 +15,9 @@ public class MeleeEnemy : MonoBehaviour
 
     public float UpdateFollowTime;
 
-    public EnemyDetector ED;
+    public PlayerDetector PD;
+
+    public FollowZone FZ;
 
 
     private void Awake()
@@ -27,28 +29,36 @@ public class MeleeEnemy : MonoBehaviour
 
         var wait = new WaitOnWaypoint(this);
         var moveToSelected = new MoveToSelectedWayPoint(this, navMeshAgent, animator);
-        var search = new SearchForWaypoint(this);
-        var follow = new FollowPlayer(this, navMeshAgent, animator);
+        var search = new SearchForWaypoint(this, navMeshAgent);
+        var follow = new FollowPlayer(this, navMeshAgent, animator, PD);
 
 
-        At(follow, search, HasNoTarget());
+        At(search, moveToSelected, HasTarget());
         At(wait, moveToSelected, FinishedWaiting());
         At(moveToSelected, wait, ReachedWaypoint());
+        At(follow, search, () => FZ.PlayerInZone == false);
 
-        /*_stateMachine.AddAnyTransition(flee, () => enemyDetector.EnemyInRange);
-        At(flee, search, () => enemyDetector.EnemyInRange == false);*/
+        _stateMachine.AddAnyTransition(follow, HasReturnedToWaypoint());
+        
+
         Target = Waypoints[0].transform;
         _stateMachine.SetState(moveToSelected);
 
         void At(IState to, IState from, Func<bool> condition) => _stateMachine.AddTransition(to, from, condition);
-        Func<bool> HasNoTarget() => () => Target == null;
+
+        Func<bool> HasTarget() => () => Target != null;
         Func<bool> FinishedWaiting() => () => wait.TimeWaited > wait.timeToWait;
         Func<bool> ReachedWaypoint() => () => Target != null 
                                               && Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(Target.transform.position.x, Target.transform.position.z)) < Waypoints[currentIndex].WaypointRange;
+        Func<bool> HasReturnedToWaypoint() => () => PD.PlayerInRange
+                                                    && _stateMachine.GetCurrentState().ToString() == "WaitOnWaypoint";
 
     }
 
-    private void Update() => _stateMachine.Tick();
+    private void Update() {
+        _stateMachine.Tick();
+        //Debug.Log(_stateMachine.GetCurrentState().ToString());
+    }
 
     /*public void TakeFromTarget()
     {

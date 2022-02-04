@@ -15,7 +15,6 @@ public class WaitOnWaypoint : IState
     }
     public void Tick()
     {
-        Debug.Log(tempTimeWaited);
         if(tempTimeWaited >= timeToWait)
         {
             meleeEnemy.Target = meleeEnemy.GetNextDestination();
@@ -25,10 +24,10 @@ public class WaitOnWaypoint : IState
     }
 
     public void OnEnter() {
-        
+        Debug.Log("Enter WaitOnWaypoint");
     }
     public void OnExit() {
-        Debug.Log("Exited");
+        Debug.Log("Exit WaitOnWaypoint");
         tempTimeWaited = 0;
         TimeWaited = tempTimeWaited;
     }

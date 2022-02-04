@@ -5,10 +5,14 @@ using UnityEngine.AI;
 public class SearchForWaypoint : IState
 {
     private readonly MeleeEnemy meleeEnemy;
+    private readonly NavMeshAgent navMeshAgent;
 
-    public SearchForWaypoint(MeleeEnemy _meleeEnemy)
+    private NavMeshPath path = null;
+
+    public SearchForWaypoint(MeleeEnemy _meleeEnemy,NavMeshAgent _navMeshAgent)
     {
         meleeEnemy = _meleeEnemy;
+        navMeshAgent = _navMeshAgent;
     }
     public void Tick()
     {
@@ -17,17 +21,17 @@ public class SearchForWaypoint : IState
 
     private Transform ChooseNearestWaypoint()
     {
-        NavMeshAgent tempAgent = new NavMeshAgent();
+        NavMeshAgent tempAgent = navMeshAgent;
         Transform tempWP = meleeEnemy.Waypoints[0].transform;
-        NavMeshPath tempPath = null;
+        
         float distance = -1;
 
 
         foreach (Waypoint wP in meleeEnemy.Waypoints)
         {
             tempAgent.destination = wP.transform.position;
-            tempAgent.CalculatePath(wP.transform.position, tempPath);
-            if(tempPath.status == NavMeshPathStatus.PathComplete)
+            tempAgent.CalculatePath(wP.transform.position, path);
+            if(path.status == NavMeshPathStatus.PathComplete)
             {
                 if(distance == -1 || tempAgent.remainingDistance <= distance)
                 {
@@ -39,8 +43,17 @@ public class SearchForWaypoint : IState
         return tempWP;
     }
 
-    public void OnEnter() { }
-    public void OnExit() { }
+    public void OnEnter() {
+        Debug.Log("Enter SearchForWaypoint");
+        meleeEnemy.Target = null;
+        path = new NavMeshPath();
+        navMeshAgent.isStopped = true;
+        navMeshAgent.ResetPath();
+    }
+    public void OnExit() {
+        Debug.Log("Exit SearchForWaypoint");
+        navMeshAgent.isStopped = false;
+    }
 
 
 }

@@ -29,14 +29,17 @@ internal class MoveToSelectedWayPoint : IState
 
     public void OnEnter()
     {
+        Debug.Log("Enter MoveToSelectedWayPoint");
         //TimeStuck = 0f;
         navMeshAgent.enabled = true;
         navMeshAgent.SetDestination(meleeEnemy.Target.transform.position);
-        animator.SetFloat("vertical", 1f);
+        navMeshAgent.speed = 6;
+        animator.SetFloat("vertical", 0.5f);
     }
 
     public void OnExit()
     {
+        Debug.Log("Exit MoveToSelectedWayPoint");
         //navMeshAgent.enabled = false;
         animator.SetFloat("vertical", 0f);
     }

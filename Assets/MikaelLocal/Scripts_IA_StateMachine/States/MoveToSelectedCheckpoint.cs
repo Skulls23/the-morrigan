@@ -32,7 +32,7 @@ internal class MoveToSelectedResource : IState
         TimeStuck = 0f;
         _navMeshAgent.enabled = true;
         _navMeshAgent.SetDestination(_gatherer.Target.transform.position);
-        _animator.SetFloat(Speed, 1f);
+        _animator.SetFloat(Speed, 0.5f);
     }
 
     public void OnExit()

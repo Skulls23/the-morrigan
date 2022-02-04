@@ -4,13 +4,11 @@ using UnityEngine;
 public class PlayerDetector : MonoBehaviour // NOTE : Does not handle multiple beast entering/exiting
 {
     public bool PlayerInRange => detectedPlayer != null;
-
-    public float TimeToWaitBeforeReset;
     private GameObject detectedPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<CharacterMovement>())
+        if (other.GetComponent<Player>())
         {
             detectedPlayer = other.gameObject;
         }
@@ -18,21 +16,15 @@ public class PlayerDetector : MonoBehaviour // NOTE : Does not handle multiple b
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<CharacterMovement>())
+        if (other.GetComponent<Player>())
         {
-            StartCoroutine(ClearDetectedBeastAfterDelay());
+            detectedPlayer = null;
         }
     }
 
-    private IEnumerator ClearDetectedBeastAfterDelay()
+    public Transform GetPlayerTranform()
     {
-        yield return new WaitForSeconds(TimeToWaitBeforeReset);
-        detectedPlayer = null;
-    }
-
-    public Vector3 GetPlayerPosition()
-    {
-        return detectedPlayer.transform.position;
+        return detectedPlayer.transform;
     }
 
     /*public Vector3 GetNearestBeastPosition()
