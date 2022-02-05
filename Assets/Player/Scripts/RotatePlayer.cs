@@ -9,6 +9,7 @@ public class RotatePlayer : MonoBehaviour
     public float animationSpeed = 0;
     public Vector3 targetDir;
     public GameObject middlePoint;
+    public GameObject middlePoint2;
 
     private Transform parent;
     private CharacterMovement CM;
@@ -52,7 +53,15 @@ public class RotatePlayer : MonoBehaviour
 
         if (LockedOn)
         {
-            middlePoint.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + CamController.lockedEnemy.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + CamController.lockedEnemy.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + CamController.lockedEnemy.transform.position.z) / 2);
+            if (CamController.LockOnCamera2.activeInHierarchy)
+            {
+                middlePoint2.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + CamController.lockedEnemy.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + CamController.lockedEnemy.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + CamController.lockedEnemy.transform.position.z) / 2);
+            }
+            else
+            {
+                middlePoint.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + CamController.lockedEnemy.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + CamController.lockedEnemy.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + CamController.lockedEnemy.transform.position.z) / 2);
+            }
+            
             Vector3 dir = CamController.lockedEnemy.transform.position - parent.transform.position;          
             dir.Normalize();
             dir.y = 0;
