@@ -76,6 +76,4 @@ public class StaminaManager : MonoBehaviour
         sRRunning = false;
         yield return null;
     }
-
-    
 }
