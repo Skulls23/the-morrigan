@@ -14,6 +14,8 @@ public static class HashTable
     public static int dodged { get; set; }
     public static int attacked { get; set; }
 
+    public static int isRunning { get; set; }
+
     public static void Init()
     {
         moveV = Animator.StringToHash("forward");
@@ -23,5 +25,6 @@ public static class HashTable
         isLockOn = Animator.StringToHash("isLockOn");
         dodged = Animator.StringToHash("dodged");
         attacked = Animator.StringToHash("attacked");
+        isRunning = Animator.StringToHash("isRunning");
     }
 }
