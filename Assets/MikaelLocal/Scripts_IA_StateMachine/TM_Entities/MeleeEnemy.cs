@@ -31,6 +31,7 @@ public class MeleeEnemy : MonoBehaviour
         var moveToSelected = new MoveToSelectedWayPoint(this, navMeshAgent, animator);
         var search = new SearchForWaypoint(this, navMeshAgent);
         var follow = new FollowPlayer(this, navMeshAgent, animator, PD);
+        //var attack =
 
 
         At(search, moveToSelected, HasTarget());
@@ -38,7 +39,7 @@ public class MeleeEnemy : MonoBehaviour
         At(moveToSelected, wait, ReachedWaypoint());
         At(follow, search, () => FZ.PlayerInZone == false);
 
-        _stateMachine.AddAnyTransition(follow, HasReturnedToWaypoint());
+        _stateMachine.AddAnyTransition(follow, IsTargetable());
         
 
         Target = Waypoints[0].transform;
@@ -50,8 +51,8 @@ public class MeleeEnemy : MonoBehaviour
         Func<bool> FinishedWaiting() => () => wait.TimeWaited > wait.timeToWait;
         Func<bool> ReachedWaypoint() => () => Target != null 
                                               && Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(Target.transform.position.x, Target.transform.position.z)) < Waypoints[currentIndex].WaypointRange;
-        Func<bool> HasReturnedToWaypoint() => () => PD.PlayerInRange
-                                                    && _stateMachine.GetCurrentState().ToString() == "WaitOnWaypoint";
+        Func<bool> IsTargetable() => () => PD.PlayerInRange
+                                           && FZ.PlayerInZone == true;
 
     }
 

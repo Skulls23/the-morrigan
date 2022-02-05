@@ -33,7 +33,7 @@ internal class MoveToSelectedWayPoint : IState
         //TimeStuck = 0f;
         navMeshAgent.enabled = true;
         navMeshAgent.SetDestination(meleeEnemy.Target.transform.position);
-        navMeshAgent.speed = 6;
+        navMeshAgent.speed = 2;
         animator.SetFloat("vertical", 0.5f);
     }
 

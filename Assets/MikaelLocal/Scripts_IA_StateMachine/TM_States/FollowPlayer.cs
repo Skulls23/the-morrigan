@@ -42,7 +42,7 @@ public class FollowPlayer : IState
     public void OnEnter() {
         Debug.Log("Enter FollowPlayer");
         refreshTimer = 0;
-        navMeshAgent.speed = 12;
+        navMeshAgent.speed = 4.5f;
         meleeEnemy.Target = playerDetector.GetPlayerTranform();
         RecalculatePlayerPos();
     }
