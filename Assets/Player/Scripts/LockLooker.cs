@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class LockLooker : MonoBehaviour
 {
-    public GameObject Enemy;
+    private GameObject enemy;
+    private Transform trans;
     // Start is called before the first frame update
     void Start()
     {
-        
+        trans = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Transform>().LookAt(Enemy.transform.position);
+        if(enemy != null)
+        {
+            trans.LookAt(enemy.transform.position);
+        }
+    }
+
+    public void SetEnemy(GameObject _enemy)
+    {
+        enemy = _enemy;
     }
 }

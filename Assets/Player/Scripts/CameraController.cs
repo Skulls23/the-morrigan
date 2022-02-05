@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     RotatePlayer rP;
     CharacterMovement CM;
     public DetectionConeController DDC;
+    public LockLooker LL;
 
     [SerializeField]
     private bool lockInput;
@@ -41,14 +42,6 @@ public class CameraController : MonoBehaviour
         if (CM.isLockedOn)
         {
             CharacterCam.GetComponent<Cinemachine.CinemachineFreeLook>().UpdateCameraState(Vector3.up, Time.fixedDeltaTime);
-            /*if (LockOnCamera2.activeInHierarchy)
-            {
-                LockOnCamera2.GetComponent<Cinemachine.CinemachineFreeLook>().ForceCameraPosition(CharacterCam.transform.position, CharacterCam.transform.rotation);
-            }
-            else
-            {
-                LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().ForceCameraPosition(CharacterCam.transform.position, CharacterCam.transform.rotation);
-            }*/
         }
     }
 
@@ -57,8 +50,8 @@ public class CameraController : MonoBehaviour
         if (lockedEnemy == null)
         {
             lockedEnemy = DDC.SelectTarget(context.ReadValue<Vector2>());
+            LL.SetEnemy(lockedEnemy);
             lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
-            //LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
             lockInput = !lockInput;
             CM.isLockedOn = lockInput;
             anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
@@ -87,16 +80,7 @@ public class CameraController : MonoBehaviour
                     {
                         lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(false);
                         lockedEnemy = tempEnemy;
-
-                        /*if (LockOnCamera2.activeInHierarchy)
-                        {
-                            LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
-                        }
-                        else
-                        {
-                            LockOnCamera2.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
-                        }*/
-
+                        LL.SetEnemy(lockedEnemy);
                         lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
                         LockOnCamera2.SetActive(!LockOnCamera2.activeInHierarchy);
                     }

@@ -181,26 +181,19 @@ public class CharacterMovement : MonoBehaviour
     //Updates the animator movement layer and the player velocity
     private void ApplyMovement()
     {
-        if (isLockedOn && !isRunning)
-        {
-            anim.SetFloat(HashTable.moveV, animationMovementValue.y, transitionSpeed, Time.fixedDeltaTime);
-            anim.SetFloat(HashTable.moveH, animationMovementValue.x, transitionSpeed, Time.fixedDeltaTime);
-        }
-        else
-        {
-            anim.SetFloat(HashTable.moveV, animValue, transitionSpeed, Time.fixedDeltaTime);
-            anim.SetFloat(HashTable.moveH, 0, 0, Time.fixedDeltaTime);
-        }
-        
         Vector3 targetVelocity = Vector3.zero;
 
         if (isLockedOn && !isRunning)
         {
+            anim.SetFloat(HashTable.moveV, animationMovementValue.y, transitionSpeed, Time.fixedDeltaTime);
+            anim.SetFloat(HashTable.moveH, animationMovementValue.x, transitionSpeed, Time.fixedDeltaTime);
             targetVelocity = rP.transform.forward * direction.y * currentSpeed;
             targetVelocity += rP.transform.right * direction.x * currentSpeed;
         }
         else
         {
+            anim.SetFloat(HashTable.moveV, animValue, transitionSpeed, Time.fixedDeltaTime);
+            anim.SetFloat(HashTable.moveH, 0, 0, Time.fixedDeltaTime);
             targetVelocity = rP.transform.forward * currentSpeed;
         }
 
