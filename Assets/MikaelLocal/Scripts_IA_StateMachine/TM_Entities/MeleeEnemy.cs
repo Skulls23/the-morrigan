@@ -13,11 +13,25 @@ public class MeleeEnemy : MonoBehaviour
 
     public Transform Target { get; set; }
 
+    public bool isAttacking;
+
+    [Header("COMPONENTS")]
+    public PlayerDetector PD;
+    public FollowZone FZ;
+    public MidRangeAttackDetector MRAD;
+
+    [Header("GAME DESIGN")]
     public float UpdateFollowTime;
 
-    public PlayerDetector PD;
+    //Value in seconds
+    public float UpdateTryAttack;
 
-    public FollowZone FZ;
+    [Range(0, 1)]
+    public float MidRangeAttackProcPercentage;
+    [Range(0, 1)]
+    public float MidRangeAttack1Percentage = 0;
+    [Range(0, 1)]
+    public float MidRangeAttack2Percentage = 0;
 
 
     private void Awake()
@@ -30,14 +44,17 @@ public class MeleeEnemy : MonoBehaviour
         var wait = new WaitOnWaypoint(this);
         var moveToSelected = new MoveToSelectedWayPoint(this, navMeshAgent, animator);
         var search = new SearchForWaypoint(this, navMeshAgent);
-        var follow = new FollowPlayer(this, navMeshAgent, animator, PD);
-        //var attack =
+        var follow = new FollowPlayer(this, navMeshAgent, animator, PD, MRAD);
+        var midRangeAttack = new MidRangeAttack(this, navMeshAgent, animator);
 
 
         At(search, moveToSelected, HasTarget());
         At(wait, moveToSelected, FinishedWaiting());
         At(moveToSelected, wait, ReachedWaypoint());
         At(follow, search, () => FZ.PlayerInZone == false);
+        
+        At(follow, midRangeAttack, IsMRASelected());
+        At(midRangeAttack, follow, MRAFinished());
 
         _stateMachine.AddAnyTransition(follow, IsTargetable());
         
@@ -54,6 +71,8 @@ public class MeleeEnemy : MonoBehaviour
         Func<bool> IsTargetable() => () => PD.PlayerInRange
                                            && FZ.PlayerInZone == true;
 
+        Func<bool> IsMRASelected() => () => follow.MRASelected;
+        Func<bool> MRAFinished() => () => midRangeAttack.attackFinished;
     }
 
     private void Update() {
