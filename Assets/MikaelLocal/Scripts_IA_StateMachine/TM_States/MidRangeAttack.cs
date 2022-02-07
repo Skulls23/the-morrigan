@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using System.Collections;
 
 internal class MidRangeAttack : IState
 {
@@ -10,8 +9,6 @@ internal class MidRangeAttack : IState
 
 
     private static readonly int Speed = Animator.StringToHash("Speed");
-
-    private IEnumerator currentCoroutine;
 
     public bool attackFinished = false;
 
@@ -38,6 +35,8 @@ internal class MidRangeAttack : IState
     public void OnEnter()
     {
         Debug.Log("Enter MidRangeAttack");
+        meleeEnemy.GetComponent<Rigidbody>().useGravity = false;
+        animator.applyRootMotion = true;
         attackFinished = false;
         navMeshAgent.isStopped = true;
         navMeshAgent.ResetPath();
@@ -46,6 +45,9 @@ internal class MidRangeAttack : IState
 
     public void OnExit()
     {
+        meleeEnemy.GetComponent<Rigidbody>().useGravity = true;
+        animator.applyRootMotion = false;
+        attackFinished = false;
         navMeshAgent.isStopped = false;
         Debug.Log("Exit MidRangeAttack");
         
@@ -54,22 +56,17 @@ internal class MidRangeAttack : IState
     private void ChooseAttack()
     {
         
-        float rand = Random.Range(0, 1);
+        float rand = Random.Range(0f, 1f);
 
         if (rand < MRA1P)
         {
-            navMeshAgent.enabled = false;
+            //navMeshAgent.enabled = false;
             animator.SetTrigger("attack1");
         }
-        else if (rand < (1-MRA2P))
+        else
         {
-            navMeshAgent.enabled = false;
+            //navMeshAgent.enabled = false;
             animator.SetTrigger("attack2");
         }
-    }
-
-    public void attackHasFinished()
-    {
-        attackFinished = true;
     }
 }

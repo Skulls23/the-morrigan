@@ -47,11 +47,15 @@ public class FollowPlayer : IState
 
         if (midRangeDetector.PlayerInRange)
         {
-            if(MRATryAttackTimer > MRATryAttackTime)
+            MRATryAttackTimer += Time.deltaTime;
+            if (MRATryAttackTimer > MRATryAttackTime)
             {
-                float rand = Random.Range(0, 1);
+                MRATryAttackTimer = 0;
+                float rand = Random.Range(0f, 1f);
+                Debug.Log("timerEluded " + rand);
                 if(rand < MRAProcPercentage)
                 {
+                    Debug.Log("MRA Selected");
                     MRASelected = true;
                 }
             }
