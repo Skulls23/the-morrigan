@@ -101,7 +101,10 @@ public class CharacterMovement : MonoBehaviour
         {
             transFollow = startMovingTrans;
             startMovingTrans.position = transform.position;
-            startMovingTrans.LookAt(GetComponent<CameraController>().lockedEnemy.transform);
+            if(GetComponent<CameraController>().lockedEnemy != null)
+            {
+                startMovingTrans.LookAt(GetComponent<CameraController>().lockedEnemy.transform);
+            }
             timerRotateCam = 0;
         }
 

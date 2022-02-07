@@ -28,10 +28,10 @@ public class DetectionConeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemiesList.Count > 0)
+        /*if (enemiesList.Count > 0)
         {
             Debug.DrawRay(enemiesList[lockedEnemyId].transform.position, joyDir * 20, Color.blue);
-        }
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)

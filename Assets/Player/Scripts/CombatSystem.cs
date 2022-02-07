@@ -8,6 +8,8 @@ public class CombatSystem : MonoBehaviour
     public float sphereRadius;
     public int entityType;
     private Color sphereColor;
+
+    public LayerMask HitBoxLayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class CombatSystem : MonoBehaviour
 
     private void Hit()
     {
-        Collider[] colliders = Physics.OverlapSphere(spearHitPoint.transform.position, sphereRadius);
+        Collider[] colliders = Physics.OverlapSphere(spearHitPoint.transform.position, sphereRadius, HitBoxLayer);
         if(colliders.Length == 0)
         {
             entityType = 0;

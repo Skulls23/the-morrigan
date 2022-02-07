@@ -52,7 +52,6 @@ public class FollowPlayer : IState
             {
                 MRATryAttackTimer = 0;
                 float rand = Random.Range(0f, 1f);
-                Debug.Log("timerEluded " + rand);
                 if(rand < MRAProcPercentage)
                 {
                     Debug.Log("MRA Selected");

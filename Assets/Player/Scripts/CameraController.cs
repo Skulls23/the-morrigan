@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class CameraController : MonoBehaviour
     public GameObject LockOnCamera2;
     public MeshCollider LockZone; // TO DO
 
+    public Transform DotTransform;
+    public Image DotImage;
+
     public bool canSwapEnemy = true;
 
     // Start is called before the first frame update
@@ -34,7 +38,10 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (CM.isLockedOn && lockedEnemy!=null)
+        {
+            DotTransform.position = Camera.main.WorldToScreenPoint(lockedEnemy.GetComponent<Enemy1>().LockPoint.transform.position);
+        }
     }
 
     private void FixedUpdate()
@@ -49,6 +56,7 @@ public class CameraController : MonoBehaviour
     {
         if (lockedEnemy == null)
         {
+            DotImage.color = new Color(255, 255, 255, 255);
             lockedEnemy = DDC.SelectTarget(context.ReadValue<Vector2>());
             LL.SetEnemy(lockedEnemy);
             lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
@@ -60,7 +68,8 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(false);
+            Debug.Log("OnLock2");
+            DotImage.color = new Color32(255, 255, 255, 0);
             lockedEnemy = null;
         }     
     }
@@ -78,10 +87,8 @@ public class CameraController : MonoBehaviour
                     GameObject tempEnemy = DDC.SelectTarget(context.ReadValue<Vector2>(), lockedEnemy);
                     if (tempEnemy != null && lockedEnemy != tempEnemy)
                     {
-                        lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(false);
                         lockedEnemy = tempEnemy;
                         LL.SetEnemy(lockedEnemy);
-                        lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
                         LockOnCamera2.SetActive(!LockOnCamera2.activeInHierarchy);
                     }
                 }
