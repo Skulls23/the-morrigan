@@ -100,7 +100,7 @@ public class CharacterMovement : MonoBehaviour
         if (lastDirX > 0 && movementValue.x <= 0 || lastDirX < 0 && movementValue.x >= 0 || rb.velocity == Vector3.zero)
         {
             transFollow = startMovingTrans;
-            startMovingTrans.position = transform.position;
+            
             if(GetComponent<CameraController>().lockedEnemy != null)
             {
                 startMovingTrans.LookAt(GetComponent<CameraController>().lockedEnemy.transform);
@@ -116,6 +116,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
+            startMovingTrans.position = transform.position;
             transFollow = startMovingTrans;
         }
         timerRotateCam += Time.deltaTime;
