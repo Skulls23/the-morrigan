@@ -13,33 +13,62 @@ public class MeleeEnemy : MonoBehaviour
 
     public Transform Target { get; set; }
 
+    public bool isAttacking;
+
+    [Header("COMPONENTS")]
+    public PlayerDetector PD;
+    public FollowZone FZ;
+    public MidRangeAttackDetector MRAD;
+
+    [Header("GAME DESIGN")]
     public float UpdateFollowTime;
 
-    public PlayerDetector PD;
+    //Value in seconds
+    public float UpdateTryAttack;
 
-    public FollowZone FZ;
+    [Range(0, 1)]
+    public float MidRangeAttackProcPercentage;
+    [Range(0, 1)]
+    public float MidRangeAttack1Percentage = 0;
+    [Range(0, 1)]
+    public float MidRangeAttack2Percentage = 0;
+
+    public float SteeringSpeed;
+
+    public bool isSteering;
+    public bool isAddingMovement;
+
+    private Animator anim;
 
 
     private void Awake()
     {
         var navMeshAgent = GetComponent<NavMeshAgent>();
         var animator = GetComponentInChildren<Animator>();
+        anim = animator;
 
         _stateMachine = new StateMachine();
 
         var wait = new WaitOnWaypoint(this);
         var moveToSelected = new MoveToSelectedWayPoint(this, navMeshAgent, animator);
         var search = new SearchForWaypoint(this, navMeshAgent);
-        var follow = new FollowPlayer(this, navMeshAgent, animator, PD);
+        var follow = new FollowPlayer(this, navMeshAgent, animator, PD, MRAD);
+        var midRangeAttack = new MidRangeAttack(this, navMeshAgent, animator);
 
 
         At(search, moveToSelected, HasTarget());
         At(wait, moveToSelected, FinishedWaiting());
         At(moveToSelected, wait, ReachedWaypoint());
         At(follow, search, () => FZ.PlayerInZone == false);
+        At(follow, midRangeAttack, IsMRASelected());
+        At(midRangeAttack, follow, MRAFinished());
 
-        _stateMachine.AddAnyTransition(follow, HasReturnedToWaypoint());
-        
+        At(moveToSelected, follow, IsTargetable());
+        At(wait, follow, IsTargetable());
+
+        //_stateMachine.AddAnyTransition(follow, IsTargetable());
+        _stateMachine.AddAnyTransition(midRangeAttack, IsMRASelected());
+
 
         Target = Waypoints[0].transform;
         _stateMachine.SetState(moveToSelected);
@@ -50,24 +79,21 @@ public class MeleeEnemy : MonoBehaviour
         Func<bool> FinishedWaiting() => () => wait.TimeWaited > wait.timeToWait;
         Func<bool> ReachedWaypoint() => () => Target != null 
                                               && Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(Target.transform.position.x, Target.transform.position.z)) < Waypoints[currentIndex].WaypointRange;
-        Func<bool> HasReturnedToWaypoint() => () => PD.PlayerInRange
-                                                    && _stateMachine.GetCurrentState().ToString() == "WaitOnWaypoint";
+        Func<bool> IsTargetable() => () => PD.PlayerInRange
+                                           && FZ.PlayerInZone == true;
 
+        Func<bool> IsMRASelected() => () => follow.MRASelected == true;
+        Func<bool> MRAFinished() => () => midRangeAttack.attackFinished;
     }
 
     private void Update() {
         _stateMachine.Tick();
-        //Debug.Log(_stateMachine.GetCurrentState().ToString());
-    }
 
-    /*public void TakeFromTarget()
-    {
-        if (Target.Take())
+        /*if (_stateMachine.GetCurrentState().ToString() == "FollowPlayer")
         {
-            _gathered++;
-            OnGatheredChanged?.Invoke(_gathered);
-        }
-    }*/
+            Debug.Log((_stateMachine.GetCurrentState() as FollowPlayer).MRASelected);
+        }*/
+    }
 
     public Transform GetNextDestination()
     {
@@ -78,24 +104,44 @@ public class MeleeEnemy : MonoBehaviour
         return Waypoints[currentIndex].GetComponent<Transform>();
     }
 
-
-    /*public bool Take()
+    public void AttackHasFinished()
     {
-        if (_gathered <= 0)
-            return false;
+        if(_stateMachine.GetCurrentState().ToString() == "MidRangeAttack")
+        {
+            (_stateMachine.GetCurrentState() as MidRangeAttack).attackFinished = true;
+        }
         
-        _gathered--;
-        OnGatheredChanged?.Invoke(_gathered);
-        return true;
     }
 
-    public void DropAllResources()
+    public void OnAnimatorMove()
     {
-        if (_gathered > 0)
+         transform.position += anim.deltaPosition;
+
+        //STEERING ATTACK
+        if (isSteering)
         {
-            FindObjectOfType<WoodDropper>().Drop(_gathered, transform.position);
-            _gathered = 0;
-            OnGatheredChanged?.Invoke(_gathered);
+            // Determine which direction to rotate towards
+            Vector3 targetDirection = Target.position - transform.position;
+
+            // The step size is equal to speed times frame time.
+            float singleStep = SteeringSpeed * Time.deltaTime;
+
+            // Rotate the forward vector towards the target direction by one step
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+
+            // Draw a ray pointing at our target in
+            Debug.DrawRay(transform.position, newDirection, Color.red);
+
+            // Calculate a rotation a step closer to the target and applies rotation to this object
+            transform.rotation = Quaternion.LookRotation(newDirection);
         }
-    }*/
+    }
+
+    public void LateUpdate()
+    {
+        /*if (isAddingMovement)
+        {
+            transform.position += new Vector3(0, 0, Time.deltaTime * speed);
+        }*/
+    }
 }

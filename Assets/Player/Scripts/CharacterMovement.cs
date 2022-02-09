@@ -68,6 +68,12 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private float transitionSpeed;
 
+    public float timeRotateCam = 1;
+    public float timerRotateCam = 0;
+    private float lastDirX;
+    public Transform transFollow;
+    public Transform startMovingTrans;
+
     [Header("Stamina Costs")]
     [SerializeField]
     private float dodgeStaminaCost;
@@ -89,6 +95,31 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         isRootMotionActive = anim.applyRootMotion;
+        
+        //Cam Logic
+        if (lastDirX > 0 && movementValue.x <= 0 || lastDirX < 0 && movementValue.x >= 0 || rb.velocity == Vector3.zero)
+        {
+            transFollow = startMovingTrans;
+            
+            if(GetComponent<CameraController>().lockedEnemy != null)
+            {
+                startMovingTrans.LookAt(GetComponent<CameraController>().lockedEnemy.transform);
+            }
+            timerRotateCam = 0;
+        }
+
+        lastDirX = direction.x;
+
+        if (timerRotateCam > timeRotateCam && !isActing)
+        {
+            transFollow = rP.transform;
+        }
+        else
+        {
+            startMovingTrans.position = transform.position;
+            transFollow = startMovingTrans;
+        }
+        timerRotateCam += Time.deltaTime;
     }
     private void FixedUpdate()
     {
@@ -112,17 +143,26 @@ public class CharacterMovement : MonoBehaviour
         movementValue = CheckInput(context.ReadValue<Vector2>());
         direction = movementValue.normalized;
         rP.dir = direction;
+        
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
         runInput = context.performed;
+        anim.SetBool("isRunning", runInput);
     }
 
     public void OnDodge(InputAction.CallbackContext context)
     {
         if (context.performed && !isActing && SM.UseStamina(dodgeStaminaCost))
         {
+            //
+            timerRotateCam = 0;
+            transFollow = startMovingTrans;
+            startMovingTrans.position = transform.position;
+            startMovingTrans.LookAt(GetComponent<CameraController>().lockedEnemy.transform);
+            //
+
             Vector3 dashDir = new Vector3(direction.x, 0, direction.y);
             anim.applyRootMotion = true;
             isActing = true;
@@ -140,7 +180,6 @@ public class CharacterMovement : MonoBehaviour
                 anim.SetFloat(HashTable.dirZ, 1, 0, Time.fixedDeltaTime);
             }
             
-            //rb.velocity = dashDir * dashSpeed;
             StartCoroutine(IELockMovementTimer(dashLockMovementTime));
 
             //TO DO Multiplicator of speed for GD purpose
@@ -180,26 +219,19 @@ public class CharacterMovement : MonoBehaviour
     //Updates the animator movement layer and the player velocity
     private void ApplyMovement()
     {
-        if (isLockedOn)
+        Vector3 targetVelocity = Vector3.zero;
+
+        if (isLockedOn && !isRunning)
         {
             anim.SetFloat(HashTable.moveV, animationMovementValue.y, transitionSpeed, Time.fixedDeltaTime);
             anim.SetFloat(HashTable.moveH, animationMovementValue.x, transitionSpeed, Time.fixedDeltaTime);
+            targetVelocity = rP.transform.forward * direction.y * currentSpeed;
+            targetVelocity += transFollow.right * direction.x * currentSpeed;
         }
         else
         {
             anim.SetFloat(HashTable.moveV, animValue, transitionSpeed, Time.fixedDeltaTime);
             anim.SetFloat(HashTable.moveH, 0, 0, Time.fixedDeltaTime);
-        }
-        
-        Vector3 targetVelocity = Vector3.zero;
-
-        if (isLockedOn)
-        {
-            targetVelocity = rP.transform.forward * direction.y * currentSpeed;
-            targetVelocity += rP.transform.right * direction.x * currentSpeed;
-        }
-        else
-        {
             targetVelocity = rP.transform.forward * currentSpeed;
         }
 
@@ -304,5 +336,10 @@ public class CharacterMovement : MonoBehaviour
         }
         
         return 0;
+    }
+
+    public bool GetIsRunning()
+    {
+        return isRunning;
     }
 }

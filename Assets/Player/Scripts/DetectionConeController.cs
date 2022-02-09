@@ -13,6 +13,9 @@ public class DetectionConeController : MonoBehaviour
     private int lockedEnemyId;
     int nearestDirectionId = 0;
 
+    int index;
+    Vector2 joyDir;
+
 
     public GameObject Camera;
 
@@ -25,7 +28,10 @@ public class DetectionConeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*if (enemiesList.Count > 0)
+        {
+            Debug.DrawRay(enemiesList[lockedEnemyId].transform.position, joyDir * 20, Color.blue);
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,7 +52,7 @@ public class DetectionConeController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         int colliderId = other.GetComponentInParent<Enemy>().GetId();
-        for(int i =0; i< enemyIds.Count;i++)
+        for(int i =0; i< enemiesList.Count;i++)
         {
             if (colliderId == enemyIds[i])
             {
@@ -93,7 +99,7 @@ public class DetectionConeController : MonoBehaviour
         float angle = -1;
         float distance = 0;
 
-        for (int i = 0; i < enemyIds.Count; i++)
+        for (int i = 0; i < enemiesList.Count; i++)
         {
             Vector3 direction = Vector3.zero;
             Vector3 enemyPosition = enemiesList[i].transform.position;
@@ -105,8 +111,10 @@ public class DetectionConeController : MonoBehaviour
                 if (enemyIds[i] == lockedEnemyId)
                 {
                     continue;
-                }   
-                direction = new Vector3(joysticDir.x, 0, joysticDir.y);              
+                }
+                Vector3 temp = new Vector3(joysticDir.x, 0, -joysticDir.y);
+                direction = transform.InverseTransformDirection(temp);
+                joyDir = joysticDir;
             }
             else
             {

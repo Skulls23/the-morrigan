@@ -65,8 +65,11 @@ public class RotatePlayer : MonoBehaviour
             Vector3 dir = CamController.lockedEnemy.transform.position - parent.transform.position;          
             dir.Normalize();
             dir.y = 0;
-            parent.transform.rotation = Quaternion.LookRotation(dir);
-            return;
+            if (!CM.GetIsRunning())
+            {
+                parent.transform.rotation = Quaternion.LookRotation(dir);
+                return;
+            }      
         }
 
         if (dir != Vector2.zero && !CM.isActing)

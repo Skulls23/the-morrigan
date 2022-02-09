@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CameraController : MonoBehaviour
     RotatePlayer rP;
     CharacterMovement CM;
     public DetectionConeController DDC;
+    public LockLooker LL;
 
     [SerializeField]
     private bool lockInput;
@@ -19,6 +21,9 @@ public class CameraController : MonoBehaviour
     public GameObject LockOnCamera;
     public GameObject LockOnCamera2;
     public MeshCollider LockZone; // TO DO
+
+    public Transform DotTransform;
+    public Image DotImage;
 
     public bool canSwapEnemy = true;
 
@@ -33,7 +38,10 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (CM.isLockedOn && lockedEnemy!=null)
+        {
+            DotTransform.position = Camera.main.WorldToScreenPoint(lockedEnemy.GetComponent<Enemy1>().LockPoint.transform.position);
+        }
     }
 
     private void FixedUpdate()
@@ -41,14 +49,6 @@ public class CameraController : MonoBehaviour
         if (CM.isLockedOn)
         {
             CharacterCam.GetComponent<Cinemachine.CinemachineFreeLook>().UpdateCameraState(Vector3.up, Time.fixedDeltaTime);
-            /*if (LockOnCamera2.activeInHierarchy)
-            {
-                LockOnCamera2.GetComponent<Cinemachine.CinemachineFreeLook>().ForceCameraPosition(CharacterCam.transform.position, CharacterCam.transform.rotation);
-            }
-            else
-            {
-                LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().ForceCameraPosition(CharacterCam.transform.position, CharacterCam.transform.rotation);
-            }*/
         }
     }
 
@@ -56,9 +56,10 @@ public class CameraController : MonoBehaviour
     {
         if (lockedEnemy == null)
         {
+            DotImage.color = new Color(255, 255, 255, 255);
             lockedEnemy = DDC.SelectTarget(context.ReadValue<Vector2>());
+            LL.SetEnemy(lockedEnemy);
             lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
-            //LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
             lockInput = !lockInput;
             CM.isLockedOn = lockInput;
             anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
@@ -67,7 +68,8 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(false);
+            Debug.Log("OnLock2");
+            DotImage.color = new Color32(255, 255, 255, 0);
             lockedEnemy = null;
         }     
     }
@@ -85,19 +87,8 @@ public class CameraController : MonoBehaviour
                     GameObject tempEnemy = DDC.SelectTarget(context.ReadValue<Vector2>(), lockedEnemy);
                     if (tempEnemy != null && lockedEnemy != tempEnemy)
                     {
-                        lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(false);
                         lockedEnemy = tempEnemy;
-
-                        /*if (LockOnCamera2.activeInHierarchy)
-                        {
-                            LockOnCamera.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
-                        }
-                        else
-                        {
-                            LockOnCamera2.GetComponent<Cinemachine.CinemachineFreeLook>().LookAt = lockedEnemy.transform;
-                        }*/
-
-                        lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
+                        LL.SetEnemy(lockedEnemy);
                         LockOnCamera2.SetActive(!LockOnCamera2.activeInHierarchy);
                     }
                 }

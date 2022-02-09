@@ -9,16 +9,30 @@ public class FollowPlayer : IState
     private readonly Animator animator;
     private readonly PlayerDetector playerDetector;
 
+    private readonly MidRangeAttackDetector midRangeDetector;
+    private readonly PlayerDetector longRangeDetector;
+
     private readonly float refreshTime;
     private float refreshTimer = 0;
 
-    public FollowPlayer(MeleeEnemy _meleeEnemy, NavMeshAgent _navMeshAgent, Animator _animator, PlayerDetector _playerDetector)
+    private float MRATryAttackTime;
+    private float MRAProcPercentage;
+    private float MRATryAttackTimer = 0;
+
+    public bool MRASelected;
+
+
+    public FollowPlayer(MeleeEnemy _meleeEnemy, NavMeshAgent _navMeshAgent, Animator _animator, PlayerDetector _playerDetector, MidRangeAttackDetector _midRangeDetector)
     {
         meleeEnemy = _meleeEnemy;
         refreshTime = meleeEnemy.UpdateFollowTime;
         navMeshAgent = _navMeshAgent;
         animator = _animator;
         playerDetector = _playerDetector;
+        midRangeDetector = _midRangeDetector;
+        
+        MRAProcPercentage = meleeEnemy.MidRangeAttackProcPercentage;
+        MRATryAttackTime = meleeEnemy.UpdateTryAttack;
     }
 
 
@@ -30,6 +44,21 @@ public class FollowPlayer : IState
             RecalculatePlayerPos();
         }
         refreshTimer += Time.deltaTime;
+
+        if (midRangeDetector.PlayerInRange)
+        {
+            MRATryAttackTimer += Time.deltaTime;
+            if (MRATryAttackTimer > MRATryAttackTime)
+            {
+                MRATryAttackTimer = 0;
+                float rand = Random.Range(0f, 1f);
+                if(rand < MRAProcPercentage)
+                {
+                    Debug.Log("MRA Selected");
+                    MRASelected = true;
+                }
+            }
+        }
     }
 
     private void RecalculatePlayerPos()
@@ -41,13 +70,19 @@ public class FollowPlayer : IState
 
     public void OnEnter() {
         Debug.Log("Enter FollowPlayer");
+
+        //PLAYER FOLLOW
         refreshTimer = 0;
-        navMeshAgent.speed = 12;
+        navMeshAgent.speed = 4.5f;
         meleeEnemy.Target = playerDetector.GetPlayerTranform();
         RecalculatePlayerPos();
+
+        //ATTACKS
+        MRATryAttackTimer = 0;
     }
     public void OnExit() {
         Debug.Log("Exit FollowPlayer");
+        MRASelected = false;
     }
 
 
