@@ -27,6 +27,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private bool isRunning;
     [SerializeField]
+    public bool isAttacking;
+    [SerializeField]
     public bool isLockedOn;
     [SerializeField]
     public bool isActing;
@@ -50,6 +52,8 @@ public class CharacterMovement : MonoBehaviour
     private float dashLockMovementTime;
     [SerializeField]
     private float attackLockMovementTime;
+    [SerializeField]
+    private float steeringTime;
     [SerializeField, Range(0, 1)]
     private float startWalkingValue;
     [SerializeField, Range(0, 1)]
@@ -126,7 +130,7 @@ public class CharacterMovement : MonoBehaviour
         animationMovementValue = ConvertMoveToAnimValues(movementValue);
         animValue = getGreaterAnimValue(animationMovementValue);
         currentSpeed = GetSpeedFromAnimValue(animValue);
-        if (!isActing)
+        if (!isActing && !isAttacking)
         {
             ApplyMovement();
         }
@@ -143,7 +147,6 @@ public class CharacterMovement : MonoBehaviour
         movementValue = CheckInput(context.ReadValue<Vector2>());
         direction = movementValue.normalized;
         rP.dir = direction;
-        
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -196,22 +199,32 @@ public class CharacterMovement : MonoBehaviour
             {
                 if (!isActing)
                 {
-                    rb.velocity = Vector3.zero;
-                    anim.applyRootMotion = true;
-                    isActing = true;
+                    isAttacking = true;
                     attackInput = context.performed;
+                    rb.velocity = Vector3.zero;
                     anim.SetTrigger(HashTable.attacked);
-                    StartCoroutine(IELockMovementTimer(attackLockMovementTime));
+                    StartCoroutine(AttackRoutine(steeringTime));
                 }
             }
         }
     }
+
+    IEnumerator AttackRoutine(float time)
+    {
+        yield return new WaitForSeconds(steeringTime);
+        rb.velocity = Vector3.zero;
+        anim.applyRootMotion = true;
+        isActing = true;
+        StartCoroutine(IELockMovementTimer(attackLockMovementTime));
+    }
+
 
     IEnumerator IELockMovementTimer(float time)
     {
         yield return new WaitForSeconds(time);
         anim.applyRootMotion = false;
         isActing = false;
+        isAttacking = false;
         anim.SetBool("isDodging", false);
         anim.SetBool("hasAttacked", false);
     }
@@ -235,7 +248,10 @@ public class CharacterMovement : MonoBehaviour
             targetVelocity = rP.transform.forward * currentSpeed;
         }
 
-        rb.velocity = targetVelocity;
+        if (!attackInput)
+        {
+            rb.velocity = targetVelocity;
+        }
 
         if (OnSlope())
         {
