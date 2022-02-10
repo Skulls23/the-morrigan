@@ -10,6 +10,9 @@ public class CombatSystem : MonoBehaviour
     private Color sphereColor;
 
     public LayerMask HitBoxLayer;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,11 @@ public class CombatSystem : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void UseStamina()
+    {
+
     }
 
     private void Hit()

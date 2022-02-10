@@ -31,7 +31,9 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     public bool isLockedOn;
     [SerializeField]
-    public bool isActing;
+    public bool canMove = true;
+    [SerializeField]
+    public bool canRotate = true;
 
     [Header("Speeds")]
     [Header("GAME DESIGN")]
@@ -99,13 +101,17 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         isRootMotionActive = anim.applyRootMotion;
-        
+        LockedCustomMovements();
+    }
+
+    private void LockedCustomMovements()
+    {
         //Cam Logic
         if (lastDirX > 0 && movementValue.x <= 0 || lastDirX < 0 && movementValue.x >= 0 || rb.velocity == Vector3.zero)
         {
             transFollow = startMovingTrans;
-            
-            if(GetComponent<CameraController>().lockedEnemy != null)
+
+            if (GetComponent<CameraController>().lockedEnemy != null)
             {
                 startMovingTrans.LookAt(GetComponent<CameraController>().lockedEnemy.transform);
             }
@@ -114,7 +120,7 @@ public class CharacterMovement : MonoBehaviour
 
         lastDirX = direction.x;
 
-        if (timerRotateCam > timeRotateCam && !isActing)
+        if (timerRotateCam > timeRotateCam && canMove)
         {
             transFollow = rP.transform;
         }
@@ -125,12 +131,13 @@ public class CharacterMovement : MonoBehaviour
         }
         timerRotateCam += Time.deltaTime;
     }
+
     private void FixedUpdate()
     {
         animationMovementValue = ConvertMoveToAnimValues(movementValue);
         animValue = getGreaterAnimValue(animationMovementValue);
         currentSpeed = GetSpeedFromAnimValue(animValue);
-        if (!isActing && !isAttacking)
+        if (canMove)
         {
             ApplyMovement();
         }
@@ -157,7 +164,7 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnDodge(InputAction.CallbackContext context)
     {
-        if (context.performed && !isActing && SM.UseStamina(dodgeStaminaCost))
+        if (context.performed && canMove && SM.UseStamina(dodgeStaminaCost))
         {
             //
             timerRotateCam = 0;
@@ -168,7 +175,7 @@ public class CharacterMovement : MonoBehaviour
 
             Vector3 dashDir = new Vector3(direction.x, 0, direction.y);
             anim.applyRootMotion = true;
-            isActing = true;
+            canMove = false;
             dodgeInput = context.performed;
             anim.SetTrigger(HashTable.dodged);
             anim.SetBool("isDodging", true);
@@ -195,10 +202,11 @@ public class CharacterMovement : MonoBehaviour
         if (context.performed)
         {
             anim.SetBool("hasAttacked", true);
-            if (SM.UseStamina(attackStaminaCost))
+            if (SM.HasEnoughStamina(attackStaminaCost))
             {
-                if (!isActing)
+                if (canMove)
                 {
+                    canMove = false;
                     isAttacking = true;
                     attackInput = context.performed;
                     rb.velocity = Vector3.zero;
@@ -214,7 +222,7 @@ public class CharacterMovement : MonoBehaviour
         yield return new WaitForSeconds(steeringTime);
         rb.velocity = Vector3.zero;
         anim.applyRootMotion = true;
-        isActing = true;
+        canRotate = false;
         StartCoroutine(IELockMovementTimer(attackLockMovementTime));
     }
 
@@ -223,7 +231,8 @@ public class CharacterMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         anim.applyRootMotion = false;
-        isActing = false;
+        canMove = true;
+        canRotate = true;
         isAttacking = false;
         anim.SetBool("isDodging", false);
         anim.SetBool("hasAttacked", false);
@@ -248,10 +257,7 @@ public class CharacterMovement : MonoBehaviour
             targetVelocity = rP.transform.forward * currentSpeed;
         }
 
-        if (!attackInput)
-        {
-            rb.velocity = targetVelocity;
-        }
+        rb.velocity = targetVelocity;
 
         if (OnSlope())
         {

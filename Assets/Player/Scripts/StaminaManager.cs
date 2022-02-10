@@ -52,6 +52,14 @@ public class StaminaManager : MonoBehaviour
         
     }
 
+    public bool HasEnoughStamina(float cost)
+    {
+        if (cost < currentStamina)
+            return true;
+        else
+            return false;
+    }
+
     void StartRegen()
     {
         staminaRegen = StartCoroutine("PassiveStaminaRegen");
