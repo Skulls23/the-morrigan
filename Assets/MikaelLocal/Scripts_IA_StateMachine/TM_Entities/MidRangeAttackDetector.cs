@@ -8,7 +8,7 @@ public class MidRangeAttackDetector : MonoBehaviour // NOTE : Does not handle mu
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (other.GetComponent<CharacterMovement>())
         {
             detectedPlayer = other.gameObject;
         }
@@ -16,7 +16,7 @@ public class MidRangeAttackDetector : MonoBehaviour // NOTE : Does not handle mu
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (other.GetComponent<CharacterMovement>())
         {
             detectedPlayer = null;
         }

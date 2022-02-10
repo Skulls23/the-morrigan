@@ -10,7 +10,7 @@ public class FollowZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (other.GetComponent<CharacterMovement>())
         {
             detectedPlayer = other.gameObject;
         }
@@ -18,7 +18,7 @@ public class FollowZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (other.GetComponent<CharacterMovement>())
         {
             StartCoroutine(ClearDetectedPlayerAfterDelay());
         }

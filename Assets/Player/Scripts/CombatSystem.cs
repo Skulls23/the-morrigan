@@ -11,12 +11,14 @@ public class CombatSystem : MonoBehaviour
 
     public LayerMask HitBoxLayer;
 
-    
+    private StaminaManager SM;
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        SM = GetComponentInParent<StaminaManager>();
+        player = GetComponentInParent<Player>();
     }
 
 
@@ -27,8 +29,16 @@ public class CombatSystem : MonoBehaviour
         
     }
 
-    private void UseStamina()
+    private void UseStamina(ActionsCostingStamina action)
     {
+        if(action == ActionsCostingStamina.NormalAttack)
+        {
+            SM.UseStamina(player.AttackStaminaCost);
+        }
+        if (action == ActionsCostingStamina.Dash)
+        {
+            SM.UseStamina(player.DashStaminaCost);
+        }
 
     }
 
@@ -74,4 +84,12 @@ public class CombatSystem : MonoBehaviour
         Gizmos.color = sphereColor;
         Gizmos.DrawWireSphere(spearHitPoint.transform.position, sphereRadius);
     }
+
+    
+}
+
+enum ActionsCostingStamina
+{
+    NormalAttack,
+    Dash,
 }

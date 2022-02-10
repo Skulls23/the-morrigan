@@ -33,7 +33,7 @@ public class StaminaManager : MonoBehaviour
         staminaBar.fillAmount = currentStamina / 100;
     }
 
-    public bool UseStamina(float value)
+    public void UseStamina(float value)
     {
         if (currentStamina >= value)
         {
@@ -43,13 +43,7 @@ public class StaminaManager : MonoBehaviour
             }
             currentStamina -= value;
             StartRegen();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-        
+        }      
     }
 
     public bool HasEnoughStamina(float cost)

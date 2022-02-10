@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
     {
         if (CM.isLockedOn && lockedEnemy!=null)
         {
-            DotTransform.position = Camera.main.WorldToScreenPoint(lockedEnemy.GetComponent<Enemy1>().LockPoint.transform.position);
+            DotTransform.position = Camera.main.WorldToScreenPoint(lockedEnemy.GetComponent<Enemy>().LockPoint.transform.position);
         }
     }
 
