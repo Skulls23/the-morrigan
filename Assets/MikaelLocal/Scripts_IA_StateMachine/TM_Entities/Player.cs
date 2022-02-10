@@ -34,6 +34,16 @@ public class Player : MonoBehaviour
 
 
     [Header("STAMINA MANAGEMENT")]
+    [SerializeField, Range(0, 100)]
+    private float staminaMax;
+    [SerializeField]
+    private float runStaminaPerSecond;
+    [SerializeField]
+    private float timeBeforeStartingRegenAgain;
+    [SerializeField]
+    private float staminaPerSecond;
+    [SerializeField]
+    private float minStaminaToRestartRunning;
     [SerializeField]
     private float dodgeStaminaCost;
     [SerializeField]
@@ -61,4 +71,9 @@ public class Player : MonoBehaviour
     public float SlopeForce { get => slopeForce; set => slopeForce = value; }
     public float DashStaminaCost { get => dodgeStaminaCost; set => dodgeStaminaCost = value; }
     public float AttackStaminaCost { get => attackStaminaCost; set => attackStaminaCost = value; }
+    public float RunStaminaPerSecond { get => runStaminaPerSecond; set => runStaminaPerSecond = value; }
+    public float TimeBeforeStartingRegenAgain { get => timeBeforeStartingRegenAgain; set => timeBeforeStartingRegenAgain = value; }
+    public float StaminaPerSecond { get => staminaPerSecond; set => staminaPerSecond = value; }
+    public float StaminaMax { get => staminaMax; set => staminaMax = value; }
+    public float MinStaminaToRestartRunning { get => minStaminaToRestartRunning; set => minStaminaToRestartRunning = value; }
 }

@@ -31,6 +31,7 @@ public class CharacterMovement : MonoBehaviour
     public bool isAttacking;
     [SerializeField]
     public bool isLockedOn;
+
     [SerializeField]
     public bool canMove = true;
     [SerializeField]
@@ -122,7 +123,21 @@ public class CharacterMovement : MonoBehaviour
     public void OnRun(InputAction.CallbackContext context)
     {
         runInput = context.performed;
-        anim.SetBool("isRunning", runInput);
+
+        if (context.started && SM.HasEnoughStamina(player.MinStaminaToRestartRunning))
+        {
+            SM.canRun = true;
+        }
+
+        if (SM.canRun)
+        {
+            anim.SetBool("isRunning", runInput);
+        }
+        else
+        {
+            if(anim.GetBool("isRunning"))
+                anim.SetBool("isRunning", false);
+        }
     }
 
     public void OnDodge(InputAction.CallbackContext context)
@@ -271,7 +286,7 @@ public class CharacterMovement : MonoBehaviour
         float ySign = Mathf.Sign(moveValue.y);
         Vector2 tempAnimValue = new Vector2(Mathf.Abs(moveValue.x), Mathf.Abs(moveValue.y));
 
-        if (runInput && tempAnimValue != Vector2.zero)
+        if (runInput && tempAnimValue != Vector2.zero && SM.canRun)
         {
             isRunning = true;
             tempAnimValue.x = 1.5f;
