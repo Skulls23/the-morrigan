@@ -12,6 +12,8 @@ public class CharacterMovement : MonoBehaviour
     private StaminaManager SM;
     private Player player;
 
+    public Transform GroundRayStart;
+
     [Header("VALUES")]
     public Vector2 movementValue;
     public Vector2 animationMovementValue;
@@ -31,6 +33,11 @@ public class CharacterMovement : MonoBehaviour
     public bool isAttacking;
     [SerializeField]
     public bool isLockedOn;
+    private Vector3 ResetMoveVelocity;
+    [SerializeField]
+    private bool isGrounded = true;
+    private bool isFalling = false;
+    public LayerMask GroundMask;
 
     [SerializeField]
     public bool canMove = true;
@@ -59,13 +66,24 @@ public class CharacterMovement : MonoBehaviour
         rP = GetComponentInChildren<RotatePlayer>();
         SM = GetComponent<StaminaManager>();
         player = GetComponent<Player>();
+
+        //GroundRay
+        //GroundRayStart.localPosition = new Vector3(0, 0, -GetComponent<CapsuleCollider>().radius);
+
+        ResetMoveVelocity = new Vector3(0, rb.velocity.y, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         isRootMotionActive = anim.applyRootMotion;
         LockedCustomMovements();
+    }
+
+    private void LateUpdate()
+    {
+        
     }
 
     private void LockedCustomMovements()
@@ -101,10 +119,13 @@ public class CharacterMovement : MonoBehaviour
         animationMovementValue = ConvertMoveToAnimValues(movementValue);
         animValue = getGreaterAnimValue(animationMovementValue);
         currentSpeed = GetSpeedFromAnimValue(animValue);
-        if (canMove)
+        if (canMove && !isFalling)
         {
             ApplyMovement();
         }
+
+        CheckGround();
+        ResetMoveVelocity = new Vector3(0, rb.velocity.y, 0);
     }
 
     public void OnAnimatorMove()
@@ -197,7 +218,7 @@ public class CharacterMovement : MonoBehaviour
                     canMove = false;
                     isAttacking = true;
                     attackInput = context.performed;
-                    rb.velocity = Vector3.zero;
+                    rb.velocity = ResetMoveVelocity;
                     anim.SetTrigger(HashTable.attacked);
                     StartCoroutine(AttackRoutine(player.SteeringTime));
                 }
@@ -208,7 +229,7 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator AttackRoutine(float time)
     {
         yield return new WaitForSeconds(player.SteeringTime);
-        rb.velocity = Vector3.zero;
+        rb.velocity = ResetMoveVelocity;
         anim.applyRootMotion = true;
         canRotate = false;
         StartCoroutine(IELockMovementTimer(player.AttackLockMovementTime));
@@ -229,7 +250,7 @@ public class CharacterMovement : MonoBehaviour
     //Updates the animator movement layer and the player velocity
     private void ApplyMovement()
     {
-        Vector3 targetVelocity = Vector3.zero;
+        Vector3 targetVelocity = ResetMoveVelocity;
 
         if (isLockedOn && !isRunning)
         {
@@ -245,26 +266,35 @@ public class CharacterMovement : MonoBehaviour
             targetVelocity = rP.transform.forward * currentSpeed;
         }
 
+        targetVelocity.y = rb.velocity.y;
         rb.velocity = targetVelocity;
-
-        if (OnSlope())
-        {
-            rb.velocity = new Vector3(rb.velocity.x,SlopeManagement(),rb.velocity.z);
-        }
-        else
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        }
     }
 
-    private bool OnSlope()
+    private void CheckGround()
     {
         RaycastHit hit;
-        //camera focus
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.8f / 2 * player.RayLength))
-            if (hit.normal != Vector3.up && hit.distance > 4.1f)
-                return true;
-        return false;
+        if (Physics.Raycast(GroundRayStart.position, Vector3.down, out hit, player.RayLength, GroundMask))
+        {
+            Debug.DrawLine(GroundRayStart.position, hit.point, Color.red, 1);
+            if (hit.distance <= 0.4f)
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                /*if (hit.distance >= 1)
+                {
+                    isFalling = true;
+                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                }
+                else
+                    isFalling = false;*/
+
+                isGrounded = false;
+                Debug.Log("false");
+                rb.velocity = new Vector3(rb.velocity.x, -player.FallSpeed, rb.velocity.z);
+            }
+        } 
     }
 
     private float SlopeManagement()

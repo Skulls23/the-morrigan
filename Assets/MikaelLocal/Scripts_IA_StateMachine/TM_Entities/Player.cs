@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     private float startWalkingValue;
     [SerializeField, Range(0, 1)]
     private float startJogingValue;
+    [SerializeField]
+    private float fallSpeed;
 
     [Header("COMBAT SYSTEM")]
     [Space(10)]
@@ -76,4 +78,5 @@ public class Player : MonoBehaviour
     public float StaminaPerSecond { get => staminaPerSecond; set => staminaPerSecond = value; }
     public float StaminaMax { get => staminaMax; set => staminaMax = value; }
     public float MinStaminaToRestartRunning { get => minStaminaToRestartRunning; set => minStaminaToRestartRunning = value; }
+    public float FallSpeed { get => fallSpeed; set => fallSpeed = value; }
 }
