@@ -6,11 +6,20 @@ using UnityEngine.AI;
 public class Enemy : Actor
 {
     protected static int numberOfEnnemies = 0;
+
     [SerializeField]
     protected int id;
     protected bool isPlayerInZone = false;
     protected bool isPlayerSpotted = false;
     [SerializeField] protected float minDistFromTarget;
+
+    public float lifeMax;
+    public float currentLife;
+
+    public float hitWeakpointDamages;
+    public float hitFleshDamages;
+
+    private int lastAttackId;
 
     public GameObject LockPoint;
 
@@ -48,5 +57,38 @@ public class Enemy : Actor
         return id;
     }
 
+    public void Hit(string HitBoxTypeString, int attackId)
+    {
+        Debug.Log("Hit");
+        if (lastAttackId == attackId)
+            return;
 
+        lastAttackId = attackId;
+        float tempDamage = 0;
+        if(HitBoxTypeString == HitBoxType.Flesh.ToString())
+        {
+            tempDamage = hitFleshDamages;
+        }
+        else if (HitBoxTypeString == HitBoxType.WeakPoint.ToString())
+        {
+            tempDamage = hitWeakpointDamages;
+        }
+
+        if (currentLife > tempDamage)
+        {
+            currentLife -= tempDamage;
+        }
+        else
+        {
+            currentLife = 0;
+        }
+        
+    }
+
+}
+
+enum HitBoxType
+{
+    Flesh,
+    WeakPoint,
 }
