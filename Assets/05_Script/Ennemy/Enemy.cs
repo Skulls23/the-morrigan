@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : Actor
 {
+    protected static int numberOfEnnemies = 0;
     [SerializeField]
     protected int id;
     protected bool isPlayerInZone = false;
@@ -21,6 +22,8 @@ public class Enemy : Actor
         {
             anim.SetFloat("vertical", 1);
         }
+        id = numberOfEnnemies;
+        numberOfEnnemies++;
     }
 
     public float MinDistFromTarget
