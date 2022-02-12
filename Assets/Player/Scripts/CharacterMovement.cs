@@ -266,6 +266,7 @@ public class CharacterMovement : MonoBehaviour
             targetVelocity = rP.transform.forward * currentSpeed;
         }
 
+        Debug.Log(rb.velocity);
         targetVelocity.y = rb.velocity.y;
         rb.velocity = targetVelocity;
     }
@@ -276,22 +277,35 @@ public class CharacterMovement : MonoBehaviour
         if (Physics.Raycast(GroundRayStart.position, Vector3.down, out hit, player.RayLength, GroundMask))
         {
             Debug.DrawLine(GroundRayStart.position, hit.point, Color.red, 1);
-            if (hit.distance <= 0.4f)
+            if (hit.distance <= 0.8f)
             {
                 isGrounded = true;
+                canRotate = true;
+                canMove = true;
             }
             else
             {
-                /*if (hit.distance >= 1)
-                {
-                    isFalling = true;
+                if(isFalling)
                     rb.velocity = new Vector3(0, rb.velocity.y, 0);
+
+                if (hit.distance >= 1.5f && rb.velocity.y <= -1)
+                {
+                    if (!isFalling)
+                    {
+                        isGrounded = false;
+                        canRotate = false;
+                        canMove = false;
+                        isFalling = true;
+                        rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                    }
                 }
                 else
-                    isFalling = false;*/
-
-                isGrounded = false;
-                Debug.Log("false");
+                {
+                    canRotate = true;
+                    canMove = true;
+                    isGrounded = true;
+                    isFalling = false;
+                }
                 rb.velocity = new Vector3(rb.velocity.x, -player.FallSpeed, rb.velocity.z);
             }
         } 
@@ -381,5 +395,10 @@ public class CharacterMovement : MonoBehaviour
     public bool GetIsRunning()
     {
         return isRunning;
+    }
+
+    public bool GetIsFalling()
+    {
+        return isFalling;
     }
 }
