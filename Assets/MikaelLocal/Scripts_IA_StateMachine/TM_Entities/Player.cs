@@ -4,15 +4,79 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("SPEEDS")]
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private float walkSpeed;
+    [SerializeField]
+    private float jogSpeed;
+    [SerializeField]
+    private float runSpeed;
+    [SerializeField]
+    private float strafeWalkSpeed;
+    [SerializeField]
+    private float strafeJogSpeed;
+    [SerializeField]
+    private float dashSpeed;
+    [SerializeField, Range(0, 1)]
+    private float startWalkingValue;
+    [SerializeField, Range(0, 1)]
+    private float startJogingValue;
+    [SerializeField]
+    private float fallSpeed;
+
+    [Header("COMBAT SYSTEM")]
+    [Space(10)]
+    [SerializeField]
+    private float dashLockMovementTime;
+    [SerializeField]
+    private float attackLockMovementTime;
+    [SerializeField]
+    private float steeringTime;
+
+
+    [Header("STAMINA MANAGEMENT")]
+    [SerializeField, Range(0, 100)]
+    private float staminaMax;
+    [SerializeField]
+    private float runStaminaPerSecond;
+    [SerializeField]
+    private float timeBeforeStartingRegenAgain;
+    [SerializeField]
+    private float staminaPerSecond;
+    [SerializeField]
+    private float minStaminaToRestartRunning;
+    [SerializeField]
+    private float dodgeStaminaCost;
+    [SerializeField]
+    private float attackStaminaCost;
+
+    [Header("SLOPES")]
+    [SerializeField]
+    private float rayLength;
+    [SerializeField]
+    private float slopeForce;
+
+
+    public float WalkSpeed { get => walkSpeed; set => walkSpeed = value; }
+    public float JogSpeed { get => jogSpeed; set => jogSpeed = value; }
+    public float RunSpeed { get => runSpeed; set => runSpeed = value; }
+    public float StrafeWalkSpeed { get => strafeWalkSpeed; set => strafeWalkSpeed = value; }
+    public float StrafeJogSpeed { get => strafeJogSpeed; set => strafeJogSpeed = value; }
+    public float DashSpeed { get => dashSpeed; set => dashSpeed = value; }
+    public float DashLockMovementTime { get => dashLockMovementTime; set => dashLockMovementTime = value; }
+    public float AttackLockMovementTime { get => attackLockMovementTime; set => attackLockMovementTime = value; }
+    public float SteeringTime { get => steeringTime; set => steeringTime = value; }
+    public float StartWalkingValue { get => startWalkingValue; set => startWalkingValue = value; }
+    public float StartJogingValue { get => startJogingValue; set => startJogingValue = value; }
+    public float RayLength { get => rayLength; set => rayLength = value; }
+    public float SlopeForce { get => slopeForce; set => slopeForce = value; }
+    public float DashStaminaCost { get => dodgeStaminaCost; set => dodgeStaminaCost = value; }
+    public float AttackStaminaCost { get => attackStaminaCost; set => attackStaminaCost = value; }
+    public float RunStaminaPerSecond { get => runStaminaPerSecond; set => runStaminaPerSecond = value; }
+    public float TimeBeforeStartingRegenAgain { get => timeBeforeStartingRegenAgain; set => timeBeforeStartingRegenAgain = value; }
+    public float StaminaPerSecond { get => staminaPerSecond; set => staminaPerSecond = value; }
+    public float StaminaMax { get => staminaMax; set => staminaMax = value; }
+    public float MinStaminaToRestartRunning { get => minStaminaToRestartRunning; set => minStaminaToRestartRunning = value; }
+    public float FallSpeed { get => fallSpeed; set => fallSpeed = value; }
 }

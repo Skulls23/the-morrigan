@@ -38,6 +38,9 @@ public class MeleeEnemy : MonoBehaviour
     public bool isSteering;
     public bool isAddingMovement;
 
+    public float RoamingSpeed;
+    public float FollowPlayerSpeed;
+
     private Animator anim;
 
 

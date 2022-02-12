@@ -10,6 +10,9 @@ public class CharacterMovement : MonoBehaviour
     private Animator anim;
     private RotatePlayer rP;
     private StaminaManager SM;
+    private Player player;
+
+    public Transform GroundRayStart;
 
     [Header("VALUES")]
     public Vector2 movementValue;
@@ -27,44 +30,23 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private bool isRunning;
     [SerializeField]
+    public bool isAttacking;
+    [SerializeField]
     public bool isLockedOn;
+    private Vector3 ResetMoveVelocity;
     [SerializeField]
-    public bool isActing;
-
-    [Header("Speeds")]
-    [Header("GAME DESIGN")]
-    
-    [SerializeField]
-    private float walkSpeed;
-    [SerializeField]
-    private float jogSpeed;
-    [SerializeField]
-    private float runSpeed;
-    [SerializeField]
-    private float strafeWalkSpeed;
-    [SerializeField]
-    private float strafeJogSpeed;
-    [SerializeField]
-    private float dashSpeed;
-    [SerializeField]
-    private float dashLockMovementTime;
-    [SerializeField]
-    private float attackLockMovementTime;
-    [SerializeField, Range(0, 1)]
-    private float startWalkingValue;
-    [SerializeField, Range(0, 1)]
-    private float startJogingValue;
+    private bool isGrounded = true;
+    private bool isFalling = false;
+    public LayerMask GroundMask;
 
     [SerializeField]
-    private float rayLength;
+    public bool canMove = true;
     [SerializeField]
-    private float slopeForce;
+    public bool canRotate = true;
 
     public bool isRootMotionActive;
 
-    
-
-    [Header("Transitions")]
+    [Header("CustomLockedMovements")]
     [SerializeField]
     private float transitionSpeed;
 
@@ -73,12 +55,6 @@ public class CharacterMovement : MonoBehaviour
     private float lastDirX;
     public Transform transFollow;
     public Transform startMovingTrans;
-
-    [Header("Stamina Costs")]
-    [SerializeField]
-    private float dodgeStaminaCost;
-    [SerializeField]
-    private float attackStaminaCost;
 
 
     // Start is called before the first frame update
@@ -89,19 +65,35 @@ public class CharacterMovement : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rP = GetComponentInChildren<RotatePlayer>();
         SM = GetComponent<StaminaManager>();
+        player = GetComponent<Player>();
+
+        //GroundRay
+        //GroundRayStart.localPosition = new Vector3(0, 0, -GetComponent<CapsuleCollider>().radius);
+
+        ResetMoveVelocity = new Vector3(0, rb.velocity.y, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        isRootMotionActive = anim.applyRootMotion;
         
+        isRootMotionActive = anim.applyRootMotion;
+        LockedCustomMovements();
+    }
+
+    private void LateUpdate()
+    {
+        
+    }
+
+    private void LockedCustomMovements()
+    {
         //Cam Logic
         if (lastDirX > 0 && movementValue.x <= 0 || lastDirX < 0 && movementValue.x >= 0 || rb.velocity == Vector3.zero)
         {
             transFollow = startMovingTrans;
-            
-            if(GetComponent<CameraController>().lockedEnemy != null)
+
+            if (GetComponent<CameraController>().lockedEnemy != null)
             {
                 startMovingTrans.LookAt(GetComponent<CameraController>().lockedEnemy.transform);
             }
@@ -110,7 +102,7 @@ public class CharacterMovement : MonoBehaviour
 
         lastDirX = direction.x;
 
-        if (timerRotateCam > timeRotateCam && !isActing)
+        if (timerRotateCam > timeRotateCam && canMove)
         {
             transFollow = rP.transform;
         }
@@ -121,15 +113,19 @@ public class CharacterMovement : MonoBehaviour
         }
         timerRotateCam += Time.deltaTime;
     }
+
     private void FixedUpdate()
     {
         animationMovementValue = ConvertMoveToAnimValues(movementValue);
         animValue = getGreaterAnimValue(animationMovementValue);
         currentSpeed = GetSpeedFromAnimValue(animValue);
-        if (!isActing)
+        if (canMove && !isFalling)
         {
             ApplyMovement();
         }
+
+        CheckGround();
+        ResetMoveVelocity = new Vector3(0, rb.velocity.y, 0);
     }
 
     public void OnAnimatorMove()
@@ -143,32 +139,55 @@ public class CharacterMovement : MonoBehaviour
         movementValue = CheckInput(context.ReadValue<Vector2>());
         direction = movementValue.normalized;
         rP.dir = direction;
-        
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
         runInput = context.performed;
-        anim.SetBool("isRunning", runInput);
+
+        if (context.started && SM.HasEnoughStamina(player.MinStaminaToRestartRunning))
+        {
+            SM.canRun = true;
+        }
+
+        if (SM.canRun)
+        {
+            anim.SetBool("isRunning", runInput);
+        }
+        else
+        {
+            if(anim.GetBool("isRunning"))
+                anim.SetBool("isRunning", false);
+        }
     }
 
     public void OnDodge(InputAction.CallbackContext context)
     {
-        if (context.performed && !isActing && SM.UseStamina(dodgeStaminaCost))
+        if (context.performed && canMove && SM.HasEnoughStamina(player.DashStaminaCost))
         {
+            //GetInput
+            dodgeInput = context.performed;
+
+            //Set Values
+            canRotate = false;
+            canMove = false;
+            anim.applyRootMotion = true;
+            anim.SetTrigger(HashTable.dodged);
+            anim.SetBool("isDodging", true);
+            SM.UseStamina(player.DashStaminaCost);
+            
             //
             timerRotateCam = 0;
             transFollow = startMovingTrans;
             startMovingTrans.position = transform.position;
-            startMovingTrans.LookAt(GetComponent<CameraController>().lockedEnemy.transform);
+            if (GetComponent<CameraController>().lockedEnemy)
+            {
+                startMovingTrans.LookAt(GetComponent<CameraController>().lockedEnemy.transform);
+            }
             //
 
             Vector3 dashDir = new Vector3(direction.x, 0, direction.y);
-            anim.applyRootMotion = true;
-            isActing = true;
-            dodgeInput = context.performed;
-            anim.SetTrigger(HashTable.dodged);
-            anim.SetBool("isDodging", true);
+            
             if (isLockedOn)
             {
                 anim.SetFloat(HashTable.dirX, movementValue.x, 0, Time.fixedDeltaTime);
@@ -180,7 +199,7 @@ public class CharacterMovement : MonoBehaviour
                 anim.SetFloat(HashTable.dirZ, 1, 0, Time.fixedDeltaTime);
             }
             
-            StartCoroutine(IELockMovementTimer(dashLockMovementTime));
+            StartCoroutine(IELockMovementTimer(player.DashLockMovementTime));
 
             //TO DO Multiplicator of speed for GD purpose
         }
@@ -192,26 +211,38 @@ public class CharacterMovement : MonoBehaviour
         if (context.performed)
         {
             anim.SetBool("hasAttacked", true);
-            if (SM.UseStamina(attackStaminaCost))
+            if (SM.HasEnoughStamina(player.AttackStaminaCost))
             {
-                if (!isActing)
+                if (canMove)
                 {
-                    rb.velocity = Vector3.zero;
-                    anim.applyRootMotion = true;
-                    isActing = true;
+                    canMove = false;
+                    isAttacking = true;
                     attackInput = context.performed;
+                    rb.velocity = ResetMoveVelocity;
                     anim.SetTrigger(HashTable.attacked);
-                    StartCoroutine(IELockMovementTimer(attackLockMovementTime));
+                    StartCoroutine(AttackRoutine(player.SteeringTime));
                 }
             }
         }
     }
 
+    IEnumerator AttackRoutine(float time)
+    {
+        yield return new WaitForSeconds(player.SteeringTime);
+        rb.velocity = ResetMoveVelocity;
+        anim.applyRootMotion = true;
+        canRotate = false;
+        StartCoroutine(IELockMovementTimer(player.AttackLockMovementTime));
+    }
+
+
     IEnumerator IELockMovementTimer(float time)
     {
         yield return new WaitForSeconds(time);
         anim.applyRootMotion = false;
-        isActing = false;
+        canMove = true;
+        canRotate = true;
+        isAttacking = false;
         anim.SetBool("isDodging", false);
         anim.SetBool("hasAttacked", false);
     }
@@ -219,7 +250,7 @@ public class CharacterMovement : MonoBehaviour
     //Updates the animator movement layer and the player velocity
     private void ApplyMovement()
     {
-        Vector3 targetVelocity = Vector3.zero;
+        Vector3 targetVelocity = ResetMoveVelocity;
 
         if (isLockedOn && !isRunning)
         {
@@ -235,36 +266,45 @@ public class CharacterMovement : MonoBehaviour
             targetVelocity = rP.transform.forward * currentSpeed;
         }
 
+        targetVelocity.y = rb.velocity.y;
         rb.velocity = targetVelocity;
-
-        if (OnSlope())
-        {
-            rb.velocity = new Vector3(rb.velocity.x,SlopeManagement(),rb.velocity.z);
-        }
-        else
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        }
     }
 
-    private bool OnSlope()
+    private void CheckGround()
     {
         RaycastHit hit;
-        //camera focus
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.8f / 2 * rayLength))
-            if (hit.normal != Vector3.up && hit.distance > 4.1f)
-                return true;
-        return false;
+        if (Physics.Raycast(GroundRayStart.position, Vector3.down, out hit, player.RayLength, GroundMask))
+        {
+            Debug.DrawLine(GroundRayStart.position, hit.point, Color.red, 1);
+            if (hit.distance <= 0.4f)
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                /*if (hit.distance >= 1)
+                {
+                    isFalling = true;
+                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                }
+                else
+                    isFalling = false;*/
+
+                isGrounded = false;
+                Debug.Log("false");
+                rb.velocity = new Vector3(rb.velocity.x, -player.FallSpeed, rb.velocity.z);
+            }
+        } 
     }
 
     private float SlopeManagement()
     {
-        return -slopeForce;
+        return -player.SlopeForce;
     }
 
     private Vector2 CheckInput(Vector2 moveValue)
     {
-        if (Mathf.Abs(moveValue.x) < startWalkingValue && Mathf.Abs(moveValue.y) < startWalkingValue)
+        if (Mathf.Abs(moveValue.x) < player.StartWalkingValue && Mathf.Abs(moveValue.y) < player.StartWalkingValue)
             return Vector2.zero;
         return moveValue;
     }
@@ -276,7 +316,7 @@ public class CharacterMovement : MonoBehaviour
         float ySign = Mathf.Sign(moveValue.y);
         Vector2 tempAnimValue = new Vector2(Mathf.Abs(moveValue.x), Mathf.Abs(moveValue.y));
 
-        if (runInput && tempAnimValue != Vector2.zero)
+        if (runInput && tempAnimValue != Vector2.zero && SM.canRun)
         {
             isRunning = true;
             tempAnimValue.x = 1.5f;
@@ -284,12 +324,12 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             isRunning = false;
-            if (tempAnimValue.x > startWalkingValue)
-                if (tempAnimValue.x > startJogingValue) tempAnimValue.x = 1;
+            if (tempAnimValue.x > player.StartWalkingValue)
+                if (tempAnimValue.x > player.StartJogingValue) tempAnimValue.x = 1;
                 else tempAnimValue.x = 0.5f;
 
-            if (tempAnimValue.y > startWalkingValue)
-                if (tempAnimValue.y > startJogingValue) tempAnimValue.y = 1;
+            if (tempAnimValue.y > player.StartWalkingValue)
+                if (tempAnimValue.y > player.StartJogingValue) tempAnimValue.y = 1;
                 else tempAnimValue.y = 0.5f;
         }
 
@@ -319,20 +359,20 @@ public class CharacterMovement : MonoBehaviour
     private float GetSpeedFromAnimValue(float animValue)
     {
         if (animValue == 1.5f)
-            return runSpeed * transform.localScale.x;
+            return player.RunSpeed * transform.localScale.x;
         if (isLockedOn)
         {
             if (animValue == 1)
-                return strafeJogSpeed * transform.localScale.x;
+                return player.StrafeJogSpeed * transform.localScale.x;
             if (animValue == 0.5f)
-                return strafeWalkSpeed * transform.localScale.x;
+                return player.StrafeWalkSpeed * transform.localScale.x;
         }
         else
         {
             if (animValue == 1)
-                return jogSpeed * transform.localScale.x;
+                return player.JogSpeed * transform.localScale.x;
             if (animValue == 0.5f)
-                return walkSpeed * transform.localScale.x;
+                return player.WalkSpeed * transform.localScale.x;
         }
         
         return 0;

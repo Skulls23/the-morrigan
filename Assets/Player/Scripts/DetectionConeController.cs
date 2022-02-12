@@ -41,7 +41,6 @@ public class DetectionConeController : MonoBehaviour
         {
             if (colliderId == id)
             {
-                Debug.Log("Enemy " + id + " AlreadyInList");
                 return;
             }    
         }

@@ -15,6 +15,8 @@ public class FollowPlayer : IState
     private readonly float refreshTime;
     private float refreshTimer = 0;
 
+    private float followSpeed;
+
     private float MRATryAttackTime;
     private float MRAProcPercentage;
     private float MRATryAttackTimer = 0;
@@ -33,6 +35,7 @@ public class FollowPlayer : IState
         
         MRAProcPercentage = meleeEnemy.MidRangeAttackProcPercentage;
         MRATryAttackTime = meleeEnemy.UpdateTryAttack;
+        followSpeed = meleeEnemy.FollowPlayerSpeed;
     }
 
 
@@ -73,7 +76,7 @@ public class FollowPlayer : IState
 
         //PLAYER FOLLOW
         refreshTimer = 0;
-        navMeshAgent.speed = 4.5f;
+        navMeshAgent.speed = followSpeed;
         meleeEnemy.Target = playerDetector.GetPlayerTranform();
         RecalculatePlayerPos();
 

@@ -43,37 +43,44 @@ public class RotatePlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
+        SetLockOnDirection();
         RotateTowardDirection();
         anim.SetFloat("attackAnimationSpeed", animationSpeed);
     }
 
     //Rotate the players towards his facing direction
-    private void RotateTowardDirection()
+    private void SetLockOnDirection()
     {
-
         if (LockedOn)
         {
-            if (CamController.LockOnCamera2.activeInHierarchy)
+            Vector3 dir = new Vector3();
+            if (CamController.lockedEnemy != null)
             {
-                middlePoint2.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + CamController.lockedEnemy.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + CamController.lockedEnemy.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + CamController.lockedEnemy.transform.position.z) / 2);
+                if (CamController.LockOnCamera2.activeInHierarchy)
+                {
+                    middlePoint2.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + CamController.lockedEnemy.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + CamController.lockedEnemy.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + CamController.lockedEnemy.transform.position.z) / 2);
+                }
+                else
+                {
+                    middlePoint.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + CamController.lockedEnemy.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + CamController.lockedEnemy.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + CamController.lockedEnemy.transform.position.z) / 2);
+                }                
             }
-            else
-            {
-                middlePoint.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + CamController.lockedEnemy.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + CamController.lockedEnemy.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + CamController.lockedEnemy.transform.position.z) / 2);
-            }
-            
-            Vector3 dir = CamController.lockedEnemy.transform.position - parent.transform.position;          
+            dir = CamController.lockedEnemy.transform.position - parent.transform.position;
             dir.Normalize();
             dir.y = 0;
             if (!CM.GetIsRunning())
             {
                 parent.transform.rotation = Quaternion.LookRotation(dir);
-                return;
             }      
         }
+    }
 
-        if (dir != Vector2.zero && !CM.isActing)
+    private void RotateTowardDirection()
+    {
+        if (dir != Vector2.zero && CM.canRotate)
         {
+            if (LockedOn && !CM.GetIsRunning())
+                return;
             targetDir = cam.transform.forward * dir.y;
             targetDir += cam.transform.right * dir.x;
             targetDir.y = 0;
@@ -82,6 +89,6 @@ public class RotatePlayer : MonoBehaviour
             Quaternion tr = Quaternion.LookRotation(targetDir);
             Quaternion targetRotation = Quaternion.Slerp(GetComponent<Animator>().rootRotation, tr, Time.deltaTime * rotationSpeed);
             parent.transform.rotation = targetRotation;
-        } 
+        }
     }
 }

@@ -9,6 +9,8 @@ internal class MoveToSelectedWayPoint : IState
     private static readonly int Speed = Animator.StringToHash("Speed");
 
     private Vector3 lastPosition = Vector3.zero;
+
+    private float roamSpeed;
     
     public float TimeStuck;
 
@@ -17,6 +19,8 @@ internal class MoveToSelectedWayPoint : IState
         meleeEnemy = _meleeEnemy;
         navMeshAgent = _navMeshAgent;
         animator = _animator;
+
+        roamSpeed = meleeEnemy.RoamingSpeed;
     }
     
     public void Tick()
@@ -33,7 +37,7 @@ internal class MoveToSelectedWayPoint : IState
         //TimeStuck = 0f;
         navMeshAgent.enabled = true;
         navMeshAgent.SetDestination(meleeEnemy.Target.transform.position);
-        navMeshAgent.speed = 2;
+        navMeshAgent.speed = roamSpeed;
         animator.SetFloat("vertical", 0.5f);
     }
 
