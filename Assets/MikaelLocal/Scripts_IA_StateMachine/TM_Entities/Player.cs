@@ -57,6 +57,19 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float slopeForce;
 
+    [SerializeField, Range(0, 3)]
+    private float startGroundingDistance;
+    [SerializeField, Range(0, 3)]
+    private float startFallingDistance;
+    [SerializeField, Range(-1, 0)]
+    private float startAddingForceOnSlopeYVelocity;
+    [SerializeField, Range(-3, 0)]
+    private float startFallingYVelocity;
+    [SerializeField, Range(0, 1)]
+    private float startSlopingAngleDifference;
+    [SerializeField, Range(0, 2)]
+    private float startFallingAfterXSecondsOnAir;
+
 
     public float WalkSpeed { get => walkSpeed; set => walkSpeed = value; }
     public float JogSpeed { get => jogSpeed; set => jogSpeed = value; }
@@ -79,4 +92,10 @@ public class Player : MonoBehaviour
     public float StaminaMax { get => staminaMax; set => staminaMax = value; }
     public float MinStaminaToRestartRunning { get => minStaminaToRestartRunning; set => minStaminaToRestartRunning = value; }
     public float FallSpeed { get => fallSpeed; set => fallSpeed = value; }
+    public float StartGroundingDistance { get => startGroundingDistance; set => startGroundingDistance = value; }
+    public float StartFallingDistance { get => startFallingDistance; set => startFallingDistance = value; }
+    public float StartFallingYVelocity { get => startFallingYVelocity; set => startFallingYVelocity = value; }
+    public float StartSlopingAngleDifference { get => startSlopingAngleDifference; set => startSlopingAngleDifference = value; }
+    public float StartAddingForceOnSlopeYVelocity { get => startAddingForceOnSlopeYVelocity; set => startAddingForceOnSlopeYVelocity = value; }
+    public float StartFallingAfterXSecondsOnAir { get => startFallingAfterXSecondsOnAir; set => startFallingAfterXSecondsOnAir = value; }
 }

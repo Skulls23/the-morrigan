@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165195685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 74090727454738204}
@@ -361,7 +361,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090726402902221}
-  m_LocalRotation: {x: 0.000000029802326, y: 0.00000005960465, z: 0.000000044703487, w: 1}
+  m_LocalRotation: {x: -0.000000037252907, y: -0, z: 0.000000029802326, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1000,7 +1000,7 @@ MonoBehaviour:
   dashSpeed: 10
   startWalkingValue: 0.3
   startJogingValue: 0.7
-  fallSpeed: 10
+  fallSpeed: 20
   dashLockMovementTime: 0.5
   attackLockMovementTime: 0.35
   steeringTime: 0.5
@@ -1012,7 +1012,13 @@ MonoBehaviour:
   dodgeStaminaCost: 15
   attackStaminaCost: 15
   rayLength: 50
-  slopeForce: 0.0001
+  slopeForce: 5
+  startGroundingDistance: 0.8
+  startFallingDistance: 1.5
+  startAddingForceOnSlopeYVelocity: -0.1
+  startFallingYVelocity: -0.75
+  startSlopingAngleDifference: 0.1
+  startFallingAfterXSecondsOnAir: 0.1
 --- !u!1 &74090727640420124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1047,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727640420124}
-  m_LocalRotation: {x: 0.21977048, y: 0.7750618, z: -0.35482532, w: 0.4744252}
+  m_LocalRotation: {x: 0.21977042, y: 0.7750618, z: -0.35482526, w: 0.47442523}
   m_LocalPosition: {x: -3.3151572, y: 8.552416, z: 2.0277073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1674,7 +1680,7 @@ MeshCollider:
   m_GameObject: {fileID: 919132147826077846}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -1802,7 +1808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spearHitPoint: {fileID: 744321261}
-  sphereRadius: 0.75
+  sphereRadius: 1
   entityType: 0
   HitBoxLayer:
     serializedVersion: 2
