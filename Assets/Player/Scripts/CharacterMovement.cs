@@ -286,9 +286,13 @@ public class CharacterMovement : MonoBehaviour
                 {
                     rb.velocity = new Vector3(rb.velocity.x, -player.SlopeForce, rb.velocity.z);
                 }
+                if(isGrounded == false)
+                {
+                    canRotate = true;
+                    canMove = true;
+                }
                 isGrounded = true;
-                canRotate = true;
-                canMove = true;
+                isFalling = false;
             }
             else
             {
@@ -313,10 +317,8 @@ public class CharacterMovement : MonoBehaviour
                 else
                 {
                     FallTimeTimer = 0;
-                    canRotate = true;
-                    canMove = true;
-                    isGrounded = true;
-                    isFalling = false;
+                    /*canRotate = true;
+                    canMove = true;*/
                 }
 
                 rb.velocity = new Vector3(rb.velocity.x, -player.FallSpeed, rb.velocity.z);
