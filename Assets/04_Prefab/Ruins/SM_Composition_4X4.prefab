@@ -11,12 +11,14 @@ GameObject:
   - component: {fileID: 1542570810855149120}
   - component: {fileID: 2506134924330222053}
   - component: {fileID: 370248611012261167}
+  - component: {fileID: 7275156371543826870}
+  - component: {fileID: 6221038513754736658}
   m_Layer: 0
   m_Name: SM_Composition_4X4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1542570810855149120
 Transform:
@@ -84,6 +86,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7275156371543826870
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171754638638322938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9155986, y: 4.016425, z: 10.679022}
+  m_Center: {x: 1.5903066, y: 0.024834793, z: 5.2130103}
+--- !u!65 &6221038513754736658
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171754638638322938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.093237, y: 0.7970104, z: 4.927536}
+  m_Center: {x: -0.3891732, y: 1.6345422, z: 2.3372688}
 --- !u!1 &3961635417941305552
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +128,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &3077095495766832866
 Transform:
@@ -181,7 +209,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8338529630774945575
 Transform:
@@ -262,7 +290,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1701753818787161887
 Transform:
