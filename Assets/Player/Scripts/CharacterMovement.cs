@@ -284,7 +284,8 @@ public class CharacterMovement : MonoBehaviour
                 Debug.Log(hit.normal);
                 if(((hit.normal.x >= player.StartSlopingAngleDifference || hit.normal.z >= player.StartSlopingAngleDifference) || (hit.normal.x <= -player.StartSlopingAngleDifference || hit.normal.z <= -player.StartSlopingAngleDifference)) && rb.velocity.y <= player.StartAddingForceOnSlopeYVelocity)
                 {
-                    rb.velocity = new Vector3(rb.velocity.x, -player.SlopeForce, rb.velocity.z);
+                    //rb.velocity = new Vector3(rb.velocity.x, -player.SlopeForce, rb.velocity.z);
+                    rb.AddForce(-transform.up * player.SlopeForce * Time.deltaTime, ForceMode.VelocityChange);
                 }
                 if(isGrounded == false)
                 {
@@ -293,6 +294,7 @@ public class CharacterMovement : MonoBehaviour
                 }
                 isGrounded = true;
                 isFalling = false;
+                return;
             }
             else
             {
@@ -311,6 +313,7 @@ public class CharacterMovement : MonoBehaviour
                             canMove = false;
                             isFalling = true;
                             rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                            return;
                         }
                     }
                 }
@@ -321,7 +324,9 @@ public class CharacterMovement : MonoBehaviour
                     canMove = true;*/
                 }
 
-                rb.velocity = new Vector3(rb.velocity.x, -player.FallSpeed, rb.velocity.z);
+                rb.AddForce(-transform.up * player.SlopeForce * Time.deltaTime, ForceMode.VelocityChange);
+                //rb.velocity = new Vector3(rb.velocity.x, -player.FallSpeed, rb.velocity.z);
+                //rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
             }
         } 
     }
