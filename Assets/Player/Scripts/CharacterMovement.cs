@@ -46,6 +46,9 @@ public class CharacterMovement : MonoBehaviour
 
     public bool isRootMotionActive;
 
+
+    private float FallTimeTimer;
+
     [Header("CustomLockedMovements")]
     [SerializeField]
     private float transitionSpeed;
@@ -276,30 +279,51 @@ public class CharacterMovement : MonoBehaviour
         if (Physics.Raycast(GroundRayStart.position, Vector3.down, out hit, player.RayLength, GroundMask))
         {
             Debug.DrawLine(GroundRayStart.position, hit.point, Color.red, 1);
-            if (hit.distance <= 0.4f)
+            if (hit.distance <= player.StartGroundingDistance)
             {
+                Debug.Log(hit.normal);
+                if(((hit.normal.x >= player.StartSlopingAngleDifference || hit.normal.z >= player.StartSlopingAngleDifference) || (hit.normal.x <= -player.StartSlopingAngleDifference || hit.normal.z <= -player.StartSlopingAngleDifference)) && rb.velocity.y <= player.StartAddingForceOnSlopeYVelocity)
+                {
+                    rb.velocity = new Vector3(rb.velocity.x, -player.SlopeForce, rb.velocity.z);
+                }
+                if(isGrounded == false)
+                {
+                    canRotate = true;
+                    canMove = true;
+                }
                 isGrounded = true;
+                isFalling = false;
             }
             else
             {
-                /*if (hit.distance >= 1)
-                {
-                    isFalling = true;
+                if(isFalling)
                     rb.velocity = new Vector3(0, rb.velocity.y, 0);
+
+                if (hit.distance >= player.StartFallingDistance)
+                {
+                    if (rb.velocity.y <= -player.StartFallingYVelocity)
+                    {
+                        FallTimeTimer += Time.deltaTime;
+                        if (FallTimeTimer > player.StartFallingAfterXSecondsOnAir && !isFalling)
+                        {
+                            isGrounded = false;
+                            canRotate = false;
+                            canMove = false;
+                            isFalling = true;
+                            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                        }
+                    }
                 }
                 else
-                    isFalling = false;*/
+                {
+                    FallTimeTimer = 0;
+                    /*canRotate = true;
+                    canMove = true;*/
+                }
 
-                isGrounded = false;
-                Debug.Log("false");
                 rb.velocity = new Vector3(rb.velocity.x, -player.FallSpeed, rb.velocity.z);
             }
         } 
-    }
-
-    private float SlopeManagement()
-    {
-        return -player.SlopeForce;
     }
 
     private Vector2 CheckInput(Vector2 moveValue)
@@ -381,5 +405,10 @@ public class CharacterMovement : MonoBehaviour
     public bool GetIsRunning()
     {
         return isRunning;
+    }
+
+    public bool GetIsFalling()
+    {
+        return isFalling;
     }
 }
