@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 2993896958149724595}
   - component: {fileID: 2171771853594166806}
   - component: {fileID: 4163395024664195804}
+  - component: {fileID: 4025219728121242078}
   m_Layer: 0
   m_Name: SM_Wood_Structure_4X2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2993896958149724595
 Transform:
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4025219728121242078
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506153993216152329}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.706516, y: 2.039123, z: 0.20040314}
+  m_Center: {x: -0.014157772, y: 0.02635932, z: 0.14831041}

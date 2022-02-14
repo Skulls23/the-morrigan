@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 399868084112637317}
   - component: {fileID: 3612808782066987552}
   - component: {fileID: 1569417865521743594}
+  - component: {fileID: 2814522117062042375}
   m_Layer: 0
   m_Name: SM_Wood_Plate_4X2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &399868084112637317
 Transform:
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2814522117062042375
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064904825646147391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.0408993, y: 1.9836979, z: 0.23896936}
+  m_Center: {x: -0.008934021, y: 0.0006881952, z: 0.11793254}

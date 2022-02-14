@@ -11,12 +11,15 @@ GameObject:
   - component: {fileID: 7289283232082311924}
   - component: {fileID: 5946836113278973265}
   - component: {fileID: 8458763568297656731}
+  - component: {fileID: 6159450526808761509}
+  - component: {fileID: 7974754501495245971}
+  - component: {fileID: 2908558446891672030}
   m_Layer: 0
   m_Name: SM_Block_Pillar_3X3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7289283232082311924
 Transform:
@@ -81,3 +84,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6159450526808761509
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954321033946357838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0168223, y: 3.0221612, z: 0.2258777}
+  m_Center: {x: 1.4931207, y: 1.4942153, z: 4.262141}
+--- !u!65 &7974754501495245971
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954321033946357838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6619415, y: 0.4232748, z: 3.8862069}
+  m_Center: {x: 1.4904099, y: 1.4785404, z: 1.8731204}
+--- !u!65 &2908558446891672030
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954321033946357838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42050934, y: 1.7275308, z: 3.863687}
+  m_Center: {x: 1.4920235, y: 1.5047761, z: 1.8618603}

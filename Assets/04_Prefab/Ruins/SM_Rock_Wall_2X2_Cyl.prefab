@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 2573797401069110772}
   - component: {fileID: 1447956263236487761}
   - component: {fileID: 3746110629934775963}
+  - component: {fileID: 5473570298555582908}
   m_Layer: 0
   m_Name: SM_Rock_Wall_2X2_Cyl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2573797401069110772
 Transform:
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5473570298555582908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2953279114464468814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7447281, y: 1.7611725, z: 1.7191247}
+  m_Center: {x: -0.007434845, y: 0.0073697567, z: 0.7106296}

@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 4877513157959807584}
   - component: {fileID: 8367604315953823173}
   - component: {fileID: 6051505855132797199}
+  - component: {fileID: 3195011109655932597}
   m_Layer: 0
   m_Name: SM_Rock_Door_Arc_1X6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4877513157959807584
 Transform:
@@ -82,6 +83,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3195011109655932597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259000345409661146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.010977, y: 0.35576996, z: 3.2150948}
+  m_Center: {x: 2.4280424, y: 0.460327, z: 1.4727654}
 --- !u!1 &5583036859486592855
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +112,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &416667111009062124
 Transform:

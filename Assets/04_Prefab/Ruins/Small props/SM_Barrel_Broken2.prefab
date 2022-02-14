@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 5539429354161367884}
   - component: {fileID: 8885560503597262057}
   - component: {fileID: 6677480877422219299}
+  - component: {fileID: 3585863604984767199}
   m_Layer: 0
   m_Name: SM_Barrel_Broken2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5539429354161367884
 Transform:
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3585863604984767199
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5164451241200759286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5160255, y: 0.5725331, z: 0.6180589}
+  m_Center: {x: -0.004523009, y: -0.0037905572, z: 0.3051557}

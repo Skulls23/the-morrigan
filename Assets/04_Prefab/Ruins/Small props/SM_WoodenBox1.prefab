@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 7714952880976871129}
   - component: {fileID: 6683024433089589628}
   - component: {fileID: 8888460905187067318}
+  - component: {fileID: 3924429066279894036}
   m_Layer: 0
   m_Name: SM_WoodenBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7714952880976871129
 Transform:
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3924429066279894036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943095325451150435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0096359, y: 1.0458866, z: 1.1506572}
+  m_Center: {x: -0.0014894009, y: -0.016892374, z: 0.5047327}

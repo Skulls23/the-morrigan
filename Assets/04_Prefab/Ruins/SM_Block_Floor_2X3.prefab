@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 7096412895913873793}
   - component: {fileID: 6184672072648465956}
   - component: {fileID: 8228262554043771630}
+  - component: {fileID: 5060101361590463079}
   m_Layer: 0
   m_Name: SM_Block_Floor_2X3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7096412895913873793
 Transform:
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5060101361590463079
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579651917685639995}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.041394, y: 2.9789004, z: 0.25588864}
+  m_Center: {x: 1.0055505, y: -1.5083662, z: -0.10005852}

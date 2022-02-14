@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 5749860414742690849}
   - component: {fileID: 8675129151216055172}
   - component: {fileID: 6881701758621353806}
+  - component: {fileID: 9119967152416985936}
   m_Layer: 0
   m_Name: SM_Rock_Wall_1X1_Tall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5749860414742690849
 Transform:
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9119967152416985936
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936027903312864923}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.028511, y: 1.0134083, z: 3.8379974}
+  m_Center: {x: 0.53824997, y: 0.56453997, z: 1.8136554}

@@ -11,12 +11,14 @@ GameObject:
   - component: {fileID: 4746586395610095565}
   - component: {fileID: 8534489213666955368}
   - component: {fileID: 5878446494672315554}
+  - component: {fileID: 1876764131907882108}
+  - component: {fileID: 8080964304917139268}
   m_Layer: 0
   m_Name: SM_Wood_Fence_Corner_1X1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4746586395610095565
 Transform:
@@ -81,3 +83,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1876764131907882108
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374082438638781815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.032424927, y: 2.0012748, z: 0.46803287}
+  m_Center: {x: 0.46665955, y: 0.9227129, z: -0.7152939}
+--- !u!65 &8080964304917139268
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374082438638781815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47640228, y: 2.0012748, z: 0.035022765}
+  m_Center: {x: 0.7204628, y: 0.9227129, z: -0.49903297}

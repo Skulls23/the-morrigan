@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2585305312153292536
 Transform:
@@ -92,12 +92,13 @@ GameObject:
   - component: {fileID: 6038764697395005853}
   - component: {fileID: 7233304275012093496}
   - component: {fileID: 4865344055103058674}
+  - component: {fileID: 4179534442969086168}
   m_Layer: 0
   m_Name: SM_Wood_Cage_2X2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6038764697395005853
 Transform:
@@ -163,3 +164,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4179534442969086168
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378734055199232807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.16003776, y: 0.12296291, z: 3.7798538}
+  m_Center: {x: -0.80581844, y: 0.005284736, z: 1.8672678}

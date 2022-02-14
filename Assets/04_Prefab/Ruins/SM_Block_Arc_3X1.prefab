@@ -11,12 +11,14 @@ GameObject:
   - component: {fileID: 8688621817934033380}
   - component: {fileID: 5709425332573290049}
   - component: {fileID: 7556762406202198667}
+  - component: {fileID: 2629239746510504732}
+  - component: {fileID: 3364182453130981948}
   m_Layer: 0
   m_Name: SM_Block_Arc_3X1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8688621817934033380
 Transform:
@@ -81,3 +83,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2629239746510504732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349672810676415326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.9750507, y: 0.4589114, z: 0.3304463}
+  m_Center: {x: -1.4298304, y: -0.15025899, z: 0.2857327}
+--- !u!65 &3364182453130981948
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349672810676415326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.9750507, y: 0.465931, z: 0.34344107}
+  m_Center: {x: -1.4298246, y: -1.7631803, z: 0.25935197}
