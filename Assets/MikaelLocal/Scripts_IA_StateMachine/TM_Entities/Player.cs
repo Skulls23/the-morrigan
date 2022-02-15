@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     private float attackLockMovementTime;
     [SerializeField]
     private float steeringTime;
+    [SerializeField, Range(7, 30)]
+    private float spearRange;
 
 
     [Header("STAMINA MANAGEMENT")]
@@ -98,4 +100,5 @@ public class Player : MonoBehaviour
     public float StartSlopingAngleDifference { get => startSlopingAngleDifference; set => startSlopingAngleDifference = value; }
     public float StartAddingForceOnSlopeYVelocity { get => startAddingForceOnSlopeYVelocity; set => startAddingForceOnSlopeYVelocity = value; }
     public float StartFallingAfterXSecondsOnAir { get => startFallingAfterXSecondsOnAir; set => startFallingAfterXSecondsOnAir = value; }
+    public float SpearRange { get => spearRange; set => spearRange = value; }
 }

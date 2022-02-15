@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
 {
-    public GameObject spearHitPoint;
-    public float sphereRadius;
-    public int entityType;
-    private Color sphereColor;
-
-    private bool isHitting;
-    private Coroutine hitCoroutine;
-
-    public LayerMask HitBoxLayer;
-
+    //COMPONENTS
     private StaminaManager SM;
     private Player player;
 
-    private string currentTag;
+    //COMBAT SYSTEM
+    public GameObject spearHitPoint;
     public Transform startRayPosition;
     public Transform endRayPosition;
+    public LayerMask HitBoxLayer;
 
-    public float spearRange;
+    private bool isHitting;
+    private Coroutine hitCoroutine;
+    private string currentTag;
 
+    //DEBUGGING
+    public float sphereRadius;
+    private Color sphereColor;
+
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -72,8 +73,8 @@ public class CombatSystem : MonoBehaviour
     IEnumerator Hit(int attackID)
     {
         RaycastHit hit;
-        Debug.DrawRay(startRayPosition.position, (endRayPosition.position - startRayPosition.position).normalized * spearRange, Color.yellow, 2);
-        if (Physics.Raycast(startRayPosition.position, (endRayPosition.position-startRayPosition.position), out hit, spearRange, HitBoxLayer))
+        Debug.DrawRay(startRayPosition.position, (endRayPosition.position - startRayPosition.position).normalized * player.SpearRange, Color.yellow, 2);
+        if (Physics.Raycast(startRayPosition.position, (endRayPosition.position-startRayPosition.position), out hit, player.SpearRange, HitBoxLayer))
         {
             Debug.Log(hit.collider.gameObject.name);
             currentTag = hit.collider.tag;
