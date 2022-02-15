@@ -281,7 +281,6 @@ public class CharacterMovement : MonoBehaviour
             Debug.DrawLine(GroundRayStart.position, hit.point, Color.red, 1);
             if (hit.distance <= player.StartGroundingDistance)
             {
-                Debug.Log(hit.normal);
                 if(((hit.normal.x >= player.StartSlopingAngleDifference || hit.normal.z >= player.StartSlopingAngleDifference) || (hit.normal.x <= -player.StartSlopingAngleDifference || hit.normal.z <= -player.StartSlopingAngleDifference)) && rb.velocity.y <= player.StartAddingForceOnSlopeYVelocity)
                 {
                     //rb.velocity = new Vector3(rb.velocity.x, -player.SlopeForce, rb.velocity.z);

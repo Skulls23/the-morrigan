@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using AK.Wwise;
 
 public class Enemy : Actor
 {
@@ -60,6 +61,7 @@ public class Enemy : Actor
     public void Hit(string HitBoxTypeString, int attackId)
     {
         Debug.Log("Hit");
+        Debug.Log(HitBoxTypeString + " " + HitBoxType.Flesh.ToString());
         if (lastAttackId == attackId)
             return;
 
@@ -68,10 +70,12 @@ public class Enemy : Actor
         if(HitBoxTypeString == HitBoxType.Flesh.ToString())
         {
             tempDamage = hitFleshDamages;
+            AkSoundEngine.PostEvent("WEA_Hit_Flesh", gameObject);
         }
         else if (HitBoxTypeString == HitBoxType.WeakPoint.ToString())
         {
             tempDamage = hitWeakpointDamages;
+            AkSoundEngine.PostEvent("WEA_Hit_WeakPoint", gameObject);
         }
 
         if (currentLife > tempDamage)

@@ -125,7 +125,7 @@ public class DetectionConeController : MonoBehaviour
                 distance = Vector3.Distance(startPos, enemiesList[i].transform.position);
                 angle = tempAngle;
                 nearestDirectionId = i;
-                Debug.Log(enemiesList[i].name + " has an angle of " + angle + ", no other enemies, he gets locked");
+                //Debug.Log(enemiesList[i].name + " has an angle of " + angle + ", no other enemies, he gets locked");
             }
             else
             {
