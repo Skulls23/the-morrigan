@@ -139,6 +139,11 @@ public class MeleeEnemy : MonoBehaviour
     {
         // transform.position += new Vector3(anim.deltaPosition.x * Multiplicator, 0, anim.deltaPosition.z * Multiplicator);
         transform.position += anim.deltaPosition;
+        if (isAddingMovement)
+        {
+            transform.position += transform.forward * Multiplicator * Time.deltaTime;
+        }
+        //new Vector3(Time.deltaTime * Multiplicator, 0, Time.deltaTime * Multiplicator);
 
         //STEERING ATTACK
         if (isSteering)

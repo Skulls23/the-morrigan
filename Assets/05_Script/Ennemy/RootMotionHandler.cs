@@ -28,12 +28,12 @@ public class RootMotionHandler : MonoBehaviour
 
     public void startAddingMovement()
     {
-        meleeEnemy.isSteering = true;
+        meleeEnemy.isAddingMovement = true;
     }
 
     public void stopAddingMovement()
     {
-        meleeEnemy.isSteering = false;
+        meleeEnemy.isAddingMovement = false;
     }
 
     // Update is called once per frame
