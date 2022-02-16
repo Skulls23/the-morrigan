@@ -21,6 +21,14 @@ public class BlessingManager : MonoBehaviour
     private Blessing _equippedSlot01;
     private Blessing _equippedSlot02;
 
+    public bool isActive = true;
+
+    public bool _blessingSelecting = false;
+    public bool _blessingReplacement = false;
+
+    public GameObject[] activeCollection;
+    public int indexOfActiveCollection = 0;
+
     public void Start()
     {
         StartChunk001();
@@ -64,5 +72,26 @@ public class BlessingManager : MonoBehaviour
         _blessingWindow002._blessingHandlers[1].transform.GetChild(2).GetComponent<Image>().sprite = b.blessing.Sprite;
         _blessingWindow002._blessingHandlers[1].transform.GetChild(3).GetComponent<Text>().text = b.blessing.Name;
         _blessingWindow002._blessingHandlers[1].transform.GetChild(4).GetComponent<Text>().text = b.blessing.Effect;
+
+        activeCollection = _blessingWindow002._blessingHandlers;
+        _blessingSelecting = true;
+        ActivateBlessingCard(activeCollection, indexOfActiveCollection);
+    }
+
+    public void ActivateBlessingCard(GameObject[] bh, int activeIndex)
+    {
+        for(int i = 0; i < bh.Length; ++i)
+        {
+            if(i == activeIndex)
+            {
+                bh[i].transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+                bh[i].transform.GetChild(5).GetComponent<Image>().enabled = true;
+            }
+            else
+            {
+                bh[i].transform.localScale = new Vector3(1f, 1f, 1f);
+                bh[i].transform.GetChild(5).GetComponent<Image>().enabled = false;
+            }
+        }
     }
 }
