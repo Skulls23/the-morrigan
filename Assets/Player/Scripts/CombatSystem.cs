@@ -14,6 +14,8 @@ public class CombatSystem : MonoBehaviour
     public Transform endRayPosition;
     public LayerMask HitBoxLayer;
 
+    private float currentDamageOnFlesh;
+    private float currentDamageOnWeakpoint;
     private bool isHitting;
     private Coroutine hitCoroutine;
     private string currentTag;
@@ -29,6 +31,8 @@ public class CombatSystem : MonoBehaviour
     {
         SM = GetComponentInParent<StaminaManager>();
         player = GetComponentInParent<Player>();
+        currentDamageOnFlesh = player.DamageOnFleshBase;
+        currentDamageOnWeakpoint = player.DamageOnWeakpointBase;
     }
 
 
@@ -78,7 +82,20 @@ public class CombatSystem : MonoBehaviour
         {
             Debug.Log(hit.collider.gameObject.name);
             currentTag = hit.collider.tag;
-            hit.collider.GetComponentInParent<Enemy>().Hit(currentTag, attackID);
+            float tempDamages = 0;
+            if (currentTag == HitBoxType.Flesh.ToString())
+            {
+                tempDamages = currentDamageOnFlesh;
+            }
+            else if (currentTag == HitBoxType.WeakPoint.ToString())
+            {
+                tempDamages = currentDamageOnFlesh;
+            }
+            hit.collider.GetComponentInParent<Enemy>().Hit(currentTag, attackID,tempDamages);
+        }
+        else
+        {
+            AkSoundEngine.PostEvent("WEA_Hit_Swoosh", gameObject);
         }
         yield return null;
     }
