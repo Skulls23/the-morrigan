@@ -1184,6 +1184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStamina: 100
   staminaBar: {fileID: 6410360591704125968}
+  staminaIndicator: {fileID: 0}
   canRun: 0
 --- !u!114 &1111541469
 MonoBehaviour:
@@ -1221,6 +1222,7 @@ MonoBehaviour:
   staminaMax: 100
   runStaminaPerSecond: 0
   timeBeforeStartingRegenAgain: 1
+  timeBeforeUpdatingStaminaIndicator: 0
   staminaPerSecond: 20
   minStaminaToRestartRunning: 20
   dodgeStaminaCost: 15
@@ -3799,7 +3801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.005900178
+      value: -0.0059000654
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3807,19 +3809,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.014357707
+      value: -0.0143585205
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99647605
+      value: 0.9964761
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.052774042
+      value: -0.05277405
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.063136935
+      value: 0.06313694
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalRotation.z
