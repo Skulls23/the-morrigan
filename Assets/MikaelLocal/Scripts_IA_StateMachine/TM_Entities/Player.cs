@@ -33,6 +33,27 @@ public class Player : MonoBehaviour
     private float attackLockMovementTime;
     [SerializeField]
     private float steeringTime;
+    [SerializeField, Range(7, 30)]
+    private float spearRange;
+
+    [Header("Attack")]
+    [SerializeField]
+    private float damageOnFleshBase;
+    [SerializeField]
+    private float damageOnWeakpointBase;
+    [SerializeField]
+    private float damageOnFleshBravo;
+    [SerializeField]
+    private float damageOnWeakpointBravo;
+    [SerializeField]
+    private float damageOnFleshEcho;
+    [SerializeField]
+    private float damageOnWeakpointEcho;
+    [SerializeField]
+    private float damageOnFleshBravoAndEcho;
+    [SerializeField]
+    private float damageOnWeakpointBravoAndEcho;
+
 
 
     [Header("STAMINA MANAGEMENT")]
@@ -102,4 +123,13 @@ public class Player : MonoBehaviour
     public float StartSlopingAngleDifference { get => startSlopingAngleDifference; set => startSlopingAngleDifference = value; }
     public float StartAddingForceOnSlopeYVelocity { get => startAddingForceOnSlopeYVelocity; set => startAddingForceOnSlopeYVelocity = value; }
     public float StartFallingAfterXSecondsOnAir { get => startFallingAfterXSecondsOnAir; set => startFallingAfterXSecondsOnAir = value; }
+    public float SpearRange { get => spearRange; set => spearRange = value; }
+    public float DamageOnFleshBase { get => damageOnFleshBase; set => damageOnFleshBase = value; }
+    public float DamageOnWeakpointBase { get => damageOnWeakpointBase; set => damageOnWeakpointBase = value; }
+    public float DamageOnFleshBravo { get => damageOnFleshBravo; set => damageOnFleshBravo = value; }
+    public float DamageOnWeakpointBravo { get => damageOnWeakpointBravo; set => damageOnWeakpointBravo = value; }
+    public float DamageOnFleshEcho { get => damageOnFleshEcho; set => damageOnFleshEcho = value; }
+    public float DamageOnWeakpointEcho { get => damageOnWeakpointEcho; set => damageOnWeakpointEcho = value; }
+    public float DamageOnFleshBravoAndEcho { get => damageOnFleshBravoAndEcho; set => damageOnFleshBravoAndEcho = value; }
+    public float DamageOnWeakpointBravoAndEcho { get => damageOnWeakpointBravoAndEcho; set => damageOnWeakpointBravoAndEcho = value; }
 }

@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
 {
-    public GameObject spearHitPoint;
-    public float sphereRadius;
-    public int entityType;
-    private Color sphereColor;
-
-    private bool isHitting;
-    private Coroutine hitCoroutine;
-
-    public LayerMask HitBoxLayer;
-
+    //COMPONENTS
     private StaminaManager SM;
     private Player player;
 
+    //COMBAT SYSTEM
+    public GameObject spearHitPoint;
+    public Transform startRayPosition;
+    public Transform endRayPosition;
+    public LayerMask HitBoxLayer;
+
+    private float currentDamageOnFlesh;
+    private float currentDamageOnWeakpoint;
+    private bool isHitting;
+    private Coroutine hitCoroutine;
+    private string currentTag;
+
+    //DEBUGGING
+    public float sphereRadius;
+    private Color sphereColor;
+
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         SM = GetComponentInParent<StaminaManager>();
         player = GetComponentInParent<Player>();
+        currentDamageOnFlesh = player.DamageOnFleshBase;
+        currentDamageOnWeakpoint = player.DamageOnWeakpointBase;
     }
 
 
@@ -34,38 +45,7 @@ public class CombatSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-            /*//HitBoxLayer, QueryTriggerInteraction.Collide
-            Collider[] colliders = Physics.OverlapSphere(spearHitPoint.transform.position, sphereRadius);
-            Debug.Log("1 loop with : " + colliders.Length + " colliders in it");
-            if (colliders.Length == 0)
-            {
-                entityType = 0;
-                sphereColor = Color.blue;
-                //Debug.Log(entityType);
-            }
-            else
-            {
-                foreach (Collider col in colliders)
-                {
-                    Debug.Log(col.gameObject.name);
-                    if (col.gameObject.tag == "Flesh")
-                    {
-                        //col.GetComponentInParent<Enemy>().Hit("Flesh", attackID);
-                        entityType = 1;
-                        sphereColor = Color.magenta;
-                        //Debug.Log(entityType);
-                        continue;
-                    }
-                    else if (col.gameObject.tag == "WeakPoint")
-                    {
-                        //col.GetComponentInParent<Enemy>().Hit("WeakPoint", attackID);
-                        entityType = 2;
-                        sphereColor = Color.red;
-                        //Debug.Log(entityType);
-                        continue;
-                    }
-                }
-            }*/
+        
     }
 
     private void UseStamina(ActionsCostingStamina action)
@@ -96,42 +76,28 @@ public class CombatSystem : MonoBehaviour
 
     IEnumerator Hit(int attackID)
     {
-        Debug.Log("the attack id is : " + attackID);
-        while (true)
+        RaycastHit hit;
+        Debug.DrawRay(startRayPosition.position, (endRayPosition.position - startRayPosition.position).normalized * player.SpearRange, Color.yellow, 2);
+        if (Physics.Raycast(startRayPosition.position, (endRayPosition.position-startRayPosition.position), out hit, player.SpearRange, HitBoxLayer))
         {
-            yield return new WaitForFixedUpdate();
-            Collider[] colliders = Physics.OverlapSphere(spearHitPoint.transform.position, sphereRadius, HitBoxLayer, QueryTriggerInteraction.Collide);
-            Debug.Log("1 loop with : " + colliders.Length + " colliders in it");
-            if (colliders.Length == 0)
+            Debug.Log(hit.collider.gameObject.name);
+            currentTag = hit.collider.tag;
+            float tempDamages = 0;
+            if (currentTag == HitBoxType.Flesh.ToString())
             {
-                entityType = 0;
-                sphereColor = Color.blue;
-                //Debug.Log(entityType);
+                tempDamages = currentDamageOnFlesh;
             }
-            else
+            else if (currentTag == HitBoxType.WeakPoint.ToString())
             {
-                foreach (Collider col in colliders)
-                {
-                    Debug.Log(col.gameObject.name);
-                    if (col.gameObject.tag == "Flesh")
-                    {
-                        col.GetComponentInParent<Enemy>().Hit("Flesh", attackID);
-                        entityType = 1;
-                        sphereColor = Color.magenta;
-                        Debug.Log(entityType);
-                        //continue;
-                    }
-                    else if (col.gameObject.tag == "WeakPoint")
-                    {
-                        col.GetComponentInParent<Enemy>().Hit("WeakPoint", attackID);
-                        entityType = 2;
-                        sphereColor = Color.red;
-                        Debug.Log(entityType);
-                        //continue;
-                    }
-                }
+                tempDamages = currentDamageOnFlesh;
             }
+            hit.collider.GetComponentInParent<Enemy>().Hit(currentTag, attackID,tempDamages);
         }
+        else
+        {
+            AkSoundEngine.PostEvent("WEA_Hit_Swoosh", gameObject);
+        }
+        yield return null;
     }
 
     private void ResetColor()

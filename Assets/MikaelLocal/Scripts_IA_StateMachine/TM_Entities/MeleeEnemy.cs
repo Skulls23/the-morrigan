@@ -26,6 +26,8 @@ public class MeleeEnemy : MonoBehaviour
     //Value in seconds
     public float UpdateTryAttack;
 
+    public float Multiplicator;
+
     [Range(0, 1)]
     public float MidRangeAttackProcPercentage;
     [Range(0, 1)]
@@ -118,7 +120,8 @@ public class MeleeEnemy : MonoBehaviour
 
     public void OnAnimatorMove()
     {
-         transform.position += anim.deltaPosition;
+        // transform.position += new Vector3(anim.deltaPosition.x * Multiplicator, 0, anim.deltaPosition.z * Multiplicator);
+        transform.position += anim.deltaPosition;
 
         //STEERING ATTACK
         if (isSteering)

@@ -63,15 +63,15 @@ public class RotatePlayer : MonoBehaviour
                 else
                 {
                     middlePoint.transform.position = new Vector3((CamController.LockStartPoint.transform.position.x + CamController.lockedEnemy.transform.position.x) / 2, (CamController.LockStartPoint.transform.position.y + CamController.lockedEnemy.transform.position.y) / 2, (CamController.LockStartPoint.transform.position.z + CamController.lockedEnemy.transform.position.z) / 2);
-                }                
+                }
+                dir = CamController.lockedEnemy.transform.position - parent.transform.position;
+                dir.Normalize();
+                dir.y = 0;
+                if (!CM.GetIsRunning())
+                {
+                    parent.transform.rotation = Quaternion.LookRotation(dir);
+                }
             }
-            dir = CamController.lockedEnemy.transform.position - parent.transform.position;
-            dir.Normalize();
-            dir.y = 0;
-            if (!CM.GetIsRunning())
-            {
-                parent.transform.rotation = Quaternion.LookRotation(dir);
-            }      
         }
     }
 
