@@ -64,6 +64,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float timeBeforeStartingRegenAgain;
     [SerializeField]
+    private float timeBeforeUpdatingStaminaIndicator;
+    [SerializeField]
     private float staminaPerSecond;
     [SerializeField]
     private float minStaminaToRestartRunning;
@@ -109,6 +111,8 @@ public class Player : MonoBehaviour
     public float AttackStaminaCost { get => attackStaminaCost; set => attackStaminaCost = value; }
     public float RunStaminaPerSecond { get => runStaminaPerSecond; set => runStaminaPerSecond = value; }
     public float TimeBeforeStartingRegenAgain { get => timeBeforeStartingRegenAgain; set => timeBeforeStartingRegenAgain = value; }
+    public float TimeBeforeUpdatingStaminaIndicator { get => timeBeforeUpdatingStaminaIndicator; set => timeBeforeUpdatingStaminaIndicator = value; }
+
     public float StaminaPerSecond { get => staminaPerSecond; set => staminaPerSecond = value; }
     public float StaminaMax { get => staminaMax; set => staminaMax = value; }
     public float MinStaminaToRestartRunning { get => minStaminaToRestartRunning; set => minStaminaToRestartRunning = value; }
