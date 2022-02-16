@@ -10,4 +10,6 @@ public class Blessing : ScriptableObject
     public string Description;
 
     public Sprite Sprite;
+
+    public int weight;
 }

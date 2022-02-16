@@ -9,7 +9,13 @@ public class StaminaManager : MonoBehaviour
     [SerializeField]
     private float currentStamina;
 
+    private float currentStaminaIndicator;
+
     public Image staminaBar;
+    public Image staminaIndicator;
+
+    Coroutine updateStaminaIndicator;
+    private bool followGreenBar = false;
 
     Coroutine staminaRegen;
     bool sRRunning;
@@ -22,6 +28,7 @@ public class StaminaManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentStaminaIndicator = currentStamina;
         player = GetComponent<Player>();
         CM = GetComponent<CharacterMovement>();
     }
@@ -51,7 +58,14 @@ public class StaminaManager : MonoBehaviour
                 StartRegen();
             }
         }
+
+        if (followGreenBar)
+        {
+            currentStaminaIndicator = currentStamina;
+        }
+
         staminaBar.fillAmount = currentStamina / 100;
+        staminaIndicator.fillAmount = currentStaminaIndicator / 100;
     }
 
     public void UseStamina(float value)
@@ -62,8 +76,10 @@ public class StaminaManager : MonoBehaviour
             {
                 StopRegen();
             }
+
             currentStamina -= value;
             StartRegen();
+            StartUpdateStaminaIndicator();
         }      
     }
 
@@ -99,4 +115,40 @@ public class StaminaManager : MonoBehaviour
         sRRunning = false;
         yield return null;
     }
+
+    IEnumerator UpdateStaminaIndicator()
+    {
+        yield return new WaitForSeconds(player.TimeBeforeUpdatingStaminaIndicator);
+        while(currentStaminaIndicator > currentStamina)
+        {
+            currentStaminaIndicator -= Time.deltaTime * player.StaminaPerSecond;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        currentStaminaIndicator = currentStamina;
+        followGreenBar = true;
+        yield return null;
+    }
+
+    void StartUpdateStaminaIndicator()
+    {
+        followGreenBar = false;
+        updateStaminaIndicator = StartCoroutine("UpdateStaminaIndicator");
+    }
+
+    void StopUpdateStaminaIndicator()
+    {
+        StopCoroutine(updateStaminaIndicator);
+    }
 }
+
+
+/*
+ * Quand une action gaspille du stamina (roulade, attaques)
+ * On appelle la coroutine
+ * Dans x secondes on descend la barre rouge
+ * si la barre verte rattrape la barre rouge
+ * on stoppe la coroutine 
+ * la valeur de la barre rouge = valeur du stamina de base
+ * 
+ * 
+ */
