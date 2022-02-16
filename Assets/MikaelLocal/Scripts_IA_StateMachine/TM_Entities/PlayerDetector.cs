@@ -24,7 +24,11 @@ public class PlayerDetector : MonoBehaviour // NOTE : Does not handle multiple b
 
     public Transform GetPlayerTranform()
     {
-        return detectedPlayer.transform;
+        if (detectedPlayer)
+        {
+            return detectedPlayer.transform;
+        }
+        return null;
     }
 
     /*public Vector3 GetNearestBeastPosition()

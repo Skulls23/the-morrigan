@@ -36,29 +36,35 @@ public class DetectionConeController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        int colliderId = other.GetComponentInParent<Enemy>().GetId();
-        foreach(int id in enemyIds)
+        if (other.GetComponentInParent<Enemy>())
         {
-            if (colliderId == id)
+            int colliderId = other.GetComponentInParent<Enemy>().GetId();
+            foreach (int id in enemyIds)
             {
-                return;
-            }    
+                if (colliderId == id)
+                {
+                    return;
+                }
+            }
+            enemiesList.Add(other.GetComponentInParent<Enemy>().gameObject);
+            enemyIds.Add(colliderId);
         }
-        enemiesList.Add(other.GetComponentInParent<Enemy>().gameObject);
-        enemyIds.Add(colliderId);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        int colliderId = other.GetComponentInParent<Enemy>().GetId();
-        for(int i =0; i< enemiesList.Count;i++)
+        if (other.GetComponentInParent<Enemy>())
         {
-            if (colliderId == enemyIds[i])
+            int colliderId = other.GetComponentInParent<Enemy>().GetId();
+            for (int i = 0; i < enemiesList.Count; i++)
             {
-                enemiesList.RemoveAt(i);
-                enemyIds.RemoveAt(i);
-                return;
-            }    
+                if (colliderId == enemyIds[i])
+                {
+                    enemiesList.RemoveAt(i);
+                    enemyIds.RemoveAt(i);
+                    return;
+                }
+            }
         }
     }
 

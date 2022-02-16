@@ -45,9 +45,9 @@ public class MeleeEnemy : MonoBehaviour
 
     private Animator anim;
 
-
     private void Awake()
     {
+        var enemy = GetComponent<Enemy>();
         var navMeshAgent = GetComponent<NavMeshAgent>();
         var animator = GetComponentInChildren<Animator>();
         anim = animator;
@@ -59,7 +59,8 @@ public class MeleeEnemy : MonoBehaviour
         var search = new SearchForWaypoint(this, navMeshAgent);
         var follow = new FollowPlayer(this, navMeshAgent, animator, PD, MRAD);
         var midRangeAttack = new MidRangeAttack(this, navMeshAgent, animator);
-
+        var hit = new GetHit(this, navMeshAgent, animator);
+        var dead = new Dead(this, navMeshAgent, animator);
 
         At(search, moveToSelected, HasTarget());
         At(wait, moveToSelected, FinishedWaiting());
@@ -67,13 +68,17 @@ public class MeleeEnemy : MonoBehaviour
         At(follow, search, () => FZ.PlayerInZone == false);
         At(follow, midRangeAttack, IsMRASelected());
         At(midRangeAttack, follow, MRAFinished());
+        At(follow, hit, HasBeenHit());
 
         At(moveToSelected, follow, IsTargetable());
         At(wait, follow, IsTargetable());
+        At(hit, follow, AnimationFinished());
+        At(hit, dead, IsDead());
+
 
         //_stateMachine.AddAnyTransition(follow, IsTargetable());
-        _stateMachine.AddAnyTransition(midRangeAttack, IsMRASelected());
-
+        //_stateMachine.AddAnyTransition(midRangeAttack, IsMRASelected());
+        //_stateMachine.AddAnyTransition(hit, HasBeenHit());
 
         Target = Waypoints[0].transform;
         _stateMachine.SetState(moveToSelected);
@@ -89,12 +94,19 @@ public class MeleeEnemy : MonoBehaviour
 
         Func<bool> IsMRASelected() => () => follow.MRASelected == true;
         Func<bool> MRAFinished() => () => midRangeAttack.attackFinished;
+
+        Func<bool> HasBeenHit() => () => enemy.hasBeenHit == true;
+        Func<bool> AnimationFinished() => () => hit.actionFinished == true;
+
+        Func<bool> IsDead() => () => enemy.IsDead;
     }
 
     private void Update() {
         _stateMachine.Tick();
 
-        /*if (_stateMachine.GetCurrentState().ToString() == "FollowPlayer")
+        //Debug.Log(_stateMachine.GetCurrentState().ToString());
+
+        /*if (_stateMachine.GetCurrentState().ToString() == "GetHit")
         {
             Debug.Log((_stateMachine.GetCurrentState() as FollowPlayer).MRASelected);
         }*/
@@ -111,17 +123,27 @@ public class MeleeEnemy : MonoBehaviour
 
     public void AttackHasFinished()
     {
+
         if(_stateMachine.GetCurrentState().ToString() == "MidRangeAttack")
         {
             (_stateMachine.GetCurrentState() as MidRangeAttack).attackFinished = true;
         }
-        
+        if (_stateMachine.GetCurrentState().ToString() == "GetHit")
+        {
+            (_stateMachine.GetCurrentState() as GetHit).actionFinished = true;
+        }
+
     }
 
     public void OnAnimatorMove()
     {
         // transform.position += new Vector3(anim.deltaPosition.x * Multiplicator, 0, anim.deltaPosition.z * Multiplicator);
         transform.position += anim.deltaPosition;
+        if (isAddingMovement)
+        {
+            transform.position += transform.forward * Multiplicator * Time.deltaTime;
+        }
+        //new Vector3(Time.deltaTime * Multiplicator, 0, Time.deltaTime * Multiplicator);
 
         //STEERING ATTACK
         if (isSteering)

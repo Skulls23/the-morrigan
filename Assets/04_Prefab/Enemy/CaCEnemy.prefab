@@ -1010,7 +1010,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 8
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!54 &1598575555052549419
@@ -1050,6 +1050,8 @@ MonoBehaviour:
   hitFleshDamages: 18
   LockPoint: {fileID: 1598575554711836739}
   anim: {fileID: 0}
+  hasBeenHit: 0
+  IsDead: 0
 --- !u!114 &1598575555052549412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,18 +1067,17 @@ MonoBehaviour:
   Waypoints:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   isAttacking: 0
   PD: {fileID: 1598575553547197746}
   FZ: {fileID: 0}
   MRAD: {fileID: 1598575554780232762}
   UpdateFollowTime: 0.1
   UpdateTryAttack: 1
-  Multiplicator: 0.1
+  Multiplicator: 10
   MidRangeAttackProcPercentage: 0.8
-  MidRangeAttack1Percentage: 0.5
-  MidRangeAttack2Percentage: 0.5
-  SteeringSpeed: 0
+  MidRangeAttack1Percentage: 0
+  MidRangeAttack2Percentage: 1
+  SteeringSpeed: 3
   isSteering: 0
   isAddingMovement: 0
   RoamingSpeed: 4
@@ -1278,6 +1279,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 540257500718217657, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 540257500718217657, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 540257500718217657, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
       propertyPath: m_Name
       value: Mob 1 1.9 (2)
@@ -1291,12 +1304,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 556bbfb247eaa9b4d875462baa276628, type: 2}
     - target: {fileID: 5866666021909216657, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'f_middle.01.R'\n\tTransform 'f_ring.01.R'\n\tTransform
+        'thumb.02.R'\n\tTransform 'f_index.01.R'\n\tTransform 'f_middle.01.R'\n\tTransform
+        'f_ring.01.R'\n\tTransform 'thumb.02.R'\n\tTransform 'f_index.01.R'\n\tFrom
+        animation clip 'TESTROOTMOTION'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7251918712334303488, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7251918712334303488, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7251918712334303488, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 9223139066507641174, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9223139066507641174, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9223139066507641174, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea33c45e32af6a448982ccf68fc8945, type: 3}

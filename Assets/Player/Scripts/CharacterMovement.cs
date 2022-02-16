@@ -166,8 +166,15 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnDodge(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            Debug.Log("performed");
+        }
+
         if (context.performed && canMove && SM.HasEnoughStamina(player.DashStaminaCost))
         {
+            
+
             //GetInput
             dodgeInput = context.performed;
 
