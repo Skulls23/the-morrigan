@@ -63,15 +63,23 @@ public class Enemy : Actor
 
     public void Hit(string HitBoxTypeString, int attackId, float damages)
     {
-        hasBeenHit = true;
+        StartCoroutine(IEHit(HitBoxTypeString, attackId, damages));
+    }
+
+    private IEnumerator IEHit(string HitBoxTypeString, int attackId, float damages)
+    {
         Debug.Log("Hit");
         Debug.Log(HitBoxTypeString + " " + HitBoxType.Flesh.ToString());
+        hasBeenHit = true;
+        yield return new WaitForEndOfFrame();
+        hasBeenHit = false;
+
         if (lastAttackId == attackId)
-            return;
+            yield return null;
 
         lastAttackId = attackId;
 
-        if(HitBoxTypeString == HitBoxType.Flesh.ToString())
+        if (HitBoxTypeString == HitBoxType.Flesh.ToString())
         {
             AkSoundEngine.PostEvent("WEA_Hit_Flesh", gameObject);
         }
@@ -89,7 +97,6 @@ public class Enemy : Actor
             IsDead = true;
             currentLife = 0;
         }
-        
     }
 
 }

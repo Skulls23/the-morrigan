@@ -68,6 +68,7 @@ public class MeleeEnemy : MonoBehaviour
         At(follow, search, () => FZ.PlayerInZone == false);
         At(follow, midRangeAttack, IsMRASelected());
         At(midRangeAttack, follow, MRAFinished());
+        At(follow, hit, HasBeenHit());
 
         At(moveToSelected, follow, IsTargetable());
         At(wait, follow, IsTargetable());
@@ -77,7 +78,7 @@ public class MeleeEnemy : MonoBehaviour
 
         //_stateMachine.AddAnyTransition(follow, IsTargetable());
         //_stateMachine.AddAnyTransition(midRangeAttack, IsMRASelected());
-        _stateMachine.AddAnyTransition(hit, HasBeenHit());
+        //_stateMachine.AddAnyTransition(hit, HasBeenHit());
 
         Target = Waypoints[0].transform;
         _stateMachine.SetState(moveToSelected);
