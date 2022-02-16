@@ -26,6 +26,9 @@ public class Enemy : Actor
 
     public Animator anim;
 
+    public bool hasBeenHit;
+    public bool IsDead;
+
     protected virtual void Start()
     {
         if (anim)
@@ -60,6 +63,7 @@ public class Enemy : Actor
 
     public void Hit(string HitBoxTypeString, int attackId, float damages)
     {
+        hasBeenHit = true;
         Debug.Log("Hit");
         Debug.Log(HitBoxTypeString + " " + HitBoxType.Flesh.ToString());
         if (lastAttackId == attackId)
@@ -82,6 +86,7 @@ public class Enemy : Actor
         }
         else
         {
+            IsDead = true;
             currentLife = 0;
         }
         
