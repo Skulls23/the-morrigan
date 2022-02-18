@@ -31,6 +31,7 @@ public class StaminaManager : MonoBehaviour
         currentStaminaIndicator = currentStamina;
         player = GetComponent<Player>();
         CM = GetComponent<CharacterMovement>();
+        followGreenBar = true;
     }
 
     // Update is called once per frame
