@@ -54,24 +54,31 @@ public class CameraController : MonoBehaviour
 
     public void OnLock(InputAction.CallbackContext context)
     {
-        if (lockedEnemy == null)
+        Debug.Log(context.action);
+        if (context.performed)
         {
-            DotImage.color = new Color(255, 255, 255, 255);
-            lockedEnemy = DDC.SelectTarget(context.ReadValue<Vector2>());
-            LL.SetEnemy(lockedEnemy);
-            lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
-            lockInput = !lockInput;
-            CM.isLockedOn = lockInput;
-            anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
-            rP.LockedOn = CM.isLockedOn;
-            LockLogic(CM.isLockedOn);
+            if (lockedEnemy == null)
+            {
+                Debug.Log(DotImage.gameObject.name);
+                //DotImage.enabled = true;
+                /*lockedEnemy = */DDC.SelectTarget(context.ReadValue<Vector2>(),null);
+                Debug.Log(lockedEnemy.name);
+                LL.SetEnemy(lockedEnemy);
+                lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
+                lockInput = !lockInput;
+                CM.isLockedOn = lockInput;
+                anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
+                rP.LockedOn = CM.isLockedOn;
+                LockLogic(CM.isLockedOn);
+            }
+            else
+            {
+                Debug.Log(DotImage.gameObject.name + "ah");
+                Debug.Log("OnLock2");
+                DotImage.enabled = false;
+                lockedEnemy = null;
+            }
         }
-        else
-        {
-            Debug.Log("OnLock2");
-            DotImage.color = new Color32(255, 255, 255, 0);
-            lockedEnemy = null;
-        }     
     }
 
     public void OnChangeLock(InputAction.CallbackContext context)

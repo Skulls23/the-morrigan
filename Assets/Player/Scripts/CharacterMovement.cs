@@ -169,7 +169,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("performed");
+            //Debug.Log("performed");
         }
 
         if (context.performed && canMove && SM.HasEnoughStamina(player.DashStaminaCost))

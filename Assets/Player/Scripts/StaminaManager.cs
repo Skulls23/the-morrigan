@@ -15,7 +15,7 @@ public class StaminaManager : MonoBehaviour
     public Image staminaIndicator;
 
     Coroutine updateStaminaIndicator;
-    private bool followGreenBar = false;
+    private bool followGreenBar = true;
 
     Coroutine staminaRegen;
     bool sRRunning;

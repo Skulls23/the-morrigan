@@ -68,58 +68,6 @@ public class UI_Player_Stats_Manager : MonoBehaviour
         }
     }
 
-    /*public void UpdatePlayerTest()
-    {
-        //player gets corrupted
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            if(_nbFullLives > 0 && _nbCorruptedLives < _playerMaxLives - _nbEmptyLives - 1)
-            {
-                ++_nbCorruptedLives;
-                --_nbFullLives;
-                UpdateLives();
-            }
-        }
-
-        //player hits weakpoint
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            _nbFullLives += _nbCorruptedLives;
-            _nbCorruptedLives = 0;
-            UpdateLives();
-        }
-
-        //player restores life
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if(_nbFullLives <= _playerMaxLives && _nbCorruptedLives > 0)
-            {
-                ++_nbFullLives;
-                --_nbCorruptedLives;
-            }
-            else if(_nbFullLives < _playerMaxLives)
-            {
-                ++_nbFullLives;
-                --_nbEmptyLives;
-            }
-
-            UpdateLives();
-        }
-
-        //players gets hit
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            if (_nbFullLives > 0 && _nbCorruptedLives < _playerMaxLives)
-            {
-                _nbEmptyLives += _nbCorruptedLives + 1;
-                _nbCorruptedLives = 0;
-                --_nbFullLives;
-                UpdateLives();
-            }
-        }
-    }*/
-
-
     //player restores life
     public void PlayerHeal()
     {
