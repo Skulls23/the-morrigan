@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
     private Player player;
 
     public Transform GroundRayStart;
+    public UI_Player_Stats_Manager UIPSManager;
 
     [Header("VALUES")]
     public Vector2 movementValue;
@@ -421,5 +422,18 @@ public class CharacterMovement : MonoBehaviour
     public bool GetIsFalling()
     {
         return isFalling;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "AttackCollider")
+        {
+            UIPSManager.PlayerGetHit();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 }
