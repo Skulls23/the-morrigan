@@ -15,7 +15,7 @@ public class StaminaManager : MonoBehaviour
     public Image staminaIndicator;
 
     Coroutine updateStaminaIndicator;
-    private bool followGreenBar = false;
+    private bool followGreenBar = true;
 
     Coroutine staminaRegen;
     bool sRRunning;
@@ -31,6 +31,7 @@ public class StaminaManager : MonoBehaviour
         currentStaminaIndicator = currentStamina;
         player = GetComponent<Player>();
         CM = GetComponent<CharacterMovement>();
+        followGreenBar = true;
     }
 
     // Update is called once per frame

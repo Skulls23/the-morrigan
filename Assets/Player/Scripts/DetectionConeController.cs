@@ -71,10 +71,12 @@ public class DetectionConeController : MonoBehaviour
 
     public GameObject SelectTarget(Vector2 joysticDir, GameObject obj = null)
     {
+        Debug.Log("?");
         GameObject enemySelected = null;
         //If the player not currently Locked
         if (obj == null)
         {
+            Debug.Log("NotLocked");
             if (enemyIds.Count == 0)
             {
                 return null;
@@ -94,6 +96,7 @@ public class DetectionConeController : MonoBehaviour
         //If the player is already Locked
         else
         {
+            Debug.Log("Locked");
             enemySelected = enemiesList[checkNearestDirection(joysticDir, obj.transform.position, true)];
         }
         return enemySelected;
