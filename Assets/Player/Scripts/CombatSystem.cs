@@ -7,6 +7,7 @@ public class CombatSystem : MonoBehaviour
     //COMPONENTS
     private StaminaManager SM;
     private Player player;
+    public UI_Player_Stats_Manager UIPSManager;
 
     //COMBAT SYSTEM
     public GameObject spearHitPoint;
@@ -85,10 +86,12 @@ public class CombatSystem : MonoBehaviour
             float tempDamages = 0;
             if (currentTag == HitBoxType.Flesh.ToString())
             {
+                UIPSManager.PlayerGetCorrupted();
                 tempDamages = currentDamageOnFlesh;
             }
             else if (currentTag == HitBoxType.WeakPoint.ToString())
             {
+                UIPSManager.PlayerHitsWeakpoint();
                 tempDamages = currentDamageOnFlesh;
             }
             hit.collider.GetComponentInParent<Enemy>().Hit(currentTag, attackID,tempDamages);

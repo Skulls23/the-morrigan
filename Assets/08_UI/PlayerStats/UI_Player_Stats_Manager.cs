@@ -68,7 +68,7 @@ public class UI_Player_Stats_Manager : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerTest()
+    /*public void UpdatePlayerTest()
     {
         //player gets corrupted
         if (Input.GetKeyDown(KeyCode.U))
@@ -117,10 +117,60 @@ public class UI_Player_Stats_Manager : MonoBehaviour
                 UpdateLives();
             }
         }
+    }*/
+
+
+    //player restores life
+    public void PlayerHeal()
+    {
+        if (_nbFullLives <= _playerMaxLives && _nbCorruptedLives > 0)
+        {
+            ++_nbFullLives;
+            --_nbCorruptedLives;
+        }
+        else if (_nbFullLives < _playerMaxLives)
+        {
+            ++_nbFullLives;
+            --_nbEmptyLives;
+        }
+        UpdateLives();
+    }
+
+
+    //players gets hit
+    public void PlayerGetHit()
+    {
+        if (_nbFullLives > 0 && _nbCorruptedLives<_playerMaxLives)
+        {
+            _nbEmptyLives += _nbCorruptedLives + 1;
+            _nbCorruptedLives = 0;
+            --_nbFullLives;
+            UpdateLives();
+        }
+    }
+
+
+    //player gets corrupted
+    public void PlayerGetCorrupted()
+    {
+        if (_nbFullLives > 0 && _nbCorruptedLives<_playerMaxLives - _nbEmptyLives - 1)
+        {
+            ++_nbCorruptedLives;
+            --_nbFullLives;
+            UpdateLives();
+        }
+    }
+
+    //player hits weakpoint
+    public void PlayerHitsWeakpoint()
+    {
+        _nbFullLives += _nbCorruptedLives;
+        _nbCorruptedLives = 0;
+        UpdateLives();
     }
 
     private void Update()
     {
-        UpdatePlayerTest();
+        //UpdatePlayerTest();
     }
 }
