@@ -36,6 +36,16 @@ public class RootMotionHandler : MonoBehaviour
         meleeEnemy.isAddingMovement = false;
     }
 
+    private void IsAttacking()
+    {
+        meleeEnemy.SetIsAttacking(true);
+    }
+
+    private void IsNotAttackingAnymore()
+    {
+        meleeEnemy.SetIsAttacking(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
