@@ -428,8 +428,18 @@ public class CharacterMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "AttackCollider")
         {
+            GetHit();
             UIPSManager.PlayerGetHit();
         }
+    }
+
+    void GetHit()
+    {
+        canMove = false;
+        canRotate = false;
+        rb.velocity = ResetMoveVelocity;
+        anim.SetTrigger("getHit");
+        StartCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
     }
 
     private void OnTriggerExit(Collider other)

@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     private float steeringTime;
     [SerializeField, Range(7, 30)]
     private float spearRange;
+    [SerializeField]
+    private float damageLockMovementTimer;
 
     [Header("Attack")]
     [SerializeField]
@@ -132,4 +134,5 @@ public class Player : MonoBehaviour
     public float DamageOnWeakpointEcho { get => damageOnWeakpointEcho; set => damageOnWeakpointEcho = value; }
     public float DamageOnFleshBravoAndEcho { get => damageOnFleshBravoAndEcho; set => damageOnFleshBravoAndEcho = value; }
     public float DamageOnWeakpointBravoAndEcho { get => damageOnWeakpointBravoAndEcho; set => damageOnWeakpointBravoAndEcho = value; }
+    public float DamageLockMovementTimer { get => damageLockMovementTimer; set => damageLockMovementTimer = value; }
 }
