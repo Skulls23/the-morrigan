@@ -19,6 +19,7 @@ public class MeleeEnemy : MonoBehaviour
     public PlayerDetector PD;
     public FollowZone FZ;
     public MidRangeAttackDetector MRAD;
+    public Collider AttackCollider;
 
     [Header("GAME DESIGN")]
     public float UpdateFollowTime;
@@ -162,6 +163,19 @@ public class MeleeEnemy : MonoBehaviour
 
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
+        }
+    }
+
+    public void SetIsAttacking(bool value)
+    {
+        isAttacking = value;
+        if (isAttacking)
+        {
+            AttackCollider.gameObject.SetActive(true);
+        }
+        else
+        {
+            AttackCollider.gameObject.SetActive(false);
         }
     }
 
