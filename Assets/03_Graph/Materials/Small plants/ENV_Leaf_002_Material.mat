@@ -8,18 +8,33 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ENV_Leaf_002_Material
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 21544ed4aff45cc49ad651d263874374, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _EMISSION _SPECULAR_SETUP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_47db2b60b59f4645895abac8e45fe081:
+        m_Texture: {fileID: 2800000, guid: 36cc84664f2fb7b41a1b880585923bcf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_4febcf04b9a44a1b8e30422c4dbe1205:
+        m_Texture: {fileID: 2800000, guid: 808f18a9d3b0fb84d8063209510dac33, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_67c227e927804aa090c54d178ef96880:
+        m_Texture: {fileID: 2800000, guid: d92be7047aaa73d46a70cc1cc6c9ff3d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_aa4350cf42b149488cc46db6dd3ff421:
+        m_Texture: {fileID: 2800000, guid: bd0bbcc3a18dd8a42a7e8e23d21645af, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: d92be7047aaa73d46a70cc1cc6c9ff3d, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -77,6 +92,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_33ab444f27b14bd2a4a0f5dc415adac5: 0.6
+    - Vector1_4d7b0b1a330249e7a181e3fd385855ad: 0.08
     - _AlphaClip: 1
     - _Blend: 0
     - _BumpScale: 1
@@ -104,6 +121,9 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_294ee98de0684c2189d99ebe6d604801: {r: 0, g: 0.1803922, b: 0.1529412, a: 0}
+    - Color_bee6c6c18e29447fadc217754c68119e: {r: 0.29019606, g: 0.28235298, b: 0.5019608, a: 0}
+    - Vector2_1c23f0870f0c4c79882c2c24d80646c8: {r: 3, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 0.29134083, g: 0.28235295, b: 0.5019608, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.0008454987, g: 0.09004539, b: 0.1792453, a: 1}
