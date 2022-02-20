@@ -76,7 +76,7 @@ public class FollowPlayer : IState
 
         //PLAYER FOLLOW
         refreshTimer = 0;
-        navMeshAgent.speed = followSpeed;
+        navMeshAgent.speed = 0;
         meleeEnemy.Target = playerDetector.GetPlayerTranform();
         RecalculatePlayerPos();
 

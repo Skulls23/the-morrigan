@@ -167,15 +167,10 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnDodge(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            //Debug.Log("performed");
-        }
-
         if (context.performed && canMove && SM.HasEnoughStamina(player.DashStaminaCost))
         {
             
-
+            Debug.Log("Started");
             //GetInput
             dodgeInput = context.performed;
 
@@ -206,10 +201,12 @@ public class CharacterMovement : MonoBehaviour
             }
             else
             {
+                //transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.y));
                 anim.SetFloat(HashTable.dirX, 0, 0, Time.fixedDeltaTime);
                 anim.SetFloat(HashTable.dirZ, 1, 0, Time.fixedDeltaTime);
             }
-            
+
+            StopCoroutine("IELockMovementTimer");
             StartCoroutine(IELockMovementTimer(player.DashLockMovementTime));
 
             //TO DO Multiplicator of speed for GD purpose
@@ -250,6 +247,7 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator IELockMovementTimer(float time)
     {
         yield return new WaitForSeconds(time);
+        Debug.Log("can Move Again !");
         anim.applyRootMotion = false;
         canMove = true;
         canRotate = true;
@@ -291,7 +289,6 @@ public class CharacterMovement : MonoBehaviour
             {
                 if(((hit.normal.x >= player.StartSlopingAngleDifference || hit.normal.z >= player.StartSlopingAngleDifference) || (hit.normal.x <= -player.StartSlopingAngleDifference || hit.normal.z <= -player.StartSlopingAngleDifference)) && rb.velocity.y <= player.StartAddingForceOnSlopeYVelocity)
                 {
-                    //rb.velocity = new Vector3(rb.velocity.x, -player.SlopeForce, rb.velocity.z);
                     rb.AddForce(-transform.up * player.SlopeForce * Time.deltaTime, ForceMode.VelocityChange);
                 }
                 if(isGrounded == false)
@@ -327,13 +324,9 @@ public class CharacterMovement : MonoBehaviour
                 else
                 {
                     FallTimeTimer = 0;
-                    /*canRotate = true;
-                    canMove = true;*/
                 }
 
                 rb.AddForce(-transform.up * player.SlopeForce * Time.deltaTime, ForceMode.VelocityChange);
-                //rb.velocity = new Vector3(rb.velocity.x, -player.FallSpeed, rb.velocity.z);
-                //rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
             }
         } 
     }

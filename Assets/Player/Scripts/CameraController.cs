@@ -117,7 +117,7 @@ public class CameraController : MonoBehaviour
                 }
             }
 
-            if (!canSwapEnemy && (Mathf.Abs(joysticValue.x) < 0.1f && Mathf.Abs(joysticValue.y) < 0.1f))
+            if (!canSwapEnemy && (Mathf.Abs(joysticValue.x) < 0.2f && Mathf.Abs(joysticValue.y) < 0.2f))
             {
                 canSwapEnemy = true;
             }

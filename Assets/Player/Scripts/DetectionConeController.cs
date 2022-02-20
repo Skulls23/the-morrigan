@@ -16,7 +16,8 @@ public class DetectionConeController : MonoBehaviour
     int index;
     Vector2 joyDir;
 
-
+    [SerializeField]
+    private int RayRangeDebugger;
     public GameObject Camera;
 
     // Start is called before the first frame update
@@ -101,12 +102,20 @@ public class DetectionConeController : MonoBehaviour
 
     int checkNearestDirection(Vector2 joysticDir, Vector3 startPos, bool isAlreadyLocked)
     {
+        Debug.Log("CheckNearestDirection");
         float angle = -1;
         float distance = 0;
 
+        enemiesList[lockedEnemyId].GetComponent<Enemy>().isLocked = true;
+
+        Vector3 temp = new Vector3(joysticDir.x, 0 ,joysticDir.y);
+        Vector3 direction = enemiesList[lockedEnemyId].GetComponent<Enemy>().LockPoint.transform.TransformDirection(temp);
+        Debug.DrawRay(enemiesList[lockedEnemyId].GetComponent<Enemy>().LockPoint.transform.position, -direction * RayRangeDebugger, Color.red, 2);
+
+
         for (int i = 0; i < enemiesList.Count; i++)
         {
-            Vector3 direction = Vector3.zero;
+            direction = Vector3.zero;
             Vector3 enemyPosition = enemiesList[i].transform.position;
             Vector3 enemyDir = new Vector3(enemyPosition.x - startPos.x, 0, enemyPosition.z - startPos.z);
             enemyDir.Normalize();
@@ -117,8 +126,9 @@ public class DetectionConeController : MonoBehaviour
                 {
                     continue;
                 }
-                Vector3 temp = new Vector3(joysticDir.x, 0, -joysticDir.y);
+                temp = new Vector3(joysticDir.x, 0, joysticDir.y);
                 direction = transform.InverseTransformDirection(temp);
+                
                 joyDir = joysticDir;
             }
             else

@@ -19,21 +19,33 @@ public class Enemy : Actor
 
     private int lastAttackId;
 
+    //COMPONENTS
     public GameObject LockPoint;
-
     public Animator anim;
+    private MeleeEnemy ME;
 
     public bool hasBeenHit;
     public bool IsDead;
 
+    public bool isLocked;
+
     protected virtual void Start()
     {
+        ME = GetComponent<MeleeEnemy>();
         if (anim)
         {
             anim.SetFloat("vertical", 1);
         }
         id = numberOfEnnemies;
         numberOfEnnemies++;
+    }
+
+    protected virtual void Update()
+    {
+        if (isLocked)
+        {
+            LockPoint.transform.LookAt(ME.Target.transform.position);
+        }
     }
 
     public float MinDistFromTarget
