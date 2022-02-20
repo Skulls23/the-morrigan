@@ -8,18 +8,33 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Env-Mat_Heart
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2cfee018ddda8d345844a2eedf483f11, type: 3}
   m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - MainTexture_:
+        m_Texture: {fileID: 2800000, guid: 585fed85e0ec530499342280b25ced2d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_48ee471ac7d144fc987104dd55116170:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_97454d4643e14bb5b109fa51e10c8c87:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_aa5db63f2d3a4dd194871c1a003eacd9:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 585fed85e0ec530499342280b25ced2d, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -77,6 +92,21 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Amplitude_: 0.15
+    - EffectBlend_: 0.5
+    - EffectRadius_: 1.5
+    - Frequency_: 0.8
+    - GradientEdge_: 10
+    - RippleDensity_: 3.97
+    - Vector1_5985a9e6e2fa4aa7b17f837f13a99eb1: 1
+    - Vector1_7607afd381e3413cb6368528ca88dda0: 100
+    - Vector1_8a5d96adde484e798e5e336fd7c5bc5b: 1
+    - Vector1_98f2504feeb94f1e9285645daa0cf806: 1
+    - Vector1_9cf63795b8634a488a63b0b7403a75ef: 0
+    - Vector1_b3cc177ab55b449ebe7fba85d4b44195: 0
+    - Vector1_cc3966e49d4f482885a1e7ac8f9cd126: 0.5
+    - Vector1_e800cd7a0660468fb79b33d30da821f5: 0
+    - Vector1_fcff4df828944435a0dd09f725cd1ac0: 0.5
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -104,6 +134,11 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_2684c907769f416a8703c72506493315: {r: 0.39784613, g: 0.7161558, b: 0.9716981, a: 0}
+    - Color_41d2aa4cf7e944aba452eefcd4fb2405: {r: 0.057564937, g: 0.28303266, b: 0.39622638, a: 0}
+    - Color_4f11b1a23e384a47a9937c6a09252d90: {r: 0.8867924, g: 0.856675, b: 0.856675, a: 0}
+    - GradientColor_: {r: 0, g: 0, b: 0, a: 0}
+    - RippleOrigin_: {r: -1.16, g: -0.94, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
