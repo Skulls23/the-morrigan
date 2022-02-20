@@ -37,6 +37,8 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 ResetMoveVelocity;
     [SerializeField]
     private bool isGrounded = true;
+    [SerializeField]
+    private bool isOnSlope = false;
     private bool isFalling = false;
     public LayerMask GroundMask;
 
@@ -287,9 +289,14 @@ public class CharacterMovement : MonoBehaviour
             Debug.DrawLine(GroundRayStart.position, hit.point, Color.red, 1);
             if (hit.distance <= player.StartGroundingDistance)
             {
-                if(((hit.normal.x >= player.StartSlopingAngleDifference || hit.normal.z >= player.StartSlopingAngleDifference) || (hit.normal.x <= -player.StartSlopingAngleDifference || hit.normal.z <= -player.StartSlopingAngleDifference)) && rb.velocity.y <= player.StartAddingForceOnSlopeYVelocity)
+                if((hit.normal.x >= player.StartSlopingAngleDifference || hit.normal.z >= player.StartSlopingAngleDifference) || (hit.normal.x <= -player.StartSlopingAngleDifference || hit.normal.z <= -player.StartSlopingAngleDifference))
                 {
+                    isOnSlope = true;
                     rb.AddForce(-transform.up * player.SlopeForce * Time.deltaTime, ForceMode.VelocityChange);
+                }
+                else
+                {
+                    isOnSlope = false;
                 }
                 if(isGrounded == false)
                 {
