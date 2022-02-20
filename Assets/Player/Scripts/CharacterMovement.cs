@@ -302,6 +302,12 @@ public class CharacterMovement : MonoBehaviour
                 {
                     canRotate = true;
                     canMove = true;
+                    //Debug.Log(anim.GetCurrentAnimatorClipInfo(1));
+                    if (anim.GetCurrentAnimatorStateInfo(1).IsName("Spear_FallingLoop"))
+                    {
+                        
+                        anim.SetTrigger("land");
+                    }
                 }
                 isGrounded = true;
                 isFalling = false;
@@ -310,7 +316,7 @@ public class CharacterMovement : MonoBehaviour
             else
             {
                 if(isFalling)
-                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                    rb.velocity = new Vector3(0, -player.FallSpeed, 0);
 
                 if (hit.distance >= player.StartFallingDistance)
                 {
@@ -323,6 +329,7 @@ public class CharacterMovement : MonoBehaviour
                             canRotate = false;
                             canMove = false;
                             isFalling = true;
+                            anim.SetTrigger("startFalling");
                             rb.velocity = new Vector3(0, rb.velocity.y, 0);
                             return;
                         }
