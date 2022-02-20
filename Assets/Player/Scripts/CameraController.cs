@@ -54,24 +54,47 @@ public class CameraController : MonoBehaviour
 
     public void OnLock(InputAction.CallbackContext context)
     {
-        if (lockedEnemy == null)
+        if (context.started)
         {
-            DotImage.color = new Color(255, 255, 255, 255);
-            lockedEnemy = DDC.SelectTarget(context.ReadValue<Vector2>());
-            LL.SetEnemy(lockedEnemy);
-            lockedEnemy.GetComponent<Enemy>().LockPoint.SetActive(true);
-            lockInput = !lockInput;
-            CM.isLockedOn = lockInput;
-            anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
-            rP.LockedOn = CM.isLockedOn;
-            LockLogic(CM.isLockedOn);
+            if (lockedEnemy == null)
+            {
+                Debug.Log("Lock");
+
+                //Assignation of enemy variable
+                lockedEnemy = DDC.SelectTarget();
+                Debug.Log(lockedEnemy.name);
+                LL.SetEnemy(lockedEnemy);
+
+                //Enable isLocked On on all scripts
+                lockInput = !lockInput;
+                CM.isLockedOn = lockInput;
+                anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
+                rP.LockedOn = CM.isLockedOn;
+                LockLogic(CM.isLockedOn);
+
+                //Enable lock FX
+                DotImage.enabled = true;
+            }
+            else
+            {
+                Debug.Log("De-Lock");
+
+                //Reset locked Enemy Variable
+                lockedEnemy = null;
+                LL.SetEnemy(null);
+
+                //Disable isLocked On on all scripts
+                lockInput = !lockInput;
+                CM.isLockedOn = false;
+                anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
+                rP.LockedOn = CM.isLockedOn;
+                LockLogic(CM.isLockedOn);
+
+                //Disable lock FX
+                DotImage.enabled = false;
+                
+            }
         }
-        else
-        {
-            Debug.Log("OnLock2");
-            DotImage.color = new Color32(255, 255, 255, 0);
-            lockedEnemy = null;
-        }     
     }
 
     public void OnChangeLock(InputAction.CallbackContext context)

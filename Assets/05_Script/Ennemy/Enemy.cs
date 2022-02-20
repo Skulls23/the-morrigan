@@ -17,9 +17,6 @@ public class Enemy : Actor
     public float lifeMax;
     public float currentLife;
 
-    public float hitWeakpointDamages;
-    public float hitFleshDamages;
-
     private int lastAttackId;
 
     public GameObject LockPoint;

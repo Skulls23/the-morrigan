@@ -69,7 +69,7 @@ public class DetectionConeController : MonoBehaviour
     }
 
 
-    public GameObject SelectTarget(Vector2 joysticDir, GameObject obj = null)
+    public GameObject SelectTarget(Vector2 joysticDir = new Vector2(), GameObject obj = null)
     {
         GameObject enemySelected = null;
         //If the player not currently Locked
@@ -87,7 +87,7 @@ public class DetectionConeController : MonoBehaviour
 
             else
             {
-                int enemyIndex = checkNearestDirection(joysticDir, Camera.transform.position, false);
+                int enemyIndex = checkNearestDirection(Camera.transform.forward, Camera.transform.position, false);
                 enemySelected = enemiesList[enemyIndex];
             }           
         }

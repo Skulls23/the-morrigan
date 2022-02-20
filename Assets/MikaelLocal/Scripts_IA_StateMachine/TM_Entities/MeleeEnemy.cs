@@ -74,12 +74,13 @@ public class MeleeEnemy : MonoBehaviour
         At(moveToSelected, follow, IsTargetable());
         At(wait, follow, IsTargetable());
         At(hit, follow, AnimationFinished());
-        At(hit, dead, IsDead());
+        //At(hit, dead, IsDead());
 
 
         //_stateMachine.AddAnyTransition(follow, IsTargetable());
         //_stateMachine.AddAnyTransition(midRangeAttack, IsMRASelected());
         //_stateMachine.AddAnyTransition(hit, HasBeenHit());
+        _stateMachine.AddAnyTransition(dead, IsDead());
 
         Target = Waypoints[0].transform;
         _stateMachine.SetState(moveToSelected);
