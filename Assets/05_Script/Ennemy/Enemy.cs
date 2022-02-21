@@ -19,6 +19,8 @@ public class Enemy : Actor
 
     private int lastAttackId;
 
+    private Material[] enemyMaterials;
+
     //COMPONENTS
     public GameObject LockPoint;
     public GameObject CameraHitbox;
@@ -39,6 +41,8 @@ public class Enemy : Actor
         }
         id = numberOfEnnemies;
         numberOfEnnemies++;
+
+        enemyMaterials = GetComponentInChildren<MeshRenderer>().materials;
     }
 
     protected virtual void Update()
@@ -112,6 +116,7 @@ public class Enemy : Actor
     {
         CameraHitbox.SetActive(false);
         CM.UIPSManager.PlayerHitsWeakpoint();
+        StartCoroutine("FadeEnemy");
         CM.GetComponent<CameraController>().DDC.RemoveEnemyFromPool(id);
         CM.GetComponent<CameraController>().DeLock();
         if (GameObject.Find("SceneManager"))
@@ -120,6 +125,22 @@ public class Enemy : Actor
         }
         IsDead = true;
         currentLife = 0;
+    }
+
+    private IEnumerator FadeEnemy()
+    {
+        float time = 0;
+        while (time<1)
+        {
+            foreach(Material mat in enemyMaterials)
+            {
+                Color col = mat.color;
+                col = Color.Lerp(Color.white, new Color(1, 1, 1, 0), Time.deltaTime);
+                mat.color = col;
+            }
+            time += Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
     }
 
 }

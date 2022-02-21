@@ -1181,12 +1181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa4e18c76835c74a833728c4efa7ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 0
   id: 6
   minDistFromTarget: 0
   lifeMax: 100
   currentLife: 100
   LockPoint: {fileID: 1598575554711836739}
+  CameraHitbox: {fileID: 1598575555090160265}
   anim: {fileID: 5866666021413028277}
   hasBeenHit: 0
   IsDead: 0
@@ -1205,6 +1205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waypoints:
   - {fileID: 0}
+  - {fileID: 0}
   isAttacking: 0
   PD: {fileID: 1598575553547197746}
   FZ: {fileID: 0}
@@ -1221,6 +1222,8 @@ MonoBehaviour:
   isAddingMovement: 0
   RoamingSpeed: 4
   FollowPlayerSpeed: 6.5
+  isRootMotionEnemy: 1
+  canBeCanceled: 0
 --- !u!1 &1598575555090160265
 GameObject:
   m_ObjectHideFlags: 0
