@@ -438,6 +438,10 @@ public class CharacterMovement : MonoBehaviour
         {
             GetHit();
         }
+        if (other.gameObject.tag == "DeadZone")
+        {
+            Die();
+        }
     }
 
     void GetHit()
@@ -459,10 +463,16 @@ public class CharacterMovement : MonoBehaviour
 
     void Die()
     {
-        StopCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
-        anim.SetTrigger("die");
-        anim.SetBool("isDead", true);
-        isDead = true;
+        if (!isDead)
+        {
+            canMove = false;
+            canRotate = false;
+            rb.velocity = ResetMoveVelocity;
+            StopCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
+            anim.SetTrigger("die");
+            anim.SetBool("isDead", true);
+            isDead = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
