@@ -32,4 +32,9 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void LoadScene(int sceneIndex)
+    {
+        StartCoroutine(LoadAsyncScene(scenesName[sceneIndex]));
+    }
 }

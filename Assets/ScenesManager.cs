@@ -13,6 +13,16 @@ public class ScenesManager : MonoBehaviour
     public Animator PortalAnimator;
     private bool _hasPortalBeenLaunched = false;
 
+    [SerializeField]
+    private int _nextSceneIndex;
+
+    private GameManager GM;
+
+    public void Start()
+    {
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+    }
+
 
 
     private void Update()
@@ -27,13 +37,22 @@ public class ScenesManager : MonoBehaviour
     private void OpenPortal()
     {
         // get portal anim controller
+        PortalAnimator.SetBool("LaunchDoor", true);
     }
 
     public void ChunkDelivering()
     {
         if (_isChunkDeliver)
         {
+            // chunk management
+        }
+    }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GM.LoadScene(_nextSceneIndex);
         }
     }
 }
