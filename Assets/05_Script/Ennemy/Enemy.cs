@@ -101,8 +101,9 @@ public class Enemy : Actor
         {
             currentLife -= damages;
         }
-        else
+        else if(!IsDead)
         {
+            GameObject.Find("SceneManager").GetComponent<ScenesManager>()._nbEnnemies--;
             IsDead = true;
             currentLife = 0;
         }
