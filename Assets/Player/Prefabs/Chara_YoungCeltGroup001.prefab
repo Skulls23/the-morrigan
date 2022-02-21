@@ -562,7 +562,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090726402902221}
-  m_LocalRotation: {x: -0.00000017881392, y: -0.10836215, z: 0.123072386, w: 0.9864638}
+  m_LocalRotation: {x: -0.00000023841855, y: -0.116189584, z: 0.13196233, w: 0.9844216}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -882,7 +882,7 @@ GameObject:
   - component: {fileID: 1111541469}
   m_Layer: 11
   m_Name: JeuneCelte
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1159,6 +1159,7 @@ MonoBehaviour:
   isAttacking: 0
   isLockedOn: 0
   isGrounded: 0
+  isOnSlope: 0
   GroundMask:
     serializedVersion: 2
     m_Bits: 512
@@ -1169,7 +1170,7 @@ MonoBehaviour:
   timeRotateCam: 1
   timerRotateCam: 0
   transFollow: {fileID: 0}
-  startMovingTrans: {fileID: 0}
+  startMovingTrans: {fileID: 982480846}
 --- !u!114 &8974098519506389114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1236,22 +1237,18 @@ MonoBehaviour:
   attackLockMovementTime: 0.35
   steeringTime: 0.5
   spearRange: 8
+  damageLockMovementTimer: 0
+  healValueBase: 0
   damageOnFleshBase: 15
   damageOnWeakpointBase: 35
-  damageOnFleshBravo: 20
-  damageOnWeakpointBravo: 40
-  damageOnFleshEcho: 25
-  damageOnWeakpointEcho: 50
-  damageOnFleshBravoAndEcho: 30
-  damageOnWeakpointBravoAndEcho: 70
   staminaMax: 100
   runStaminaPerSecond: 15
   timeBeforeStartingRegenAgain: 1
   timeBeforeUpdatingStaminaIndicator: 2
   staminaPerSecond: 20
   minStaminaToRestartRunning: 20
-  dodgeStaminaCost: 15
-  attackStaminaCost: 15
+  baseDodgeStaminaCost: 0
+  baseAttackStaminaCost: 0
   rayLength: 50
   slopeForce: 30
   startGroundingDistance: 0.8
@@ -1260,6 +1257,16 @@ MonoBehaviour:
   startFallingYVelocity: -0.75
   startSlopingAngleDifference: 0.1
   startFallingAfterXSecondsOnAir: 0.1
+  healValueAlpha: 0
+  damageOnFleshBravo: 20
+  damageOnWeakpointBravo: 40
+  dodgeStaminaCostCharlie: 0
+  attackStaminaCostCharlie: 0
+  maxLives: 0
+  damageOnFleshEcho: 25
+  damageOnWeakpointEcho: 50
+  damageOnFleshBravoAndEcho: 30
+  damageOnWeakpointBravoAndEcho: 70
 --- !u!1 &74090727640420124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,8 +1295,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727640420124}
-  m_LocalRotation: {x: 0.23568726, y: -0.7472674, z: 0.33769363, w: 0.52154195}
-  m_LocalPosition: {x: 3.9345708, y: 8.52, z: 1.6095643}
+  m_LocalRotation: {x: 0.2316114, y: -0.753482, z: 0.34050208, w: 0.51252264}
+  m_LocalPosition: {x: 3.9003255, y: 8.5199995, z: 1.6994143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 543450651814849068}
@@ -1495,7 +1502,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727916511402}
-  m_LocalRotation: {x: -0.00000017881392, y: -0.10836215, z: 0.123072386, w: 0.9864638}
+  m_LocalRotation: {x: -0.00000022351739, y: -0.116189525, z: 0.13196231, w: 0.9844216}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1571,7 +1578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727917379912}
   m_LocalRotation: {x: 0.2878718, y: -0.65163016, z: 0.2944749, w: 0.6370185}
-  m_LocalPosition: {x: 3.9345708, y: 8.52, z: 1.6095643}
+  m_LocalPosition: {x: 3.9003255, y: 8.5199995, z: 1.6994143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 74090726402902223}
@@ -1720,8 +1727,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090728293399728}
-  m_LocalRotation: {x: -0.000000059604638, y: 0.000000029802319, z: -0.00000004470348, w: 1}
-  m_LocalPosition: {x: 0.08423205, y: -0.18491115, z: -0.16280966}
+  m_LocalRotation: {x: -0.74578696, y: -0.00000023841858, z: -0.000000014901161, w: 0.6661846}
+  m_LocalPosition: {x: -0.00011249259, y: -2.9594398, z: 6.387952}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 74090727226942995}
@@ -1941,6 +1948,7 @@ MonoBehaviour:
   enemiesList: []
   enemyIds: 
   lockedEnemyId: 0
+  RayRangeDebugger: 0
   Camera: {fileID: 74090727640420124}
 --- !u!114 &38988316
 MonoBehaviour:
@@ -4417,7 +4425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0059000654
+      value: -0.005900224
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4425,7 +4433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0143585205
+      value: -0.014357726
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 7d420e56a3b12e54fa5a5741b11ce10d, type: 3}
       propertyPath: m_LocalRotation.w
