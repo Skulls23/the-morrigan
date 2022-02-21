@@ -8,18 +8,33 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ENV_Leaf_008_Material
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b70c2929409d3194ab115f32b6717536, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _EMISSION _OCCLUSIONMAP _SPECULAR_SETUP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_47db2b60b59f4645895abac8e45fe081:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_4febcf04b9a44a1b8e30422c4dbe1205:
+        m_Texture: {fileID: 2800000, guid: 0347595616fdac24b899ee2e2eca0e2c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_50fd981b3891428b8aa93e7db54eac2e:
+        m_Texture: {fileID: 2800000, guid: 7c47d7abdd74f014caf00f523260cebb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_67c227e927804aa090c54d178ef96880:
+        m_Texture: {fileID: 2800000, guid: 82036b7b90d441345a3d6a0ae5d5fff9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: cf7ef13e95814bc479c56f08730c3846, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -77,6 +92,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_33ab444f27b14bd2a4a0f5dc415adac5: 0.39
+    - Vector1_4d7b0b1a330249e7a181e3fd385855ad: 0.04
+    - Vector1_63a94a195564422e8a558a0c49d9fe64: 0.3
     - _AlphaClip: 1
     - _Blend: 0
     - _BumpScale: 1
@@ -104,6 +122,7 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
+    - Vector2_1c23f0870f0c4c79882c2c24d80646c8: {r: 6, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.6979981, g: 0.49061057, b: 0.7075472, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.089297354, g: 0, b: 0.16981131, a: 1}
