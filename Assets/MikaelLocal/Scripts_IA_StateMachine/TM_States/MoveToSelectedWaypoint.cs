@@ -25,10 +25,7 @@ internal class MoveToSelectedWayPoint : IState
     
     public void Tick()
     {
-        /*if (Vector3.Distance(meleeEnemy.transform.position, lastPosition) <= 0f)
-            TimeStuck += Time.deltaTime;
-
-        lastPosition = meleeEnemy.transform.position;*/
+        
     }
 
     public void OnEnter()

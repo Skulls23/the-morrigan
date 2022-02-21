@@ -44,6 +44,9 @@ public class MeleeEnemy : MonoBehaviour
     public float RoamingSpeed;
     public float FollowPlayerSpeed;
 
+    public bool isRootMotionEnemy = true;
+    public bool canBeCanceled = false;
+
     private Animator anim;
 
     private void Awake()
@@ -70,6 +73,11 @@ public class MeleeEnemy : MonoBehaviour
         At(follow, midRangeAttack, IsMRASelected());
         At(midRangeAttack, follow, MRAFinished());
         At(follow, hit, HasBeenHit());
+
+        if (canBeCanceled)
+        {
+            At(midRangeAttack, hit, HasBeenHit());
+        }
 
         At(moveToSelected, follow, IsTargetable());
         At(wait, follow, IsTargetable());

@@ -20,7 +20,7 @@ public class DamageOnEnemyHandler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //do damage to the enemy and deactivate him if he is dead
-        if (other.CompareTag("Enemy") && !other.isTrigger)
+        /*if (other.CompareTag("Enemy") && !other.isTrigger)
         {
             enemy = other.gameObject.GetComponent<Enemy>();
             enemy.LifePoints -= damage;
@@ -30,6 +30,6 @@ public class DamageOnEnemyHandler : MonoBehaviour
                 enemy.OnDeath();
                 other.gameObject.SetActive(false);
             }
-        }
+        }*/
     }
 }
