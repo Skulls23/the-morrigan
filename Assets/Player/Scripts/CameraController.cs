@@ -62,39 +62,46 @@ public class CameraController : MonoBehaviour
 
                 //Assignation of enemy variable
                 lockedEnemy = DDC.SelectTarget();
-                Debug.Log(lockedEnemy.name);
-                LL.SetEnemy(lockedEnemy);
+                if (lockedEnemy)
+                {
+                    Debug.Log(lockedEnemy.name);
+                    LL.SetEnemy(lockedEnemy);
 
-                //Enable isLocked On on all scripts
-                lockInput = !lockInput;
-                CM.isLockedOn = lockInput;
-                anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
-                rP.LockedOn = CM.isLockedOn;
-                LockLogic(CM.isLockedOn);
+                    //Enable isLocked On on all scripts
+                    lockInput = !lockInput;
+                    CM.isLockedOn = lockInput;
+                    anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
+                    rP.LockedOn = CM.isLockedOn;
+                    LockLogic(CM.isLockedOn);
 
-                //Enable lock FX
-                DotImage.enabled = true;
+                    //Enable lock FX
+                    DotImage.enabled = true;
+                }  
             }
             else
             {
-                Debug.Log("De-Lock");
-
-                //Reset locked Enemy Variable
-                lockedEnemy = null;
-                LL.SetEnemy(null);
-
-                //Disable isLocked On on all scripts
-                lockInput = !lockInput;
-                CM.isLockedOn = false;
-                anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
-                rP.LockedOn = CM.isLockedOn;
-                LockLogic(CM.isLockedOn);
-
-                //Disable lock FX
-                DotImage.enabled = false;
-                
+                DeLock();
             }
         }
+    }
+
+    public void DeLock()
+    {
+        Debug.Log("De-Lock");
+
+        //Reset locked Enemy Variable
+        lockedEnemy = null;
+        LL.SetEnemy(null);
+
+        //Disable isLocked On on all scripts
+        lockInput = !lockInput;
+        CM.isLockedOn = false;
+        anim.SetBool(HashTable.isLockOn, CM.isLockedOn);
+        rP.LockedOn = CM.isLockedOn;
+        LockLogic(CM.isLockedOn);
+
+        //Disable lock FX
+        DotImage.enabled = false;
     }
 
     public void OnChangeLock(InputAction.CallbackContext context)

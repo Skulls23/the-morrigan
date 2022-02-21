@@ -57,14 +57,19 @@ public class DetectionConeController : MonoBehaviour
         if (other.GetComponentInParent<Enemy>())
         {
             int colliderId = other.GetComponentInParent<Enemy>().GetId();
-            for (int i = 0; i < enemiesList.Count; i++)
+            RemoveEnemyFromPool(colliderId);
+        }
+    }
+
+    public void RemoveEnemyFromPool(int id)
+    {
+        for (int i = 0; i < enemiesList.Count; i++)
+        {
+            if (id == enemyIds[i])
             {
-                if (colliderId == enemyIds[i])
-                {
-                    enemiesList.RemoveAt(i);
-                    enemyIds.RemoveAt(i);
-                    return;
-                }
+                enemiesList.RemoveAt(i);
+                enemyIds.RemoveAt(i);
+                return;
             }
         }
     }
@@ -85,7 +90,6 @@ public class DetectionConeController : MonoBehaviour
             {
                 return enemiesList[0];
             }
-
             else
             {
                 int enemyIndex = checkNearestDirection(Camera.transform.forward, Camera.transform.position, false);
