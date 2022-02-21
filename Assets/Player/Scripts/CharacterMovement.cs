@@ -40,6 +40,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private bool isOnSlope = false;
     private bool isFalling = false;
+    private bool isDead = false;
     public LayerMask GroundMask;
 
     [SerializeField]
@@ -169,7 +170,7 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnDodge(InputAction.CallbackContext context)
     {
-        if (context.performed && canMove && SM.HasEnoughStamina(player.DashStaminaCost))
+        if (context.performed && canMove && SM.HasEnoughStamina(player.DashStaminaCost) && !isDead)
         {
             
             Debug.Log("Started");
@@ -436,7 +437,10 @@ public class CharacterMovement : MonoBehaviour
         if (other.gameObject.tag == "AttackCollider")
         {
             GetHit();
-            UIPSManager.PlayerGetHit();
+        }
+        if (other.gameObject.tag == "DeadZone")
+        {
+            Die();
         }
     }
 
@@ -446,7 +450,29 @@ public class CharacterMovement : MonoBehaviour
         canRotate = false;
         rb.velocity = ResetMoveVelocity;
         anim.SetTrigger("getHit");
-        StartCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
+
+        if (UIPSManager.PlayerGetHit())
+        {
+            Die();
+        }
+        else
+        {
+            StartCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
+        }
+    }
+
+    void Die()
+    {
+        if (!isDead)
+        {
+            canMove = false;
+            canRotate = false;
+            rb.velocity = ResetMoveVelocity;
+            StopCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
+            anim.SetTrigger("die");
+            anim.SetBool("isDead", true);
+            isDead = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)

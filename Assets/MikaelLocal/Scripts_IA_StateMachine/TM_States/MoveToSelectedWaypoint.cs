@@ -33,7 +33,7 @@ internal class MoveToSelectedWayPoint : IState
 
     public void OnEnter()
     {
-        Debug.Log("Enter MoveToSelectedWayPoint");
+        //Debug.Log("Enter MoveToSelectedWayPoint");
         //TimeStuck = 0f;
         navMeshAgent.enabled = true;
         navMeshAgent.SetDestination(meleeEnemy.Target.transform.position);
@@ -43,7 +43,7 @@ internal class MoveToSelectedWayPoint : IState
 
     public void OnExit()
     {
-        Debug.Log("Exit MoveToSelectedWayPoint");
+        //Debug.Log("Exit MoveToSelectedWayPoint");
         //navMeshAgent.enabled = false;
         animator.SetFloat("vertical", 0f);
     }

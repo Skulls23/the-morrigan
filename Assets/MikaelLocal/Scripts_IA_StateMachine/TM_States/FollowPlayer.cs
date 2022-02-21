@@ -72,11 +72,11 @@ public class FollowPlayer : IState
     }
 
     public void OnEnter() {
-        Debug.Log("Enter FollowPlayer");
+        //Debug.Log("Enter FollowPlayer");
 
         //PLAYER FOLLOW
         refreshTimer = 0;
-        navMeshAgent.speed = 0;
+        navMeshAgent.speed = meleeEnemy.FollowPlayerSpeed;
         meleeEnemy.Target = playerDetector.GetPlayerTranform();
         RecalculatePlayerPos();
 
@@ -84,7 +84,7 @@ public class FollowPlayer : IState
         MRATryAttackTimer = 0;
     }
     public void OnExit() {
-        Debug.Log("Exit FollowPlayer");
+        //Debug.Log("Exit FollowPlayer");
         MRASelected = false;
     }
 
