@@ -24,10 +24,10 @@ public class WaitOnWaypoint : IState
     }
 
     public void OnEnter() {
-        Debug.Log("Enter WaitOnWaypoint");
+        //Debug.Log("Enter WaitOnWaypoint");
     }
     public void OnExit() {
-        Debug.Log("Exit WaitOnWaypoint");
+        //Debug.Log("Exit WaitOnWaypoint");
         tempTimeWaited = 0;
         TimeWaited = tempTimeWaited;
     }

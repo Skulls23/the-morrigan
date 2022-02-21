@@ -37,24 +37,14 @@ public class Player : MonoBehaviour
     private float spearRange;
     [SerializeField]
     private float damageLockMovementTimer;
+    [SerializeField]
+    private float healValueBase;
 
     [Header("Attack")]
     [SerializeField]
     private float damageOnFleshBase;
     [SerializeField]
     private float damageOnWeakpointBase;
-    [SerializeField]
-    private float damageOnFleshBravo;
-    [SerializeField]
-    private float damageOnWeakpointBravo;
-    [SerializeField]
-    private float damageOnFleshEcho;
-    [SerializeField]
-    private float damageOnWeakpointEcho;
-    [SerializeField]
-    private float damageOnFleshBravoAndEcho;
-    [SerializeField]
-    private float damageOnWeakpointBravoAndEcho;
 
 
 
@@ -71,10 +61,17 @@ public class Player : MonoBehaviour
     private float staminaPerSecond;
     [SerializeField]
     private float minStaminaToRestartRunning;
+
     [SerializeField]
+    private float baseDodgeStaminaCost;
+    [SerializeField]
+    private float baseAttackStaminaCost;
+
+
     private float dodgeStaminaCost;
-    [SerializeField]
     private float attackStaminaCost;
+
+
 
     [Header("SLOPES")]
     [SerializeField]
@@ -95,6 +92,36 @@ public class Player : MonoBehaviour
     [SerializeField, Range(0, 2)]
     private float startFallingAfterXSecondsOnAir;
 
+    [Header("Alpha")]
+    [Header("BENEDICTIONS")]
+    [SerializeField]
+    private float healValueAlpha;
+    [Header("Bravo")]
+    [SerializeField]
+    private float damageOnFleshBravo;
+    [SerializeField]
+    private float damageOnWeakpointBravo;
+    [Header("Charlie")]
+    [SerializeField]
+    private float dodgeStaminaCostCharlie;
+    [SerializeField]
+    private float attackStaminaCostCharlie;
+    [Header("Delta")]
+    [SerializeField]
+    private int maxLives;
+    [Header("Echo")]
+    [SerializeField]
+    private float damageOnFleshEcho;
+    [SerializeField]
+    private float damageOnWeakpointEcho;
+    [Header("Foxtrot")]
+    [Header("Golf")]
+    [Header("Hotel")]
+    [Header("Bravo&Echo")]
+    [SerializeField]
+    private float damageOnFleshBravoAndEcho;
+    [SerializeField]
+    private float damageOnWeakpointBravoAndEcho;
 
     public float WalkSpeed { get => walkSpeed; set => walkSpeed = value; }
     public float JogSpeed { get => jogSpeed; set => jogSpeed = value; }
@@ -114,7 +141,6 @@ public class Player : MonoBehaviour
     public float RunStaminaPerSecond { get => runStaminaPerSecond; set => runStaminaPerSecond = value; }
     public float TimeBeforeStartingRegenAgain { get => timeBeforeStartingRegenAgain; set => timeBeforeStartingRegenAgain = value; }
     public float TimeBeforeUpdatingStaminaIndicator { get => timeBeforeUpdatingStaminaIndicator; set => timeBeforeUpdatingStaminaIndicator = value; }
-
     public float StaminaPerSecond { get => staminaPerSecond; set => staminaPerSecond = value; }
     public float StaminaMax { get => staminaMax; set => staminaMax = value; }
     public float MinStaminaToRestartRunning { get => minStaminaToRestartRunning; set => minStaminaToRestartRunning = value; }
@@ -135,4 +161,11 @@ public class Player : MonoBehaviour
     public float DamageOnFleshBravoAndEcho { get => damageOnFleshBravoAndEcho; set => damageOnFleshBravoAndEcho = value; }
     public float DamageOnWeakpointBravoAndEcho { get => damageOnWeakpointBravoAndEcho; set => damageOnWeakpointBravoAndEcho = value; }
     public float DamageLockMovementTimer { get => damageLockMovementTimer; set => damageLockMovementTimer = value; }
+    public float DodgeStaminaCostCharlie { get => dodgeStaminaCostCharlie; set => dodgeStaminaCostCharlie = value; }
+    public float AttackStaminaCostCharlie { get => attackStaminaCostCharlie; set => attackStaminaCostCharlie = value; }
+    public float HealValueAlpha { get => healValueAlpha; set => healValueAlpha = value; }
+    public float HealValueBase { get => healValueBase; set => healValueBase = value; }
+    public int MaxLives { get => maxLives; set => maxLives = value; }
+    public float BaseDodgeStaminaCost { get => baseDodgeStaminaCost; set => baseDodgeStaminaCost = value; }
+    public float BaseAttackStaminaCost { get => baseAttackStaminaCost; set => baseAttackStaminaCost = value; }
 }
