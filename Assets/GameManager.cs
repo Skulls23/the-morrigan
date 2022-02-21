@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void Start()
+    {
+        //GameObject.Find("SceneManager").GetComponent<ScenesManager>().SetGameManager();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -31,6 +36,8 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+        yield return new WaitForSeconds(1);
+        GameObject.Find("SceneManager").GetComponent<ScenesManager>().SetGameManager();
     }
 
     public void LoadScene(int sceneIndex)

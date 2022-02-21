@@ -17,7 +17,7 @@ public class ScenesManager : MonoBehaviour
     [SerializeField]
     private int _nextSceneIndex;
 
-    private GameManager GM;
+    public GameManager GM;
 
     [SerializeField]
     private Transform _spawnPoint;
@@ -33,8 +33,6 @@ public class ScenesManager : MonoBehaviour
 
     public void Start()
     {
-        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
-
         _sceneText.text = _nbScene;
         
         if (_isTesting)
@@ -43,8 +41,15 @@ public class ScenesManager : MonoBehaviour
         }
         else
         {
-            GameObject.Find("Chara_YoungCeltGroup001").transform.position = _spawnPoint.position;
+            GameObject.Find("Chara_YoungCeltGroup001(Clone)").transform.GetChild(0).transform.position = _spawnPoint.position;
         }
+    }
+
+    public void SetGameManager()
+    {
+        Debug.Log("a");
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+        Debug.Log("b");
     }
 
 
