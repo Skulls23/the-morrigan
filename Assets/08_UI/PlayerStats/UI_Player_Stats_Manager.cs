@@ -107,10 +107,12 @@ public class UI_Player_Stats_Manager : MonoBehaviour
             UpdateLives();
             if (_nbFullLives <= 0)
             {
-                Debug.Log("isDead");
                 return true;
             }
-            Debug.Log("isNotDead");
+        }
+        else if(_nbFullLives == 0)
+        {
+            return true;
         }
         return false;
     }

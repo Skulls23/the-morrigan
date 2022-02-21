@@ -449,16 +449,20 @@ public class CharacterMovement : MonoBehaviour
 
         if (UIPSManager.PlayerGetHit())
         {
-            StopCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
-            anim.SetTrigger("die");
-            anim.SetBool("isDead", true);
-            isDead = true;
+            Die();
         }
         else
         {
-            Debug.Log("getHitDeadBug");
             StartCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
         }
+    }
+
+    void Die()
+    {
+        StopCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
+        anim.SetTrigger("die");
+        anim.SetBool("isDead", true);
+        isDead = true;
     }
 
     private void OnTriggerExit(Collider other)
