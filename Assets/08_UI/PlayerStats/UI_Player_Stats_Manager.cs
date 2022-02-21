@@ -37,6 +37,14 @@ public class UI_Player_Stats_Manager : MonoBehaviour
         }
     }
 
+    private void UpdateLifeBar()
+    {
+        for (int i = 0; i < _playerMaxLives-1; ++i)
+        {
+            _livesImage[i].enabled = true;
+        }
+    }
+
     public void UpdateLives()
     {
         FullLives();
@@ -69,32 +77,44 @@ public class UI_Player_Stats_Manager : MonoBehaviour
     }
 
     //player restores life
-    public void PlayerHeal()
+    public void PlayerHeal(int value = 0)
     {
-        if (_nbFullLives <= _playerMaxLives && _nbCorruptedLives > 0)
+        for(int i = 0; i < value; i++)
         {
-            ++_nbFullLives;
-            --_nbCorruptedLives;
-        }
-        else if (_nbFullLives < _playerMaxLives)
-        {
-            ++_nbFullLives;
-            --_nbEmptyLives;
-        }
+            if (_nbFullLives <= _playerMaxLives && _nbCorruptedLives > 0)
+            {
+                ++_nbFullLives;
+                --_nbCorruptedLives;
+            }
+            else if (_nbFullLives < _playerMaxLives)
+            {
+                ++_nbFullLives;
+                --_nbEmptyLives;
+            }
+        } 
         UpdateLives();
     }
 
 
     //players gets hit
-    public void PlayerGetHit()
+    public bool PlayerGetHit()
     {
-        if (_nbFullLives > 0 && _nbCorruptedLives<_playerMaxLives)
+        if (_nbFullLives > 0 && _nbCorruptedLives < _playerMaxLives)
         {
             _nbEmptyLives += _nbCorruptedLives + 1;
             _nbCorruptedLives = 0;
             --_nbFullLives;
             UpdateLives();
+            if (_nbFullLives <= 0)
+            {
+                return true;
+            }
         }
+        else if(_nbFullLives == 0)
+        {
+            return true;
+        }
+        return false;
     }
 
 
@@ -115,6 +135,13 @@ public class UI_Player_Stats_Manager : MonoBehaviour
         _nbFullLives += _nbCorruptedLives;
         _nbCorruptedLives = 0;
         UpdateLives();
+    }
+
+    public void ChangeMaxLives(int value)
+    {
+        _playerMaxLives = value;
+        UpdateLifeBar();
+        PlayerHeal(value);
     }
 
     private void Update()

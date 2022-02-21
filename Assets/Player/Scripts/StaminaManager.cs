@@ -32,6 +32,10 @@ public class StaminaManager : MonoBehaviour
         player = GetComponent<Player>();
         CM = GetComponent<CharacterMovement>();
         followGreenBar = true;
+
+        //Setup Base values
+        player.AttackStaminaCost = player.BaseAttackStaminaCost;
+        player.DashStaminaCost = player.BaseDodgeStaminaCost;
     }
 
     // Update is called once per frame

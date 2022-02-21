@@ -37,17 +37,12 @@ public class CombatSystem : MonoBehaviour
     }
 
 
-
-    // Update is called once per frame
-    void Update()
+    public void UpdateDamages(float fleshDmg, float weakpointDmg)
     {
-        
+        currentDamageOnFlesh = fleshDmg;
+        currentDamageOnWeakpoint = weakpointDmg;
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
 
     private void UseStamina(ActionsCostingStamina action)
     {

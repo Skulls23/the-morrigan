@@ -35,7 +35,7 @@ internal class MidRangeAttack : IState
     public void OnEnter()
     {
 
-        Debug.Log("Enter MidRangeAttack");
+        //Debug.Log("Enter MidRangeAttack");
         navMeshAgent.isStopped = true;
         navMeshAgent.ResetPath();
         meleeEnemy.GetComponent<Rigidbody>().useGravity = false;
@@ -50,7 +50,7 @@ internal class MidRangeAttack : IState
         animator.applyRootMotion = false;
         attackFinished = false;
         navMeshAgent.isStopped = false;
-        Debug.Log("Exit MidRangeAttack");
+        //Debug.Log("Exit MidRangeAttack");
         
     }
 
