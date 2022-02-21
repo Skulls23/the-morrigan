@@ -335,7 +335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3436871171038305431, guid: ea0a23b16792a1041944e9a54696df27, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3436871171038305451, guid: ea0a23b16792a1041944e9a54696df27, type: 3}
       propertyPath: m_Pivot.x
@@ -480,6 +480,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &767964011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 767964012}
+  - component: {fileID: 767964013}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &767964012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767964011}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.627401, y: 1.2293253, z: 0.8823915}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &767964013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767964011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffc99dbf51ae2c4da9025ca7e52b042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _TimeBP: 100000
+  _TimeLP: 100
+  _HitTakenBP: 100000
+  _HitTakenLP: 2000
+  _GiftedPoints: 100000
+  _UnusedLiquorsPoints: 20000
+  _IsTimeElapsing: 0
+  _nb_hit: 0
+  _nbUnusedLiquor: 0
+  _IsHotelPossesed: 0
 --- !u!1 &840063476 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8351454416352900767, guid: 32e442f8173ac984c8e374ed1d3af750, type: 3}
@@ -1119,6 +1172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1052045287246669224, guid: b9e4bc5c557e964408425a39d49b41f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1052045287246669228, guid: b9e4bc5c557e964408425a39d49b41f4, type: 3}
       propertyPath: _playerInput
       value: 
@@ -1227,6 +1284,10 @@ PrefabInstance:
     - target: {fileID: 2077110184185258882, guid: ea31b322a77b9274bb010315d0599dc5, type: 3}
       propertyPath: m_Name
       value: BlessingManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077110184185258882, guid: ea31b322a77b9274bb010315d0599dc5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2077110184185258883, guid: ea31b322a77b9274bb010315d0599dc5, type: 3}
       propertyPath: _blessingWindow001
