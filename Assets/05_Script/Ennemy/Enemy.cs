@@ -21,6 +21,7 @@ public class Enemy : Actor
 
     //COMPONENTS
     public GameObject LockPoint;
+    public GameObject CameraHitbox;
     public Animator anim;
     private MeleeEnemy ME;
 
@@ -70,12 +71,12 @@ public class Enemy : Actor
         return id;
     }
 
-    public void Hit(string HitBoxTypeString, int attackId, float damages)
+    public void Hit(string HitBoxTypeString, int attackId, float damages, CharacterMovement CM)
     {
-        StartCoroutine(IEHit(HitBoxTypeString, attackId, damages));
+        StartCoroutine(IEHit(HitBoxTypeString, attackId, damages, CM));
     }
 
-    private IEnumerator IEHit(string HitBoxTypeString, int attackId, float damages)
+    private IEnumerator IEHit(string HitBoxTypeString, int attackId, float damages, CharacterMovement CM)
     {
         Debug.Log("Hit");
         Debug.Log(HitBoxTypeString + " " + HitBoxType.Flesh.ToString());
@@ -103,10 +104,22 @@ public class Enemy : Actor
         }
         else if(!IsDead)
         {
-            GameObject.Find("SceneManager").GetComponent<ScenesManager>()._nbEnnemies--;
-            IsDead = true;
-            currentLife = 0;
+            Die(CM);
         }
+    }
+
+    private void Die(CharacterMovement CM)
+    {
+        CameraHitbox.SetActive(false);
+        CM.UIPSManager.PlayerHitsWeakpoint();
+        CM.GetComponent<CameraController>().DDC.RemoveEnemyFromPool(id);
+        CM.GetComponent<CameraController>().DeLock();
+        if (GameObject.Find("SceneManager"))
+        {
+            GameObject.Find("SceneManager").GetComponent<ScenesManager>()._nbEnnemies--;
+        }
+        IsDead = true;
+        currentLife = 0;
     }
 
 }
