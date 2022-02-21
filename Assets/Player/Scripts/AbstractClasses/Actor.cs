@@ -6,8 +6,6 @@ public abstract class Actor : MonoBehaviour
 {
     private bool isDead;
     private bool isGrounded;
-    [SerializeField]
-    private float lifePoints;
 
     public bool IsDead
     {
@@ -22,18 +20,6 @@ public abstract class Actor : MonoBehaviour
     }
 
     public bool IsGrounded { get; set; }
-
-    public float LifePoints 
-    { 
-        get
-        {
-            return this.lifePoints;
-        }
-        set
-        {
-            this.lifePoints = value;
-        }
-    }
 
     public void OnSpawn() { }
 

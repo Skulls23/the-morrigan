@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScenesManager : MonoBehaviour
 {
     [SerializeField]
-    private int _nbEnnemies;
+    public int _nbEnnemies;
     [SerializeField]
     private bool _isChunkDeliver;
 
