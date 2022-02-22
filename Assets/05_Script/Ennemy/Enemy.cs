@@ -115,6 +115,7 @@ public class Enemy : Actor
 
     private void Die(CharacterMovement CM)
     {
+        GetComponent<MeleeEnemy>().AttackCollider.gameObject.SetActive(false);
         CameraHitbox.SetActive(false);
         CM.UIPSManager.PlayerHitsWeakpoint();
         StartCoroutine("FadeEnemy");
