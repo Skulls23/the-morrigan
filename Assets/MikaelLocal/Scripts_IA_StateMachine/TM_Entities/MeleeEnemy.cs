@@ -195,7 +195,7 @@ public class MeleeEnemy : MonoBehaviour
     public void RangeAttack()
     {
         GameObject projectile = Instantiate(ProjectilePrefab, spawnPoint.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody>().velocity = (Target.transform.position + new Vector3(0, 1, 0) - spawnPoint.transform.position).normalized;
+        projectile.GetComponent<Rigidbody>().velocity = (Target.transform.position + new Vector3(0, 2, 0) - spawnPoint.transform.position).normalized;
         projectile.GetComponent<Rigidbody>().velocity *= projectileSpeed;
     }
 
