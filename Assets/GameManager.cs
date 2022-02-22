@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            SM = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
             SM._nbEnnemies = 0;
         }
 
