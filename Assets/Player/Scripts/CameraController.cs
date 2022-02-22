@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
     public GameObject CharacterCam;
     public GameObject LockOnCamera;
     public GameObject LockOnCamera2;
+    public Camera MainCamera;
     public MeshCollider LockZone; // TO DO
 
     public Transform DotTransform;
@@ -40,7 +41,7 @@ public class CameraController : MonoBehaviour
     {
         if (CM.isLockedOn && lockedEnemy!=null)
         {
-            DotTransform.position = Camera.main.WorldToScreenPoint(lockedEnemy.GetComponent<Enemy>().LockPoint.transform.position);
+            DotTransform.position = MainCamera.WorldToScreenPoint(lockedEnemy.GetComponent<Enemy>().LockPoint.transform.position);
         }
     }
 

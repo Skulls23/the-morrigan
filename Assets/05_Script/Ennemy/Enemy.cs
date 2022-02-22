@@ -31,6 +31,7 @@ public class Enemy : Actor
     public bool IsDead;
 
     public bool isLocked;
+    public bool isOnCameraFieldOfView;
 
     protected virtual void Start()
     {
@@ -114,11 +115,18 @@ public class Enemy : Actor
 
     private void Die(CharacterMovement CM)
     {
+        GetComponent<MeleeEnemy>().AttackCollider.gameObject.SetActive(false);
         CameraHitbox.SetActive(false);
         CM.UIPSManager.PlayerHitsWeakpoint();
         StartCoroutine("FadeEnemy");
-        CM.GetComponent<CameraController>().DDC.RemoveEnemyFromPool(id);
-        CM.GetComponent<CameraController>().DeLock();
+        if (isOnCameraFieldOfView)
+        {
+            CM.GetComponent<CameraController>().DDC.RemoveEnemyFromPool(id);
+            if (isLocked)
+            {
+                CM.GetComponent<CameraController>().DeLock();
+            }
+        }
         if (GameObject.Find("SceneManager"))
         {
             GameObject.Find("SceneManager").GetComponent<ScenesManager>()._nbEnnemies--;

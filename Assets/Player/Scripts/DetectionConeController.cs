@@ -39,6 +39,7 @@ public class DetectionConeController : MonoBehaviour
     {
         if (other.GetComponentInParent<Enemy>())
         {
+            other.GetComponentInParent<Enemy>().isOnCameraFieldOfView = true;
             int colliderId = other.GetComponentInParent<Enemy>().GetId();
             foreach (int id in enemyIds)
             {
@@ -56,6 +57,7 @@ public class DetectionConeController : MonoBehaviour
     {
         if (other.GetComponentInParent<Enemy>())
         {
+            other.GetComponentInParent<Enemy>().isOnCameraFieldOfView = false;
             int colliderId = other.GetComponentInParent<Enemy>().GetId();
             RemoveEnemyFromPool(colliderId);
         }
