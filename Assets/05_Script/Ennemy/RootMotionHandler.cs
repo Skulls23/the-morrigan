@@ -52,6 +52,11 @@ public class RootMotionHandler : MonoBehaviour
         
     }
 
+    public void RangeAttack()
+    {
+        meleeEnemy.RangeAttack();
+    }
+
     void OnAnimatorMove()
     {
         if (animator.applyRootMotion)
