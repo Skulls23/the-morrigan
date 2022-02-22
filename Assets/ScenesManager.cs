@@ -41,14 +41,24 @@ public class ScenesManager : MonoBehaviour
         }
         else
         {
-            GameObject.Find("Chara_YoungCeltGroup001(Clone)").transform.GetChild(0).transform.position = _spawnPoint.position;
+            if (GameObject.Find("Chara_YoungCeltGroup001(Clone)"))
+            {
+                GameObject.Find("Chara_YoungCeltGroup001(Clone)").transform.GetChild(0).transform.position = _spawnPoint.position;
+                SetGameManager();
+            }
+            else if (GameObject.Find("Chara_YoungCeltGroup001"))
+            {
+                GameObject.Find("Chara_YoungCeltGroup001").transform.GetChild(0).transform.position = _spawnPoint.position;
+                SetGameManager();
+            }
+            
         }
     }
 
     public void SetGameManager()
     {
         Debug.Log("a");
-        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         Debug.Log("b");
     }
 
@@ -79,8 +89,10 @@ public class ScenesManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.CompareTag("Player") || other.gameObject.name == "JeuneCelte")
         {
+            SetGameManager();
             GM.LoadScene(_nextSceneIndex);
         }
     }
