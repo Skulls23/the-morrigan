@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private string[] scenesName;
 
+    private ScenesManager SM;
+
     private int sceneIndex = 0;
 
     private void Awake()
@@ -22,10 +24,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            StartCoroutine(LoadAsyncScene(scenesName[sceneIndex++]));
+            SM._nbEnnemies = 0;
         }
+
     }
 
     IEnumerator LoadAsyncScene(string sceneName)
@@ -37,7 +40,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(1);
-        GameObject.Find("SceneManager").GetComponent<ScenesManager>().SetGameManager();
+        SM = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
+        SM.SetGameManager();
     }
 
     public void LoadScene(int sceneIndex)
