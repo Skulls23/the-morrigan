@@ -47,6 +47,10 @@ public class MeleeEnemy : MonoBehaviour
     public bool isRootMotionEnemy = true;
     public bool canBeCanceled = false;
 
+    public Transform spawnPoint;
+    public GameObject ProjectilePrefab;
+    public float projectileSpeed;
+
     private Animator anim;
 
     private void Awake()
@@ -186,6 +190,13 @@ public class MeleeEnemy : MonoBehaviour
         {
             AttackCollider.gameObject.SetActive(false);
         }
+    }
+
+    public void RangeAttack()
+    {
+        GameObject projectile = Instantiate(ProjectilePrefab, spawnPoint.position, Quaternion.identity);
+        projectile.GetComponent<Rigidbody>().velocity = (Target.transform.position + new Vector3(0, 2, 0) - spawnPoint.transform.position).normalized;
+        projectile.GetComponent<Rigidbody>().velocity *= projectileSpeed;
     }
 
     public void LateUpdate()
