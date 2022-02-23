@@ -22,7 +22,7 @@ public class UI_Player_Stats_Manager : MonoBehaviour
     [SerializeField]
     private int _nbEmptyLives;
     [SerializeField]
-    private int _nbRemainingLiquors;
+    public int _nbRemainingLiquors;
 
     public void Start()
     {

@@ -20,12 +20,11 @@ public class ScoreManager : MonoBehaviour
     [Tooltip("Amount of points granted to the player for each liquor which was not used")]
     public float _UnusedLiquorsPoints = 20000f;
 
-    public float _timeElapsedInGame = 0f;
-    public bool _IsTimeElapsing = false;
-
     public float _nb_hit = 0f;
     public float _nbUnusedLiquor;
     public bool _IsHotelPossesed;
+
+    public float _timeElapsedInGame;
 
     public float _timeScore;
     public float _hitScore;
@@ -77,10 +76,6 @@ public class ScoreManager : MonoBehaviour
 
     public void Update()
     {
-        if (_IsTimeElapsing)
-        {
-            _timeElapsedInGame += Time.deltaTime;
-        }
         if (Input.GetKey(KeyCode.Space))
         {
             DisplayScore();
@@ -186,7 +181,7 @@ public class ScoreManager : MonoBehaviour
     public string _mongfindResult(bool _isHotelPossesed) => _IsHotelPossesed ? "Oui" : "-";
 
 
-    void DisplayScore()
+    public void DisplayScore()
     {
         _totalScoreString.text = ComputePlayerScore();
         _timeElapsedString.text = TimeElapsed();

@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     private int sceneIndex = 0;
 
+    public float _timeElapsedInGame = 0f;
+    public bool _IsTimeElapsing = false;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -24,6 +27,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (_IsTimeElapsing)
+        {
+            _timeElapsedInGame += Time.deltaTime;
+        }
         if (Input.GetKeyDown(KeyCode.Return))
         {
             SM = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
