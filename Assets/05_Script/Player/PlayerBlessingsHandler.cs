@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerBlessingsHandler : MonoBehaviour
 {
@@ -17,6 +18,29 @@ public class PlayerBlessingsHandler : MonoBehaviour
     private bool Foxtrot;
     private bool Golf;
     private bool Hotel;
+
+    public ParticleSystem EchoVFX;
+    public VisualEffect BravoVisualEffect;
+
+    public void ActivateVfx(ParticleSystem vfx)
+    {
+        vfx.Play();
+    }
+
+    public void DesactivateVfx(ParticleSystem vfx)
+    {
+        vfx.Stop();
+    }
+
+    public void ActivateVfx(VisualEffect vfx)
+    {
+        vfx.Play();
+    }
+
+    public void DesactivateVfx(VisualEffect vfx)
+    {
+        vfx.Stop();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +60,7 @@ public class PlayerBlessingsHandler : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            Debug.Log("Nuada");
             ApplyEffect("Résolution de Nuada");
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -46,6 +71,28 @@ public class PlayerBlessingsHandler : MonoBehaviour
         {
             ApplyEffect("Méfait de Miach");
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            RemoveEffect("Faveur d'Aeval");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            RemoveEffect("Bénédiction de Dagda");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            RemoveEffect("Résolution de Nuada");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            RemoveEffect("Rétribution de Clíodhna");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            RemoveEffect("Méfait de Miach");
+        }
+
         /*if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ApplyEffect("name");
@@ -66,6 +113,8 @@ public class PlayerBlessingsHandler : MonoBehaviour
                 break;
             case "Bénédiction de Dagda":
                 Bravo = true;
+                Debug.Log("activate");
+                ActivateVfx(BravoVisualEffect);
                 if (Echo)
                 {
                     CombatS.UpdateDamages(player.DamageOnFleshBravoAndEcho, player.DamageOnWeakpointBravoAndEcho);
@@ -74,6 +123,7 @@ public class PlayerBlessingsHandler : MonoBehaviour
                 {
                     CombatS.UpdateDamages(player.DamageOnFleshBravo, player.DamageOnWeakpointBravo);
                 }
+                
                 break;
 
             case "Résolution de Nuada":
@@ -84,11 +134,13 @@ public class PlayerBlessingsHandler : MonoBehaviour
 
             case "Rétribution de Clíodhna":
                 Delta = true;
+                Debug.Log("MaxLife");
                 PSM.ChangeMaxLives(player.MaxLivesDelta);
                 break;
 
             case "Méfait de Miach":
                 Echo = true;
+                ActivateVfx(EchoVFX);
                 if (Bravo)
                 {
                     CombatS.UpdateDamages(player.DamageOnFleshBravoAndEcho, player.DamageOnWeakpointBravoAndEcho);
@@ -128,6 +180,7 @@ public class PlayerBlessingsHandler : MonoBehaviour
                 break;
             case "Bénédiction de Dagda":
                 Bravo = false;
+                DesactivateVfx(BravoVisualEffect);
                 if (Echo)
                 {
                     CombatS.UpdateDamages(player.DamageOnFleshEcho, player.DamageOnWeakpointEcho);
@@ -140,8 +193,8 @@ public class PlayerBlessingsHandler : MonoBehaviour
 
             case "Résolution de Nuada":
                 Charlie = false;
-                player.AttackStaminaCost = player.AttackStaminaCostCharlie;
-                player.DashStaminaCost = player.DodgeStaminaCostCharlie;
+                player.AttackStaminaCost = player.BaseAttackStaminaCost;
+                player.DashStaminaCost = player.BaseDodgeStaminaCost;
                 break;
 
             case "Rétribution de Clíodhna":
@@ -151,6 +204,7 @@ public class PlayerBlessingsHandler : MonoBehaviour
 
             case "Méfait de Miach":
                 Echo = false;
+                DesactivateVfx(EchoVFX);
                 if (Bravo)
                 {
                     CombatS.UpdateDamages(player.DamageOnFleshBravo, player.DamageOnWeakpointBravo);

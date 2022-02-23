@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class CharacterMovement : MonoBehaviour
 
     public GameObject gourdeBelt;
     public GameObject gourdeHand;
+
+    public VisualEffect healVisualEffect;
 
     [Header("VALUES")]
     public Vector2 movementValue;
@@ -70,6 +73,9 @@ public class CharacterMovement : MonoBehaviour
 
     private OnboardingManager _onboardingManager;
 
+    //VFX
+    public VisualEffect BloodSplat;
+
 
     // Start is called before the first frame update
     void Start()
@@ -88,7 +94,7 @@ public class CharacterMovement : MonoBehaviour
 
         ResetMoveVelocity = new Vector3(0, rb.velocity.y, 0);
 
-        if (!_onboardingManager)
+        if (!_onboardingManager && GameObject.Find("Onboarding"))
         {
             _onboardingManager = GameObject.Find("Onboarding").GetComponent<OnboardingManager>();
         }
@@ -161,7 +167,7 @@ public class CharacterMovement : MonoBehaviour
         direction = movementValue.normalized;
         rP.dir = direction;
 
-        if (!_onboardingManager.hasMove) _onboardingManager.OnMove();
+        if (_onboardingManager && !_onboardingManager.hasMove) _onboardingManager.OnMove();
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -297,6 +303,7 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator IEHealWaitTime(float time)
     {
         yield return new WaitForSeconds(time);
+        healVisualEffect.Play();
         anim.SetTrigger("finishedHealing");
         gourdeBelt.SetActive(true);
         gourdeHand.SetActive(false);
@@ -494,6 +501,8 @@ public class CharacterMovement : MonoBehaviour
 
     void GetHit()
     {
+        if(BloodSplat)
+            BloodSplat.Play();
         anim.SetBool("isHealing", false);
         //anim.SetTrigger("finishedHealing");
         canMove = false;
