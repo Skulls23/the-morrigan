@@ -17,10 +17,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 1838
+    x: 1825
     y: -64
-    width: 437
-    height: 1986
+    width: 450
+    height: 2452
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: Blood
+  m_Name: Luciole
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -71,7 +71,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blood
+  m_Name: Luciole
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 8926484042661614557}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
 --- !u!114 &8926484042661614557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 16
+      m_SerializableObject: 45
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -248,7 +248,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 20
+      m_SerializableObject: 200
     m_Space: 2147483647
   m_Property:
     name: Count
@@ -282,7 +282,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
+      m_SerializableObject: 0
     m_Space: 2147483647
   m_Property:
     name: Delay
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 8926484042661614824}
   - {fileID: 8926484042661614833}
-  m_UIPosition: {x: 1838, y: 372}
+  m_UIPosition: {x: 1838, y: 618}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -852,13 +852,12 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614825}
-  - {fileID: 8926484042661614871}
   m_OutputSlots: []
   m_Disabled: 0
   compositionPosition: 1
   compositionDirection: 0
   positionMode: 1
-  spawnMode: 1
+  spawnMode: 0
 --- !u!114 &8926484042661614825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,7 +1242,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661614838}
-  m_UIPosition: {x: 1838, y: 856}
+  m_UIPosition: {x: 1825, y: 1232}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -1760,7 +1759,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
+      m_SerializableObject: 2
     m_Space: 2147483647
   m_Property:
     name: Intensity
@@ -1924,7 +1923,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614862}
   - {fileID: 8926484042661614864}
   - {fileID: 8926484042661614869}
-  m_UIPosition: {x: 1838, y: 1210}
+  m_UIPosition: {x: 1825, y: 1696}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2068,7 +2067,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.3
+      m_SerializableObject: 2
     m_Space: 2147483647
   m_Property:
     name: Scale
@@ -2297,47 +2296,13 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":21.11212158203125,"g":16.601041793823243,"b":8.903400421142579,"a":1.0},"time":0.06176852062344551},{"color":{"r":7.5944037437438969,"g":0.35695701837539675,"b":0.0,"a":1.0},"time":0.29117265343666079},{"color":{"r":5.029994487762451,"g":0.6396966576576233,"b":0.0,"a":1.0},"time":0.6235294342041016},{"color":{"r":0.29411765933036806,"g":0.0,"b":0.00821772776544094,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.06764324754476547},{"alpha":1.0,"time":0.7676509022712708},{"alpha":0.0,"time":0.9882352948188782}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":7.5944037437438969,"g":0.35695701837539675,"b":0.0,"a":1.0},"time":0.11764705926179886},{"color":{"r":5.029994487762451,"g":0.6396966576576233,"b":0.0,"a":1.0},"time":0.6235294342041016}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.06764324754476547},{"alpha":1.0,"time":0.8382391333580017},{"alpha":0.0,"time":0.9882352948188782}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: Color
     m_serializedType:
       m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  m_Direction: 0
-  m_LinkedSlots: []
---- !u!114 &8926484042661614871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 8926484042661614871}
-  m_MasterData:
-    m_Owner: {fileID: 8926484042661614824}
-    m_Value:
-      m_Type:
-        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0
-    m_Space: 2147483647
-  m_Property:
-    name: ArcSequencer
-    m_serializedType:
-      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
   m_Direction: 0
   m_LinkedSlots: []
 --- !u!114 &8926484042661614872

@@ -122,6 +122,8 @@ public class UI_Player_Stats_Manager : MonoBehaviour
             }
             if (_nbFullLives <= 0)
             {
+                _nbCorruptedLives = 0;
+                EmptyLives();
                 return true;
             }
         }
