@@ -182,13 +182,16 @@ public class MeleeEnemy : MonoBehaviour
     public void SetIsAttacking(bool value)
     {
         isAttacking = value;
-        if (isAttacking)
+        if(AttackCollider != null)
         {
-            AttackCollider.gameObject.SetActive(true);
-        }
-        else
-        {
-            AttackCollider.gameObject.SetActive(false);
+            if (isAttacking)
+            {
+                AttackCollider.gameObject.SetActive(true);
+            }
+            else
+            {
+                AttackCollider.gameObject.SetActive(false);
+            }
         }
     }
 

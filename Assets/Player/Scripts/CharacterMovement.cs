@@ -15,6 +15,9 @@ public class CharacterMovement : MonoBehaviour
     public Transform GroundRayStart;
     public UI_Player_Stats_Manager UIPSManager;
 
+    public GameObject gourdeBelt;
+    public GameObject gourdeHand;
+
     [Header("VALUES")]
     public Vector2 movementValue;
     public Vector2 animationMovementValue;
@@ -32,6 +35,8 @@ public class CharacterMovement : MonoBehaviour
     private bool isRunning;
     [SerializeField]
     public bool isAttacking;
+    [SerializeField]
+    public bool isHealing;
     [SerializeField]
     public bool isLockedOn;
     private Vector3 ResetMoveVelocity;
@@ -73,6 +78,8 @@ public class CharacterMovement : MonoBehaviour
         rP = GetComponentInChildren<RotatePlayer>();
         SM = GetComponent<StaminaManager>();
         player = GetComponent<Player>();
+
+        player.HealValue = player.HealValueBase;
 
         //GroundRay
         //GroundRayStart.localPosition = new Vector3(0, 0, -GetComponent<CapsuleCollider>().radius);
@@ -172,7 +179,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (context.performed && canMove && SM.HasEnoughStamina(player.DashStaminaCost) && !isDead)
         {
-            
+            anim.SetBool("isHealing", false);
+            anim.SetTrigger("finishedHealing");
             Debug.Log("Started");
             //GetInput
             dodgeInput = context.performed;
@@ -246,6 +254,23 @@ public class CharacterMovement : MonoBehaviour
         StartCoroutine(IELockMovementTimer(player.AttackLockMovementTime));
     }
 
+    public void OnHeal(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (canMove && UIPSManager.TryHealing())
+            {
+                anim.SetBool("isHealing", true);
+                gourdeBelt.SetActive(false);
+                gourdeHand.SetActive(true);
+                isHealing = true;
+                //attackInput = context.performed;
+                //rb.velocity = ResetMoveVelocity;
+                anim.SetTrigger("heal");
+                StartCoroutine(IEHealWaitTime(player.HealingTime));
+            }
+        }
+    }
 
     IEnumerator IELockMovementTimer(float time)
     {
@@ -257,6 +282,21 @@ public class CharacterMovement : MonoBehaviour
         isAttacking = false;
         anim.SetBool("isDodging", false);
         anim.SetBool("hasAttacked", false);
+        anim.SetBool("isHealing", false);
+    }
+
+    IEnumerator IEHealWaitTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        anim.SetTrigger("finishedHealing");
+        gourdeBelt.SetActive(true);
+        gourdeHand.SetActive(false);
+        if (anim.GetBool("isHealing"))
+        {
+            anim.SetBool("isHealing", false);
+            UIPSManager.PlayerHeal(player.HealValue);
+        }
+        //heal Code
     }
 
     //Updates the animator movement layer and the player velocity
@@ -303,8 +343,7 @@ public class CharacterMovement : MonoBehaviour
                 {
                     canRotate = true;
                     canMove = true;
-                    //Debug.Log(anim.GetCurrentAnimatorClipInfo(1));
-                    if (anim.GetCurrentAnimatorStateInfo(1).IsName("Spear_FallingLoop"))
+                    if (anim.GetCurrentAnimatorStateInfo(2).IsName("Spear_FallingLoop"))
                     {
                         
                         anim.SetTrigger("land");
@@ -446,6 +485,8 @@ public class CharacterMovement : MonoBehaviour
 
     void GetHit()
     {
+        anim.SetBool("isHealing", false);
+        //anim.SetTrigger("finishedHealing");
         canMove = false;
         canRotate = false;
         rb.velocity = ResetMoveVelocity;
@@ -465,6 +506,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!isDead)
         {
+            anim.SetBool("isHealing", false);
+            anim.SetTrigger("finishedHealing");
             canMove = false;
             canRotate = false;
             rb.velocity = ResetMoveVelocity;

@@ -16,6 +16,8 @@ public static class HashTable
 
     public static int isRunning { get; set; }
 
+    public static int heal { get; set; }
+
     public static void Init()
     {
         moveV = Animator.StringToHash("forward");
