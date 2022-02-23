@@ -18,7 +18,7 @@ public class PlayerDetector : MonoBehaviour // NOTE : Does not handle multiple b
     {
         if (other.GetComponent<CharacterMovement>())
         {
-            detectedPlayer = null;
+            //detectedPlayer = null;
         }
     }
 
