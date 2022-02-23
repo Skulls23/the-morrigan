@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using AK.Wwise;
+using UnityEngine.UI;
 
 public class Enemy : Actor
 {
@@ -25,6 +26,7 @@ public class Enemy : Actor
     public GameObject LockPoint;
     public GameObject CameraHitbox;
     public Animator anim;
+    public Image enemyHealthSlider;
     private MeleeEnemy ME;
 
     public bool hasBeenHit;
@@ -83,6 +85,11 @@ public class Enemy : Actor
         StartCoroutine(IEHit(HitBoxTypeString, attackId, damages, CM));
     }
 
+    public void EnableLifeBar(bool value)
+    {
+        enemyHealthSlider.transform.parent.gameObject.SetActive(value);
+    }
+
     private IEnumerator IEHit(string HitBoxTypeString, int attackId, float damages, CharacterMovement CM)
     {
         Debug.Log("Hit");
@@ -113,6 +120,7 @@ public class Enemy : Actor
         {
             Die(CM);
         }
+        enemyHealthSlider.fillAmount = Mathf.Max(currentLife / lifeMax, 0);
     }
 
     private void Die(CharacterMovement CM)
@@ -123,12 +131,12 @@ public class Enemy : Actor
         CM.UIPSManager.PlayerHitsWeakpoint();
         StartCoroutine("FadeEnemy");
         if (isOnCameraFieldOfView)
-        {
-            CM.GetComponent<CameraController>().DDC.RemoveEnemyFromPool(id);
+        { 
             if (isLocked)
             {
                 CM.GetComponent<CameraController>().DeLock();
             }
+            CM.GetComponent<CameraController>().DDC.RemoveEnemyFromPool(id);
         }
         if (GameObject.Find("SceneManager"))
         {
