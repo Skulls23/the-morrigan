@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   color:
     m_OverrideState: 1
@@ -25,12 +25,12 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.27
+    m_Value: 0.4
     min: 0
     max: 1
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.6
+    m_Value: 0.4
     min: 0.01
     max: 1
   rounded:
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,20 +149,20 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 0.4
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 4.45
+    m_Value: 2
     min: 0
   scatter:
     m_OverrideState: 1
-    m_Value: 0.7
+    m_Value: 0.4
     min: 0
     max: 1
   clamp:
     m_OverrideState: 1
-    m_Value: 65472
+    m_Value: 4
     min: 0
   tint:
     m_OverrideState: 1
@@ -175,14 +175,14 @@ MonoBehaviour:
     m_Value: 1
   skipIterations:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
     min: 0
     max: 16
   dirtTexture:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {fileID: 0}
   dirtIntensity:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
     min: 0
 --- !u!114 &4800333090154545991
@@ -201,17 +201,17 @@ MonoBehaviour:
   m_AdvancedMode: 0
   redOutRedIn:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: 150
     min: -200
     max: 200
   redOutGreenIn:
     m_OverrideState: 1
-    m_Value: 40
+    m_Value: 50
     min: -200
     max: 200
   redOutBlueIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 25
     min: -200
     max: 200
   greenOutRedIn:

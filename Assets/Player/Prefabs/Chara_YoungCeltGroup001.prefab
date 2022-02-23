@@ -766,7 +766,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090726402902221}
-  m_LocalRotation: {x: -0.00000008940697, y: -0.00000020861626, z: 0.0000003874302, w: 1}
+  m_LocalRotation: {x: 0.032048885, y: -0.73272425, z: 0.63656455, w: -0.23848204}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 8.5, z: -4}
+  m_FollowOffset: {x: 0, y: 10.723507, z: -10.289672}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 8.5, z: -4}
+  m_FollowOffset: {x: 0, y: 10.723507, z: -10.289672}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1479,6 +1479,7 @@ MonoBehaviour:
   steeringTime: 0.5
   spearRange: 8
   damageLockMovementTimer: 0.3
+  maxLivesBase: 0
   healValueBase: 2
   healingTime: 3
   damageOnFleshBase: 50
@@ -1504,7 +1505,7 @@ MonoBehaviour:
   damageOnWeakpointBravo: 40
   dodgeStaminaCostCharlie: 10
   attackStaminaCostCharlie: 10
-  maxLives: 0
+  maxLivesDelta: 0
   damageOnFleshEcho: 25
   damageOnWeakpointEcho: 50
   damageOnFleshBravoAndEcho: 30
@@ -1537,8 +1538,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727640420124}
-  m_LocalRotation: {x: 0.23568721, y: -0.7472675, z: 0.33769378, w: 0.52154183}
-  m_LocalPosition: {x: 3.9345708, y: 8.52, z: 1.6095657}
+  m_LocalRotation: {x: -0.022145534, y: 0.90995216, z: -0.41121188, w: -0.04900485}
+  m_LocalPosition: {x: 7.9295883, y: 8.52, z: -5.0731354}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 543450651814849068}
@@ -1611,8 +1612,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -1745,7 +1746,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727916511402}
-  m_LocalRotation: {x: -0.000000067055225, y: -0.0000002682209, z: 0.00000040233135, w: 1}
+  m_LocalRotation: {x: 0.032048885, y: -0.73272425, z: 0.63656455, w: -0.23848204}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1821,8 +1822,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090727917379912}
-  m_LocalRotation: {x: 0.23568742, y: -0.74726725, z: 0.33769366, w: 0.52154213}
-  m_LocalPosition: {x: 3.9345703, y: 8.52, z: 1.6095657}
+  m_LocalRotation: {x: 0.069791645, y: 0.8980886, z: -0.4058507, w: 0.15443875}
+  m_LocalPosition: {x: 7.749542, y: 10.743507, z: -6.739895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 74090726402902223}
@@ -1867,7 +1868,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 1
+    Value: 0.6412325
     m_SpeedMode: 0
     m_MaxSpeed: 1.5
     m_AccelTime: 0.2
@@ -2001,7 +2002,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74090728293399728}
-  m_LocalRotation: {x: -0.000000067055225, y: -0.00000023841858, z: 0.00000025331974, w: 1}
+  m_LocalRotation: {x: -0.03204888, y: 0.7327242, z: -0.6365646, w: 0.23848195}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2109,7 +2110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 8.5, z: -4}
+  m_FollowOffset: {x: 0, y: 10.723507, z: -10.289672}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
