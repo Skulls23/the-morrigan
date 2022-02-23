@@ -60,7 +60,11 @@ public class ScoreManager : MonoBehaviour
 
     public string ComputePlayerRank(float score)
     {
-        if(score < _silver)
+        if(score < _bronze)
+        {
+            return "Aucun pallier atteint";
+        }
+        else if(score >= _bronze && score < _silver)
         {
             return "Bronze";
         }
