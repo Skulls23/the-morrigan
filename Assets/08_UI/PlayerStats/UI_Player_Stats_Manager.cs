@@ -186,7 +186,7 @@ public class UI_Player_Stats_Manager : MonoBehaviour
         return false;
     }
 
-    private void UpdateLiquorVisual()
+    public void UpdateLiquorVisual()
     {
         _liquorNumberText.text = _nbRemainingLiquors.ToString();
     }

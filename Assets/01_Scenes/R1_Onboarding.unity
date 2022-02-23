@@ -1783,6 +1783,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dd557e4a57d3d7418afd056e4193fbe, type: 3}
+--- !u!1 &1394610458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2679772735851236470, guid: 6dd557e4a57d3d7418afd056e4193fbe, type: 3}
+  m_PrefabInstance: {fileID: 1394610457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1394610459
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394610458}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.3847814, y: 4.055513, z: 15.957771}
+  m_Center: {x: -2.1923444, y: 1.5277661, z: -2.748874}
 --- !u!1 &1459952157
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,6 +2204,34 @@ PrefabInstance:
     - target: {fileID: 1598575555052549415, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
       propertyPath: m_Name
       value: CaCEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342795436745031156, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797512633042375352, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797512633042375352, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7679812
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797512633042375352, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797512633042375352, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6404725
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797512633042375352, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797512633042375352, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 79.654
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
@@ -2684,6 +2730,10 @@ PrefabInstance:
       propertyPath: hasMove
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2845117237744109215, guid: 0d4628484294d7d4098c09f80491061a, type: 3}
+      propertyPath: _AttackPopupSprite
+      value: 
+      objectReference: {fileID: 2845117237646366504}
     - target: {fileID: 2845117238320554953, guid: 0d4628484294d7d4098c09f80491061a, type: 3}
       propertyPath: m_Name
       value: _DodgePopupSprite
@@ -2692,8 +2742,17 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7999840e74079a047b3564f486f07c39, type: 3}
+    - target: {fileID: 2845117238575596099, guid: 0d4628484294d7d4098c09f80491061a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4628484294d7d4098c09f80491061a, type: 3}
+--- !u!1 &2845117237646366504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2845117238575596099, guid: 0d4628484294d7d4098c09f80491061a, type: 3}
+  m_PrefabInstance: {fileID: 2845117237646366503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6909049768492649847
 PrefabInstance:
   m_ObjectHideFlags: 0

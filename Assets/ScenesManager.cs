@@ -50,7 +50,7 @@ public class ScenesManager : MonoBehaviour
             else if (GameObject.Find("Chara_YoungCeltGroup001"))
             {
                 GameObject.Find("Chara_YoungCeltGroup001").transform.GetChild(0).transform.position = _spawnPoint.position;
-                GameObject.Find("Chara_YoungCeltGroup001(Clone)").transform.GetChild(0).transform.eulerAngles = _spawnPoint.rotation.eulerAngles;
+                GameObject.Find("Chara_YoungCeltGroup001").transform.GetChild(0).transform.eulerAngles = _spawnPoint.rotation.eulerAngles;
                 SetGameManager();
             }
             
@@ -94,6 +94,8 @@ public class ScenesManager : MonoBehaviour
         Debug.Log(other.gameObject.name);
         if (other.gameObject.CompareTag("Player") || other.gameObject.name == "JeuneCelte")
         {
+            other.gameObject.GetComponent<CharacterMovement>().UIPSManager._nbRemainingLiquors++;
+            other.gameObject.GetComponent<CharacterMovement>().UIPSManager.UpdateLiquorVisual();
             SetGameManager();
             GM.LoadScene(_nextSceneIndex);
         }
