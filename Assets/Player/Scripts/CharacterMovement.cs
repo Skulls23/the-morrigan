@@ -79,6 +79,8 @@ public class CharacterMovement : MonoBehaviour
         SM = GetComponent<StaminaManager>();
         player = GetComponent<Player>();
 
+        player.HealValue = player.HealValueBase;
+
         //GroundRay
         //GroundRayStart.localPosition = new Vector3(0, 0, -GetComponent<CapsuleCollider>().radius);
 
@@ -292,7 +294,7 @@ public class CharacterMovement : MonoBehaviour
         if (anim.GetBool("isHealing"))
         {
             anim.SetBool("isHealing", false);
-            UIPSManager.PlayerHeal(player.HealValueBase);
+            UIPSManager.PlayerHeal(player.HealValue);
         }
         //heal Code
     }
@@ -341,8 +343,7 @@ public class CharacterMovement : MonoBehaviour
                 {
                     canRotate = true;
                     canMove = true;
-                    //Debug.Log(anim.GetCurrentAnimatorClipInfo(1));
-                    if (anim.GetCurrentAnimatorStateInfo(1).IsName("Spear_FallingLoop"))
+                    if (anim.GetCurrentAnimatorStateInfo(2).IsName("Spear_FallingLoop"))
                     {
                         
                         anim.SetTrigger("land");

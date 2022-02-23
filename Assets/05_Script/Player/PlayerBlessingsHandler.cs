@@ -35,7 +35,7 @@ public class PlayerBlessingsHandler : MonoBehaviour
         switch (name){
             case "Faveur d'Aeval" :
                 Alpha = true;
-                player.HealValueBase = player.HealValueAlpha;
+                player.HealValue = player.HealValueAlpha;
                 break;
             case "Bénédiction de Dagda":
                 Bravo = true;
@@ -97,57 +97,53 @@ public class PlayerBlessingsHandler : MonoBehaviour
         {
             case "Faveur d'Aeval":
                 Alpha = false;
-                player.HealValueBase = player.HealValueAlpha;
+                player.HealValue = player.HealValueBase;
                 break;
             case "Bénédiction de Dagda":
-                Bravo = true;
+                Bravo = false;
                 if (Echo)
                 {
-                    player.DamageOnFleshBase = player.DamageOnFleshBravoAndEcho;
-                    player.DamageOnWeakpointBase = player.DamageOnWeakpointBravoAndEcho;
+                    CombatS.UpdateDamages(player.DamageOnFleshEcho, player.DamageOnWeakpointEcho);
                 }
                 else
                 {
-                    player.DamageOnFleshBase = player.DamageOnFleshBravo;
-                    player.DamageOnWeakpointBase = player.DamageOnWeakpointBravo;
+                    CombatS.UpdateDamages(player.DamageOnFleshBase, player.DamageOnWeakpointBase);
                 }
                 break;
 
             case "Résolution de Nuada":
-                Charlie = true;
+                Charlie = false;
                 player.AttackStaminaCost = player.AttackStaminaCostCharlie;
                 player.DashStaminaCost = player.DodgeStaminaCostCharlie;
                 break;
 
             case "Rétribution de Clíodhna":
-                Delta = true;
+                Delta = false;
                 PSM.ChangeMaxLives(player.MaxLives);
                 break;
 
             case "Méfait de Miach":
-                Echo = true;
+                Echo = false;
                 if (Bravo)
                 {
-                    player.DamageOnFleshBase = player.DamageOnFleshBravoAndEcho;
-                    player.DamageOnWeakpointBase = player.DamageOnWeakpointBravoAndEcho;
+                    CombatS.UpdateDamages(player.DamageOnFleshBravo, player.DamageOnWeakpointBravo);
                 }
                 else
                 {
-                    player.DamageOnFleshBase = player.DamageOnFleshEcho;
-                    player.DamageOnWeakpointBase = player.DamageOnWeakpointEcho;
+                    CombatS.UpdateDamages(player.DamageOnFleshBase, player.DamageOnWeakpointBase);
                 }
                 break;
 
             case "Pardon de Cernunnos":
-                Foxtrot = true;
+                Foxtrot = false;
                 //Code Corruption resistance (1 per room)
                 break;
             case "Bénédiction de Lug":
-                Golf = true;
+                Golf = false;
                 //Code resistance while healing
                 break;
             case "Présent de Mongfind":
-                Hotel = true;
+                Hotel = false;
                 //Code Score
                 break;
             default:

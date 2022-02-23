@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float healingTime;
 
+    private int healValue;
+
     [Header("Attack")]
     [SerializeField]
     private float damageOnFleshBase;
@@ -174,4 +176,5 @@ public class Player : MonoBehaviour
     public float HealingTime { get => healingTime; set => healingTime = value; }
     public int HealValueBase { get => healValueBase; set => healValueBase = value; }
     public int HealValueAlpha { get => healValueAlpha; set => healValueAlpha = value; }
+    public int HealValue { get => healValue; set => healValue = value; }
 }
