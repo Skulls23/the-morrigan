@@ -6,6 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     void Start()
     {
-        AkSoundEngine.PostEvent("ENV_Amb_Forest", gameObject);
+        DontDestroyOnLoad(this);
+        AkSoundEngine.PostEvent("ENV_Menu_Music_Play", gameObject);
+        //AkSoundEngine.PostEvent("ENV_Amb_Forest", gameObject);
     }
 }

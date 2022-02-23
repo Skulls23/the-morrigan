@@ -18,6 +18,31 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="ENV_Menu_Music_Play" ID="{8FF5C85C-A151-4E35-B456-41FD2B978B36}">
+					<ChildrenList>
+						<Action Name="" ID="{D1765F0A-D89F-416D-BD92-ACB75E1C4215}" ShortID="31263001">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="THE_MORRIGAN_Intro_CELLO_solo_V1_1" ID="{679C11F4-2A96-4C09-8F5F-8D6CE08575A1}" WorkUnitID="{23C2685D-3004-4AF7-A2DE-1047948EFDA9}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ENV_Menu_Music_Stop" ID="{D2C826BB-F7EA-4D31-9B79-EDC417DCBB00}">
+					<ChildrenList>
+						<Action Name="" ID="{2DD9BC72-1FD2-4DEF-9848-7EEEAD77CA3E}" ShortID="917415351">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="THE_MORRIGAN_Intro_CELLO_solo_V1_1" ID="{679C11F4-2A96-4C09-8F5F-8D6CE08575A1}" WorkUnitID="{23C2685D-3004-4AF7-A2DE-1047948EFDA9}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

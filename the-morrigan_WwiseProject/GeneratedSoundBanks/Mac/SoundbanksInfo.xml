@@ -17,8 +17,14 @@
 			<Path>SB_Environment.bnk</Path>
 			<IncludedEvents>
 				<Event Id="2234303157" Name="ENV_Amb_Forest" ObjectPath="\Events\Default Work Unit\Environment\ENV_Amb_Forest" DurationType="Infinite"/>
+				<Event Id="725810461" Name="ENV_Menu_Music_Play" ObjectPath="\Events\Default Work Unit\Environment\ENV_Menu_Music_Play" DurationType="OneShot" DurationMin="142.869339" DurationMax="142.869339"/>
+				<Event Id="2911652491" Name="ENV_Menu_Music_Stop" ObjectPath="\Events\Default Work Unit\Environment\ENV_Menu_Music_Stop" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="726315776" Language="SFX">
+					<ShortName>Ambiance\Music\THE_MORRIGAN_Intro_CELLO_solo_V1.1.wav</ShortName>
+					<Path>SFX\Ambiance\Music\THE_MORRIGAN_Intro_CELLO_solo_V1.1_10C4C929.wem</Path>
+				</File>
 				<File Id="846639440" Language="SFX">
 					<ShortName>Ambiance\Forest\AMB_Foret.wav</ShortName>
 					<Path>SFX\Ambiance\Forest\AMB_Foret_10C4C929.wem</Path>

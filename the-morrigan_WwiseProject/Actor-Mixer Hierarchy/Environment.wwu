@@ -55,6 +55,37 @@
 						</RandomSequenceContainer>
 					</ChildrenList>
 				</ActorMixer>
+				<ActorMixer Name="ENV_Menu_Music" ID="{346EA23A-BEAE-4712-8877-179F168B6525}" ShortID="731650501">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="THE_MORRIGAN_Intro_CELLO_solo_V1_1" ID="{679C11F4-2A96-4C09-8F5F-8D6CE08575A1}" ShortID="866754548">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="THE_MORRIGAN_Intro_CELLO_solo_V1_1" ID="{090ECFA1-DDDE-4489-9E91-9725B8F07CB9}" ShortID="726315776">
+									<Language>SFX</Language>
+									<AudioFile>Ambiance\Music\THE_MORRIGAN_Intro_CELLO_solo_V1.1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="THE_MORRIGAN_Intro_CELLO_solo_V1_1" ID="{090ECFA1-DDDE-4489-9E91-9725B8F07CB9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
