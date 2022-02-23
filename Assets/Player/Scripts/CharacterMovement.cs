@@ -73,6 +73,9 @@ public class CharacterMovement : MonoBehaviour
 
     private OnboardingManager _onboardingManager;
 
+    //VFX
+    public VisualEffect BloodSplat;
+
 
     // Start is called before the first frame update
     void Start()
@@ -91,7 +94,7 @@ public class CharacterMovement : MonoBehaviour
 
         ResetMoveVelocity = new Vector3(0, rb.velocity.y, 0);
 
-        if (!_onboardingManager)
+        if (!_onboardingManager && GameObject.Find("Onboarding"))
         {
             _onboardingManager = GameObject.Find("Onboarding").GetComponent<OnboardingManager>();
         }
@@ -164,7 +167,7 @@ public class CharacterMovement : MonoBehaviour
         direction = movementValue.normalized;
         rP.dir = direction;
 
-        if (!_onboardingManager.hasMove) _onboardingManager.OnMove();
+        if (_onboardingManager && !_onboardingManager.hasMove) _onboardingManager.OnMove();
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -498,6 +501,8 @@ public class CharacterMovement : MonoBehaviour
 
     void GetHit()
     {
+        if(BloodSplat)
+            BloodSplat.Play();
         anim.SetBool("isHealing", false);
         //anim.SetTrigger("finishedHealing");
         canMove = false;
