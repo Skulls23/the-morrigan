@@ -44,11 +44,13 @@ public class ScenesManager : MonoBehaviour
             if (GameObject.Find("Chara_YoungCeltGroup001(Clone)"))
             {
                 GameObject.Find("Chara_YoungCeltGroup001(Clone)").transform.GetChild(0).transform.position = _spawnPoint.position;
+                GameObject.Find("Chara_YoungCeltGroup001(Clone)").transform.GetChild(0).transform.eulerAngles = _spawnPoint.rotation.eulerAngles;
                 SetGameManager();
             }
             else if (GameObject.Find("Chara_YoungCeltGroup001"))
             {
                 GameObject.Find("Chara_YoungCeltGroup001").transform.GetChild(0).transform.position = _spawnPoint.position;
+                GameObject.Find("Chara_YoungCeltGroup001(Clone)").transform.GetChild(0).transform.eulerAngles = _spawnPoint.rotation.eulerAngles;
                 SetGameManager();
             }
             
