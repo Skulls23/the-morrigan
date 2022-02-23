@@ -148,7 +148,7 @@ MonoBehaviour:
   canBeCanceled: 1
   spawnPoint: {fileID: 118396756}
   ProjectilePrefab: {fileID: 326662596044458907, guid: b3e3516c8e20e434ea592a7229c97cc0, type: 3}
-  projectileSpeed: 5
+  projectileSpeed: 35
 --- !u!195 &2111893071256023636
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   minDistFromTarget: 0
-  lifeMax: 45
-  currentLife: 45
+  lifeMax: 1
+  currentLife: 1
   LockPoint: {fileID: 2111893072334767411}
   CameraHitbox: {fileID: 2111893072862864064}
   anim: {fileID: 2111893072088839146}
