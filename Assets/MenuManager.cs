@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    public GameManager GM;
+
     void Update()
     {
         if(Input.GetButtonDown("Submit"))
         {
-            Debug.Log("AAAAAA");
+            GM.LoadScene(0);
         }
     }
 }
