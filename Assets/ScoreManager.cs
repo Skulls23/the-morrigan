@@ -68,8 +68,36 @@ public class ScoreManager : MonoBehaviour
         {
             return "Argent";
         }
+        else if(score >= _gold && score < _platinum)
+        {
+            return "Platine";
+        }
+        else if(score >= _platinum)
+        {
+            return "Diamant";
+        }
 
-        return "default";
+        return "player rank could'nt be retrieved";
+    }
+
+    public string PointsToNextRank(float score)
+    {
+        string rank = ComputePlayerRank(score);
+        switch (rank)
+        {
+            case "Bronze":
+                return ThousandsSeparator(_silver - score);
+            case "Argent":
+                return ThousandsSeparator(_gold - score);
+            case "Or":
+                return ThousandsSeparator(_platinum - score);
+            case "Platine":
+                return ThousandsSeparator(_diamond - score);
+            case "Diamant":
+                return "Vous avez atteint le dernier rang !";
+            default:
+                return "either score or rank could'nt be retrieved";
+        }
     }
 
     public string TimeScore()
@@ -90,7 +118,7 @@ public class ScoreManager : MonoBehaviour
         int seconds = (int)_time - 60 * minutes;
         int hundredths = (int) (1000 * (_timeElapsedInGame - minutes * 60 - seconds));
 
-        return string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, hundredths);
+        return string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, hundredths);
     }
 
     public string ThousandsSeparator(float n)
@@ -99,4 +127,5 @@ public class ScoreManager : MonoBehaviour
     }
 
     public float _mongfindScore(bool _IsHotelPossesed) => _IsHotelPossesed ? _GiftedPoints : 0f;
+    public string _mongfindLabel(bool _isHotelPossesed) => _IsHotelPossesed ? "Présent de Mongfind" : "???";
 }
