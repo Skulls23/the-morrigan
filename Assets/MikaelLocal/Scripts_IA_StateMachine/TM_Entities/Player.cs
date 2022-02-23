@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float damageLockMovementTimer;
     [SerializeField]
+    private int maxLivesBase;
+    [SerializeField]
     private int healValueBase;
     [SerializeField]
     private float healingTime;
@@ -114,7 +116,7 @@ public class Player : MonoBehaviour
     private float attackStaminaCostCharlie;
     [Header("Delta")]
     [SerializeField]
-    private int maxLives;
+    private int maxLivesDelta;
     [Header("Echo")]
     [SerializeField]
     private float damageOnFleshEcho;
@@ -169,7 +171,6 @@ public class Player : MonoBehaviour
     public float DamageLockMovementTimer { get => damageLockMovementTimer; set => damageLockMovementTimer = value; }
     public float DodgeStaminaCostCharlie { get => dodgeStaminaCostCharlie; set => dodgeStaminaCostCharlie = value; }
     public float AttackStaminaCostCharlie { get => attackStaminaCostCharlie; set => attackStaminaCostCharlie = value; }
-    public int MaxLives { get => maxLives; set => maxLives = value; }
     public float BaseDodgeStaminaCost { get => baseDodgeStaminaCost; set => baseDodgeStaminaCost = value; }
     public float BaseAttackStaminaCost { get => baseAttackStaminaCost; set => baseAttackStaminaCost = value; }
     public float HealMovementSpeed { get => healMovementSpeed; set => healMovementSpeed = value; }
@@ -177,4 +178,6 @@ public class Player : MonoBehaviour
     public int HealValueBase { get => healValueBase; set => healValueBase = value; }
     public int HealValueAlpha { get => healValueAlpha; set => healValueAlpha = value; }
     public int HealValue { get => healValue; set => healValue = value; }
+    public int MaxLivesDelta { get => maxLivesDelta; set => maxLivesDelta = value; }
+    public int MaxLivesBase { get => maxLivesBase; set => maxLivesBase = value; }
 }
