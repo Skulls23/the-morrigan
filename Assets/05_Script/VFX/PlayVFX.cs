@@ -7,6 +7,12 @@ public class PlayVFX : MonoBehaviour
     public ParticleSystem Vfx;
     public ParticleSystem Vfx2;
     public ParticleSystem Vfx3;
+
+    public VisualEffect VisualEffect1;
+    public VisualEffect VisualEffect2;
+    public VisualEffect VisualEffect3;
+
+
     void Start()
     {
         
@@ -41,5 +47,36 @@ public class PlayVFX : MonoBehaviour
     public void StopVFXOneShot3()
     {
         Vfx3.Stop();
+    }
+
+
+    //-----------------VISUAL EFFECT-----------------//
+
+    public void PlayVisualEffect()
+    {
+        VisualEffect1.Play();
+    }
+
+    public void PlayVisualEffect2()
+    {
+        VisualEffect2.Play();
+    }
+    public void PlayVisualEffect3()
+    {
+        VisualEffect3.Play();
+    }
+
+    public void StopVisualEffect()
+    {
+        VisualEffect1.Stop();
+    }
+
+    public void StopVisualEffect2()
+    {
+        VisualEffect2.Stop();
+    }
+    public void StopVisualEffect3()
+    {
+        VisualEffect3.Stop();
     }
 }

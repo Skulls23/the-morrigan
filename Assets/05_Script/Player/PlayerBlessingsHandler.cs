@@ -26,7 +26,34 @@ public class PlayerBlessingsHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ApplyEffect("Faveur d'Aeval");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ApplyEffect("Bénédiction de Dagda");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ApplyEffect("Résolution de Nuada");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ApplyEffect("Rétribution de Clíodhna");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ApplyEffect("Méfait de Miach");
+        }
+        /*if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ApplyEffect("name");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ApplyEffect("name");
+        }*/
     }
 
 
@@ -57,7 +84,7 @@ public class PlayerBlessingsHandler : MonoBehaviour
 
             case "Rétribution de Clíodhna":
                 Delta = true;
-                PSM.ChangeMaxLives(player.MaxLives);
+                PSM.ChangeMaxLives(player.MaxLivesDelta);
                 break;
 
             case "Méfait de Miach":
@@ -119,7 +146,7 @@ public class PlayerBlessingsHandler : MonoBehaviour
 
             case "Rétribution de Clíodhna":
                 Delta = false;
-                PSM.ChangeMaxLives(player.MaxLives);
+                PSM.ChangeMaxLives(player.MaxLivesBase);
                 break;
 
             case "Méfait de Miach":
