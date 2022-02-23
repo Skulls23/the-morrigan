@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -36,6 +37,39 @@ public class ScoreManager : MonoBehaviour
     private int _platinum = 300000;
     private int _diamond = 500000;
 
+    private float score = 0f;
+
+    // Texts and labels
+    [SerializeField]
+    private Text _timeElapsedString;
+    [SerializeField]
+    private Text _timeScoreString;
+    [SerializeField]
+    private Text _nbHitsString;
+    [SerializeField]
+    private Text _nbHitsScoreString;
+    [SerializeField]
+    private Text _nbUnusedLiquorString;
+    [SerializeField]
+    private Text _nbUnusedLiquorcoreString;
+    [SerializeField]
+    private Text _hotelLabelString;
+    [SerializeField]
+    private Text _hotelResultString;
+    [SerializeField]
+    private Text _hotelScoreString;
+    [SerializeField]
+    private Text _totalScoreString;
+    [SerializeField]
+    private Text _rankString;
+    [SerializeField]
+    private Text _pointsToNextRankString;
+    [SerializeField]
+    private Image _badgeSlot;
+
+    [SerializeField]
+    private Sprite[] rankSprites;
+
     public void Start()
     {
         Debug.Log(ThousandsSeparator(66666666.4f));
@@ -47,37 +81,52 @@ public class ScoreManager : MonoBehaviour
         {
             _timeElapsedInGame += Time.deltaTime;
         }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            DisplayScore();
+        }
     }
 
-    public float ComputePlayerScore()
+    public string ComputePlayerScore()
     {
         _timeScore = Math.Max(0f, _TimeBP - _TimeLP * _timeElapsedInGame);
         _hitScore = Math.Max(0f, _HitTakenBP - _HitTakenLP * _nb_hit);
         _liquorScore = _nbUnusedLiquor * _UnusedLiquorsPoints;
-        
-        return _timeScore + _hitScore + _liquorScore + _mongfindScore(_IsHotelPossesed);
+
+        score = _timeScore + _hitScore + _liquorScore + _mongfindScore(_IsHotelPossesed);
+        return ThousandsSeparator(_timeScore + _hitScore + _liquorScore + _mongfindScore(_IsHotelPossesed));
     }
 
     public string ComputePlayerRank(float score)
     {
         if(score < _bronze)
         {
+            _badgeSlot.sprite = rankSprites[0];
             return "Aucun pallier atteint";
         }
         else if(score >= _bronze && score < _silver)
         {
+            _badgeSlot.sprite = rankSprites[1];
             return "Bronze";
         }
         else if(score >= _silver && score < _gold)
         {
+            _badgeSlot.sprite = rankSprites[2];
             return "Argent";
         }
         else if(score >= _gold && score < _platinum)
         {
+            _badgeSlot.sprite = rankSprites[3];
+            return "Or";
+        }
+        else if (score >= _platinum && score < _diamond)
+        {
+            _badgeSlot.sprite = rankSprites[4];
             return "Platine";
         }
-        else if(score >= _platinum)
+        else if(score >= _diamond)
         {
+            _badgeSlot.sprite = rankSprites[5];
             return "Diamant";
         }
 
@@ -89,6 +138,8 @@ public class ScoreManager : MonoBehaviour
         string rank = ComputePlayerRank(score);
         switch (rank)
         {
+            case "Aucun pallier atteint":
+                return ThousandsSeparator(_bronze - score);
             case "Bronze":
                 return ThousandsSeparator(_silver - score);
             case "Argent":
@@ -106,7 +157,7 @@ public class ScoreManager : MonoBehaviour
 
     public string TimeScore()
     {
-        return _timeScore.ToString();
+        return ThousandsSeparator(_timeScore);
     }
 
     // return time elapsed in game following FormatTime
@@ -131,5 +182,23 @@ public class ScoreManager : MonoBehaviour
     }
 
     public float _mongfindScore(bool _IsHotelPossesed) => _IsHotelPossesed ? _GiftedPoints : 0f;
-    public string _mongfindLabel(bool _isHotelPossesed) => _IsHotelPossesed ? "Présent de Mongfind" : "???";
+    public string _mongfindLabel(bool _isHotelPossesed) => _IsHotelPossesed ? "Présent de Mongfind" : "??????";
+    public string _mongfindResult(bool _isHotelPossesed) => _IsHotelPossesed ? "Oui" : "-";
+
+
+    void DisplayScore()
+    {
+        _totalScoreString.text = ComputePlayerScore();
+        _timeElapsedString.text = TimeElapsed();
+        _timeScoreString.text = TimeScore();
+        _nbHitsString.text = _nb_hit.ToString();
+        _nbHitsScoreString.text = ThousandsSeparator(_hitScore);
+        _nbUnusedLiquorString.text = _nbUnusedLiquor.ToString();
+        _nbUnusedLiquorcoreString.text = ThousandsSeparator(_liquorScore);
+        _hotelLabelString.text = _mongfindLabel(_IsHotelPossesed);
+        _hotelResultString.text = _mongfindResult(_IsHotelPossesed);
+        _hotelScoreString.text = ThousandsSeparator(_mongfindScore(_IsHotelPossesed));
+        _rankString.text = ComputePlayerRank(score);
+        _pointsToNextRankString.text = PointsToNextRank(score);
+    }
 }
