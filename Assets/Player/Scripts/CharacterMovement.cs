@@ -68,6 +68,8 @@ public class CharacterMovement : MonoBehaviour
     public Transform transFollow;
     public Transform startMovingTrans;
 
+    private OnboardingManager _onboardingManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +87,11 @@ public class CharacterMovement : MonoBehaviour
         //GroundRayStart.localPosition = new Vector3(0, 0, -GetComponent<CapsuleCollider>().radius);
 
         ResetMoveVelocity = new Vector3(0, rb.velocity.y, 0);
+
+        if (!_onboardingManager)
+        {
+            _onboardingManager = GameObject.Find("Onboarding").GetComponent<OnboardingManager>();
+        }
     }
 
     // Update is called once per frame
@@ -153,6 +160,8 @@ public class CharacterMovement : MonoBehaviour
         movementValue = CheckInput(context.ReadValue<Vector2>());
         direction = movementValue.normalized;
         rP.dir = direction;
+
+        if (!_onboardingManager.hasMove) _onboardingManager.OnMove();
     }
 
     public void OnRun(InputAction.CallbackContext context)
