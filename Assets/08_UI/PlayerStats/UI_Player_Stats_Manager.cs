@@ -44,7 +44,7 @@ public class UI_Player_Stats_Manager : MonoBehaviour
 
     private void UpdateLifeBar()
     {
-        for (int i = 0; i < _playerMaxLives-1; ++i)
+        for (int i = 0; i < _playerMaxLives; ++i)
         {
             _livesImage[i].enabled = true;
         }
@@ -94,7 +94,8 @@ public class UI_Player_Stats_Manager : MonoBehaviour
             else if (_nbFullLives < _playerMaxLives)
             {
                 ++_nbFullLives;
-                --_nbEmptyLives;
+                if(_nbEmptyLives > 0)
+                    --_nbEmptyLives;
             }
         } 
         UpdateLives();
@@ -144,9 +145,11 @@ public class UI_Player_Stats_Manager : MonoBehaviour
 
     public void ChangeMaxLives(int value)
     {
+        Debug.Log(value);
         _playerMaxLives = value;
-        UpdateLifeBar();
         PlayerHeal(value);
+        initPlayerLivesUI();
+        UpdateLifeBar();
     }
 
     public void ChangeLiquorNumber(int value)
