@@ -107,10 +107,19 @@ public class UI_Player_Stats_Manager : MonoBehaviour
     {
         if (_nbFullLives > 0 && _nbCorruptedLives < _playerMaxLives)
         {
-            _nbEmptyLives += _nbCorruptedLives + 1;
-            _nbCorruptedLives = 0;
-            --_nbFullLives;
-            UpdateLives();
+            if (_nbCorruptedLives == 0)
+            {
+                _nbEmptyLives += 1;
+                --_nbFullLives;
+                UpdateLives();
+            }
+            else if (_nbCorruptedLives != 0)
+            {
+                _nbEmptyLives += 2;
+                --_nbCorruptedLives;
+                --_nbFullLives;
+                UpdateLives();
+            }
             if (_nbFullLives <= 0)
             {
                 return true;

@@ -87,7 +87,7 @@ public class CombatSystem : MonoBehaviour
             else if (currentTag == HitBoxType.WeakPoint.ToString())
             {
                 UIPSManager.PlayerHitsWeakpoint();
-                tempDamages = currentDamageOnFlesh;
+                tempDamages = currentDamageOnWeakpoint;
             }
             hit.collider.GetComponentInParent<Enemy>().Hit(currentTag, attackID,tempDamages, CM);
         }
