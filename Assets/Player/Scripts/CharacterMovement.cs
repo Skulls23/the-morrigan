@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class CharacterMovement : MonoBehaviour
 
     public GameObject gourdeBelt;
     public GameObject gourdeHand;
+
+    public VisualEffect healVisualEffect;
 
     [Header("VALUES")]
     public Vector2 movementValue;
@@ -288,6 +291,7 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator IEHealWaitTime(float time)
     {
         yield return new WaitForSeconds(time);
+        healVisualEffect.Play();
         anim.SetTrigger("finishedHealing");
         gourdeBelt.SetActive(true);
         gourdeHand.SetActive(false);
