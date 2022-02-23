@@ -131,12 +131,12 @@ public class Enemy : Actor
         CM.UIPSManager.PlayerHitsWeakpoint();
         StartCoroutine("FadeEnemy");
         if (isOnCameraFieldOfView)
-        {
-            CM.GetComponent<CameraController>().DDC.RemoveEnemyFromPool(id);
+        { 
             if (isLocked)
             {
                 CM.GetComponent<CameraController>().DeLock();
             }
+            CM.GetComponent<CameraController>().DDC.RemoveEnemyFromPool(id);
         }
         if (GameObject.Find("SceneManager"))
         {
