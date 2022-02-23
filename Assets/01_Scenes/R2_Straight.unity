@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06028387, g: 0.1432105, b: 0.07690643, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2452,14 +2452,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1757273123136802995, guid: 661d1e2f651eb994faed1d56945a2389, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 6.2062817
-      objectReference: {fileID: 0}
-    - target: {fileID: 1757273123136802995, guid: 661d1e2f651eb994faed1d56945a2389, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 6.2062817
-      objectReference: {fileID: 0}
-    - target: {fileID: 1757273123136802995, guid: 661d1e2f651eb994faed1d56945a2389, type: 3}
       propertyPath: m_LocalPosition.x
       value: 187.93
       objectReference: {fileID: 0}
@@ -2506,6 +2498,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1757273123136802995, guid: 661d1e2f651eb994faed1d56945a2389, type: 3}
   m_PrefabInstance: {fileID: 877728768}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &877728770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4456736240181720040, guid: 661d1e2f651eb994faed1d56945a2389, type: 3}
+  m_PrefabInstance: {fileID: 877728768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &877728771
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877728770}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0051382245, y: 0.062354475, z: 0.04035787}
+  m_Center: {x: 0.000016981661, y: -0.0000064206124, z: 0.01960838}
 --- !u!1001 &895374560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3656,7 +3666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 285087716, guid: ff218f023e1b0134abcd291939e78503, type: 3}
       propertyPath: m_Size.z
-      value: 16.895634
+      value: 31.885998
       objectReference: {fileID: 0}
     - target: {fileID: 285087716, guid: ff218f023e1b0134abcd291939e78503, type: 3}
       propertyPath: m_Center.x
@@ -3668,7 +3678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 285087716, guid: ff218f023e1b0134abcd291939e78503, type: 3}
       propertyPath: m_Center.z
-      value: -9.335173
+      value: -9.731016
       objectReference: {fileID: 0}
     - target: {fileID: 693775916, guid: ff218f023e1b0134abcd291939e78503, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3721,6 +3731,10 @@ PrefabInstance:
     - target: {fileID: 2228185780302712114, guid: ff218f023e1b0134abcd291939e78503, type: 3}
       propertyPath: _isTesting
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228185780302712114, guid: ff218f023e1b0134abcd291939e78503, type: 3}
+      propertyPath: _nbEnnemies
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2228185780302712114, guid: ff218f023e1b0134abcd291939e78503, type: 3}
       propertyPath: _spawnPoint
