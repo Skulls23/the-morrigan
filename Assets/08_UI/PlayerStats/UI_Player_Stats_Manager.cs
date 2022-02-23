@@ -9,6 +9,8 @@ public class UI_Player_Stats_Manager : MonoBehaviour
     private Sprite[] _liveSprites;
     [SerializeField]
     private Image[] _livesImage;
+    [SerializeField]
+    private Text _liquorNumberText;
 
     //TESTING VARIABLES (NEEDS UPDATE)
     [SerializeField]
@@ -19,6 +21,8 @@ public class UI_Player_Stats_Manager : MonoBehaviour
     private int _nbFullLives;
     [SerializeField]
     private int _nbEmptyLives;
+    [SerializeField]
+    private int _nbRemainingLiquors;
 
     public void Start()
     {
@@ -27,6 +31,7 @@ public class UI_Player_Stats_Manager : MonoBehaviour
         _nbEmptyLives = 0;
         _nbFullLives = _playerMaxLives;
         UpdateLives();
+        UpdateLiquorVisual();
     }
 
     private void initPlayerLivesUI()
@@ -142,6 +147,34 @@ public class UI_Player_Stats_Manager : MonoBehaviour
         _playerMaxLives = value;
         UpdateLifeBar();
         PlayerHeal(value);
+    }
+
+    public void ChangeLiquorNumber(int value)
+    {
+        if(_nbRemainingLiquors-value < 0)
+        {
+            _nbRemainingLiquors = 0;
+        }
+        else
+        {
+            _nbRemainingLiquors += value;
+        }
+        UpdateLiquorVisual();
+    }
+
+    public bool TryHealing()
+    {
+        if(_nbRemainingLiquors > 0)
+        {
+            ChangeLiquorNumber(-1);
+            return true;
+        }
+        return false;
+    }
+
+    private void UpdateLiquorVisual()
+    {
+        _liquorNumberText.text = _nbRemainingLiquors.ToString();
     }
 
     private void Update()

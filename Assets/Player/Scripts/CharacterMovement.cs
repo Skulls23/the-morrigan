@@ -15,6 +15,9 @@ public class CharacterMovement : MonoBehaviour
     public Transform GroundRayStart;
     public UI_Player_Stats_Manager UIPSManager;
 
+    public GameObject gourdeBelt;
+    public GameObject gourdeHand;
+
     [Header("VALUES")]
     public Vector2 movementValue;
     public Vector2 animationMovementValue;
@@ -174,7 +177,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (context.performed && canMove && SM.HasEnoughStamina(player.DashStaminaCost) && !isDead)
         {
-            
+            anim.SetBool("isHealing", false);
+            anim.SetTrigger("finishedHealing");
             Debug.Log("Started");
             //GetInput
             dodgeInput = context.performed;
@@ -252,9 +256,11 @@ public class CharacterMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            if (canMove)
+            if (canMove && UIPSManager.TryHealing())
             {
                 anim.SetBool("isHealing", true);
+                gourdeBelt.SetActive(false);
+                gourdeHand.SetActive(true);
                 isHealing = true;
                 //attackInput = context.performed;
                 //rb.velocity = ResetMoveVelocity;
@@ -274,12 +280,15 @@ public class CharacterMovement : MonoBehaviour
         isAttacking = false;
         anim.SetBool("isDodging", false);
         anim.SetBool("hasAttacked", false);
+        anim.SetBool("isHealing", false);
     }
 
     IEnumerator IEHealWaitTime(float time)
     {
         yield return new WaitForSeconds(time);
         anim.SetTrigger("finishedHealing");
+        gourdeBelt.SetActive(true);
+        gourdeHand.SetActive(false);
         if (anim.GetBool("isHealing"))
         {
             anim.SetBool("isHealing", false);
@@ -475,6 +484,8 @@ public class CharacterMovement : MonoBehaviour
 
     void GetHit()
     {
+        anim.SetBool("isHealing", false);
+        //anim.SetTrigger("finishedHealing");
         canMove = false;
         canRotate = false;
         rb.velocity = ResetMoveVelocity;
@@ -494,6 +505,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!isDead)
         {
+            anim.SetBool("isHealing", false);
+            anim.SetTrigger("finishedHealing");
             canMove = false;
             canRotate = false;
             rb.velocity = ResetMoveVelocity;
