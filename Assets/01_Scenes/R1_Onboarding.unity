@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 6815b3a294fb6e640854676a04b0659d, type: 2}
 --- !u!1001 &19337896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1156,8 +1156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76fbab5721d1d04b9223735b7e63a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToWait: 0
-  WaypointRange: 0
+  timeToWait: 1
+  WaypointRange: 1
 --- !u!4 &1070139430
 Transform:
   m_ObjectHideFlags: 0
@@ -1166,7 +1166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070139428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.892779, y: 7.4543195, z: 63.795288}
+  m_LocalPosition: {x: -19.6, y: 7.4543195, z: 21.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1672,6 +1672,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7596536368542194207, guid: cd9a75e759edb3b428f31ca64f0b8393, type: 3}
   m_PrefabInstance: {fileID: 1232209862}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1294372770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1598575555052549415, guid: 5a20b312bcd22af409de0b6d65b4808d, type: 3}
+  m_PrefabInstance: {fileID: 1925552495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1294372771
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294372770}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1388579904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,6 +2015,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: 8f062c3d9eab5354096374f06a3fc982, type: 3}
+      propertyPath: m_TagString
+      value: Flesh
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8f062c3d9eab5354096374f06a3fc982, type: 3}
       propertyPath: m_Name
       value: Dummy
@@ -2001,7 +2029,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6847370060104176548, guid: 8f062c3d9eab5354096374f06a3fc982, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847370060104176548, guid: 8f062c3d9eab5354096374f06a3fc982, type: 3}
+      propertyPath: m_TagString
+      value: WeakPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f062c3d9eab5354096374f06a3fc982, type: 3}
