@@ -33,6 +33,8 @@ public class Enemy : Actor
     public bool isLocked;
     public bool isOnCameraFieldOfView;
 
+    public Collider EnemyCollider;
+
     protected virtual void Start()
     {
         ME = GetComponent<MeleeEnemy>();
@@ -115,6 +117,7 @@ public class Enemy : Actor
 
     private void Die(CharacterMovement CM)
     {
+        EnemyCollider.enabled = false;
         GetComponent<MeleeEnemy>().AttackCollider.gameObject.SetActive(false);
         CameraHitbox.SetActive(false);
         CM.UIPSManager.PlayerHitsWeakpoint();
