@@ -495,6 +495,7 @@ public class CharacterMovement : MonoBehaviour
         }
         if (other.gameObject.tag == "DeadZone")
         {
+            //UIPSManager.
             Die();
         }
     }

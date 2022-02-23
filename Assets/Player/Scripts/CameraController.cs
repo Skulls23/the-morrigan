@@ -63,6 +63,7 @@ public class CameraController : MonoBehaviour
 
                 //Assignation of enemy variable
                 lockedEnemy = DDC.SelectTarget();
+                lockedEnemy.GetComponent<Enemy>().EnableLifeBar(true);
                 if (lockedEnemy)
                 {
                     Debug.Log(lockedEnemy.name);
@@ -89,7 +90,7 @@ public class CameraController : MonoBehaviour
     public void DeLock()
     {
         Debug.Log("De-Lock");
-
+        lockedEnemy.GetComponent<Enemy>().EnableLifeBar(false);
         //Reset locked Enemy Variable
         lockedEnemy = null;
         LL.SetEnemy(null);
