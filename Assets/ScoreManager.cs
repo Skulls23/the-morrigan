@@ -171,7 +171,7 @@ public class ScoreManager : MonoBehaviour
     {
         int minutes = (int)_time / 60;
         int seconds = (int)_time - 60 * minutes;
-        int hundredths = (int) (1000 * (_timeElapsedInGame - minutes * 60 - seconds));
+        int hundredths = (int) (100 * (_timeElapsedInGame - minutes * 60 - seconds));
 
         return string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, hundredths);
     }
