@@ -33,6 +33,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     public bool isAttacking;
     [SerializeField]
+    public bool isHealing;
+    [SerializeField]
     public bool isLockedOn;
     private Vector3 ResetMoveVelocity;
     [SerializeField]
@@ -246,6 +248,21 @@ public class CharacterMovement : MonoBehaviour
         StartCoroutine(IELockMovementTimer(player.AttackLockMovementTime));
     }
 
+    public void OnHeal(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (canMove)
+            {
+                anim.SetBool("isHealing", true);
+                isHealing = true;
+                //attackInput = context.performed;
+                //rb.velocity = ResetMoveVelocity;
+                anim.SetTrigger("heal");
+                StartCoroutine(IEHealWaitTime(player.HealingTime));
+            }
+        }
+    }
 
     IEnumerator IELockMovementTimer(float time)
     {
@@ -257,6 +274,18 @@ public class CharacterMovement : MonoBehaviour
         isAttacking = false;
         anim.SetBool("isDodging", false);
         anim.SetBool("hasAttacked", false);
+    }
+
+    IEnumerator IEHealWaitTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        anim.SetTrigger("finishedHealing");
+        if (anim.GetBool("isHealing"))
+        {
+            anim.SetBool("isHealing", false);
+            UIPSManager.PlayerHeal(player.HealValueBase);
+        }
+        //heal Code
     }
 
     //Updates the animator movement layer and the player velocity
