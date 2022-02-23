@@ -30,6 +30,17 @@ public class ScoreManager : MonoBehaviour
     public float _hitScore;
     public float _liquorScore;
 
+    private int _bronze = 50000;
+    private int _silver = 100000;
+    private int _gold = 150000;
+    private int _platinum = 300000;
+    private int _diamond = 500000;
+
+    public void Start()
+    {
+        Debug.Log(ThousandsSeparator(66666666.4f));
+    }
+
     public void Update()
     {
         if (_IsTimeElapsing)
@@ -47,7 +58,49 @@ public class ScoreManager : MonoBehaviour
         return _timeScore + _hitScore + _liquorScore + _mongfindScore(_IsHotelPossesed);
     }
 
-    public string ScoreTime()
+    public string ComputePlayerRank(float score)
+    {
+        if(score < _silver)
+        {
+            return "Bronze";
+        }
+        else if(score >= _silver && score < _gold)
+        {
+            return "Argent";
+        }
+        else if(score >= _gold && score < _platinum)
+        {
+            return "Platine";
+        }
+        else if(score >= _platinum)
+        {
+            return "Diamant";
+        }
+
+        return "player rank could'nt be retrieved";
+    }
+
+    public string PointsToNextRank(float score)
+    {
+        string rank = ComputePlayerRank(score);
+        switch (rank)
+        {
+            case "Bronze":
+                return ThousandsSeparator(_silver - score);
+            case "Argent":
+                return ThousandsSeparator(_gold - score);
+            case "Or":
+                return ThousandsSeparator(_platinum - score);
+            case "Platine":
+                return ThousandsSeparator(_diamond - score);
+            case "Diamant":
+                return "Vous avez atteint le dernier rang !";
+            default:
+                return "either score or rank could'nt be retrieved";
+        }
+    }
+
+    public string TimeScore()
     {
         return _timeScore.ToString();
     }
@@ -65,8 +118,14 @@ public class ScoreManager : MonoBehaviour
         int seconds = (int)_time - 60 * minutes;
         int hundredths = (int) (1000 * (_timeElapsedInGame - minutes * 60 - seconds));
 
-        return string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, hundredths);
+        return string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, hundredths);
+    }
+
+    public string ThousandsSeparator(float n)
+    {
+        return string.Format("{0:n0}", n);
     }
 
     public float _mongfindScore(bool _IsHotelPossesed) => _IsHotelPossesed ? _GiftedPoints : 0f;
+    public string _mongfindLabel(bool _isHotelPossesed) => _IsHotelPossesed ? "Présent de Mongfind" : "???";
 }
