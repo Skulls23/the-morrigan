@@ -86,6 +86,6 @@ public class PlayVFX : MonoBehaviour
 
     public void PlaySound()
     {
-        AkSoundEngine.PostEvent("ENV_Portal_Ouverture_Play", gameObject);
+        AkSoundEngine.PostEvent("ENV_Portal_Overture_Play", gameObject);
     }
 }
