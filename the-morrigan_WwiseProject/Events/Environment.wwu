@@ -10,6 +10,10 @@
 				<Event Name="ENV_Amb_Forest" ID="{E7AEDFDF-B679-4A88-B675-A34B6CE77904}">
 					<ChildrenList>
 						<Action Name="" ID="{FBFC1827-A32C-437F-873A-F6D3A55B4607}" ShortID="798190411">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.6"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Env_Amb_Forest" ID="{F6E3C1DA-DC82-4D23-BC6F-71675DE82590}" WorkUnitID="{23C2685D-3004-4AF7-A2DE-1047948EFDA9}"/>
