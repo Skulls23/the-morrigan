@@ -17,9 +17,9 @@ public class PlayerBlessingsHandler : MonoBehaviour
     private bool Echo;
     private bool Foxtrot;
     private bool Golf;
-    private bool Hotel;
+    public bool Hotel;
 
-    public ParticleSystem EchoVFX;
+    public VisualEffect EchoVFX;
     public VisualEffect BravoVisualEffect;
 
     public void ActivateVfx(ParticleSystem vfx)

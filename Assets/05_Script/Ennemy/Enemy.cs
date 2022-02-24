@@ -94,7 +94,11 @@ public class Enemy : Actor
     private IEnumerator IEHit(string HitBoxTypeString, int attackId, float damages, CharacterMovement CM)
     {
         if (isOnBoardingEnemy)
+        {
             GameObject.Find("Onboarding").GetComponent<OnboardingManager>().DisplayAttackPopup(true);
+            isOnBoardingEnemy = false;
+        }
+            
         Debug.Log("Hit");
         Debug.Log(HitBoxTypeString + " " + HitBoxType.Flesh.ToString());
         hasBeenHit = true;

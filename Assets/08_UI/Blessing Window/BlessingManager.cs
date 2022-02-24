@@ -4,6 +4,7 @@ using UnityEngine;
 using static UnityEngine.Random;
 using UnityEngine.UI;
 using System;
+using UnityEngine.InputSystem;
 
 public class BlessingManager : MonoBehaviour
 {
@@ -35,9 +36,12 @@ public class BlessingManager : MonoBehaviour
 
     public Image[] blessingSlotsStats;
 
+    public UIManager UIManager;
+    public PlayerBlessingsHandler PBS;
+
     public void Start()
     {
-        StartChunk001();
+        //StartChunk001();
     }
 
     public BlessingNS BlessingRandomPicker()
@@ -68,6 +72,8 @@ public class BlessingManager : MonoBehaviour
     //Chunk Management
     public void StartChunk001()
     {
+        _blessingWindow002.gameObject.SetActive(true);
+        UIManager._UIActive = true;
         // The first blessing is always Hotel
         _blessingWindow002._blessingHandlers[0].transform.GetChild(2).GetComponent<Image>().sprite = Hotel.blessing.Sprite;
         _blessingWindow002._blessingHandlers[0].transform.GetChild(3).GetComponent<Text>().text = Hotel.blessing.Name;
@@ -84,6 +90,42 @@ public class BlessingManager : MonoBehaviour
         ActivateBlessingCard(activeCollection, indexOfActiveCollection);
     }
 
+    public void StartChunkGeneric()
+    {
+        _blessingWindow001.gameObject.SetActive(true);
+        UIManager._UIActive = true;
+
+        // the first blessing is a random between the rest ones
+        BlessingNS b = BlessingRandomPicker();
+        _blessingWindow001._blessingHandlers[0].transform.GetChild(2).GetComponent<Image>().sprite = b.blessing.Sprite;
+        _blessingWindow001._blessingHandlers[0].transform.GetChild(3).GetComponent<Text>().text = b.blessing.Name;
+        _blessingWindow001._blessingHandlers[0].transform.GetChild(4).GetComponent<Text>().text = b.blessing.Effect;
+
+        // the second blessing is a random between the rest ones
+        BlessingNS b2 = BlessingRandomPicker();
+        while(b2 == b)
+        {
+            b2 = BlessingRandomPicker();
+        }
+        _blessingWindow001._blessingHandlers[1].transform.GetChild(2).GetComponent<Image>().sprite = b2.blessing.Sprite;
+        _blessingWindow001._blessingHandlers[1].transform.GetChild(3).GetComponent<Text>().text = b2.blessing.Name;
+        _blessingWindow001._blessingHandlers[1].transform.GetChild(4).GetComponent<Text>().text = b2.blessing.Effect;
+
+        // the second blessing is a random between the rest ones
+        BlessingNS b3 = BlessingRandomPicker();
+        while (b3 == b || b3 == b2)
+        {
+            b3 = BlessingRandomPicker();
+        }
+        _blessingWindow001._blessingHandlers[2].transform.GetChild(2).GetComponent<Image>().sprite = b3.blessing.Sprite;
+        _blessingWindow001._blessingHandlers[2].transform.GetChild(3).GetComponent<Text>().text = b3.blessing.Name;
+        _blessingWindow001._blessingHandlers[2].transform.GetChild(4).GetComponent<Text>().text = b3.blessing.Effect;
+
+        activeCollection = _blessingWindow001._blessingHandlers;
+        _blessingSelecting = true;
+        ActivateBlessingCard(activeCollection, indexOfActiveCollection);
+    }
+
     public void MoveIntoAssignement()
     {
         activeBlessingToAssign = GetActiveBlessingForSelection(activeCollection);
@@ -92,6 +134,7 @@ public class BlessingManager : MonoBehaviour
         _blessingAssigning = true;
 
         _blessingWindow002.gameObject.SetActive(false);
+        _blessingWindow001.gameObject.SetActive(false);
         _blessingWindowAssigning.gameObject.SetActive(true);
 
 
@@ -163,17 +206,48 @@ public class BlessingManager : MonoBehaviour
     {
         if(indexOfActiveCollection == 0)
         {
+            if (_equippedSlot01)
+            {
+                RemoveBenediction(_equippedSlot01.Name);
+            }
             _equippedSlot01 = activeBlessingToAssign.blessing;
             blessingSlotsStats[0].enabled = true;
             blessingSlotsStats[0].sprite = activeBlessingToAssign.blessing.Sprite;
         }
         else if(indexOfActiveCollection == 1)
         {
+            if (_equippedSlot02)
+            {
+                RemoveBenediction(_equippedSlot02.Name);
+            }
             _equippedSlot02 = activeBlessingToAssign.blessing;
             blessingSlotsStats[1].enabled = true;
             blessingSlotsStats[1].sprite = activeBlessingToAssign.blessing.Sprite;
         }
 
         _blessingWindowAssigning.gameObject.SetActive(false);
+        UIManager._UIActive = false;
+        UIManager._playerInput.SwitchCurrentActionMap("Player");
+        Debug.Log(activeBlessingToAssign.blessing.Name);
+        ActivateBenediction(activeBlessingToAssign.blessing.Name);
+
+        for(int i = 0; i< Blessings.Count; i++)
+        {
+            if (Blessings[i].blessing.Name == activeBlessingToAssign.blessing.Name)
+            {
+                Blessings.RemoveAt(i);
+                return;
+            }
+        }
+    }
+
+    private void ActivateBenediction(string name)
+    {
+        PBS.ApplyEffect(name);
+    }
+
+    private void RemoveBenediction(string name)
+    {
+        PBS.RemoveEffect(name);
     }
 }

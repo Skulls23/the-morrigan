@@ -183,6 +183,7 @@ public class ScoreManager : MonoBehaviour
 
     public void DisplayScore()
     {
+        _IsHotelPossesed = GameObject.Find("JeuneCelte").GetComponent<PlayerBlessingsHandler>().Hotel;
         _totalScoreString.text = ComputePlayerScore();
         _timeElapsedString.text = TimeElapsed();
         _timeScoreString.text = TimeScore();
