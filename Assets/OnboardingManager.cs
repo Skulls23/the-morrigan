@@ -14,7 +14,11 @@ public class OnboardingManager : MonoBehaviour
     [SerializeField]
     private GameObject _MovePopupSprite;
 
+    [SerializeField]
+    private GameObject _AttackPopupSprite;
+
     private bool _movePopup = false;
+    private bool _attackPopup = false;
     public bool hasMove = false;
     private bool _onboardMovePopup = true;
 
@@ -44,6 +48,13 @@ public class OnboardingManager : MonoBehaviour
                 _onboardMovePopup = false;
             }
         }
+        if (_attackPopup)
+        {
+            if (Input.GetButtonDown("Cancel"))
+            {
+                DisplayAttackPopup(false);
+            }
+        }
     }
 
     public void DisplayMovePopup(bool set)
@@ -54,5 +65,11 @@ public class OnboardingManager : MonoBehaviour
     public void OnMove()
     {
         hasMove = true;
+    }
+
+    public void DisplayAttackPopup(bool set)
+    {
+        _AttackPopupSprite.SetActive(set);
+        _attackPopup = true;
     }
 }

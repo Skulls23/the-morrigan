@@ -31,6 +31,7 @@ public class Enemy : Actor
 
     public bool hasBeenHit;
     public bool IsDead;
+    public bool isOnBoardingEnemy;
 
     public bool isLocked;
     public bool isOnCameraFieldOfView;
@@ -92,6 +93,8 @@ public class Enemy : Actor
 
     private IEnumerator IEHit(string HitBoxTypeString, int attackId, float damages, CharacterMovement CM)
     {
+        if (isOnBoardingEnemy)
+            GameObject.Find("Onboarding").GetComponent<OnboardingManager>().DisplayAttackPopup(true);
         Debug.Log("Hit");
         Debug.Log(HitBoxTypeString + " " + HitBoxType.Flesh.ToString());
         hasBeenHit = true;

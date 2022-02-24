@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
     private RotatePlayer rP;
     private StaminaManager SM;
     private Player player;
+    private ScoreManager ScoreManager;
 
     public Transform GroundRayStart;
     public UI_Player_Stats_Manager UIPSManager;
@@ -86,6 +87,11 @@ public class CharacterMovement : MonoBehaviour
         rP = GetComponentInChildren<RotatePlayer>();
         SM = GetComponent<StaminaManager>();
         player = GetComponent<Player>();
+        if (GameObject.Find("Game Manager"))
+        {
+            ScoreManager = GameObject.Find("Game Manager").transform.GetChild(0).GetComponent<ScoreManager>();
+        }
+        
 
         player.HealValue = player.HealValueBase;
 
@@ -502,7 +508,8 @@ public class CharacterMovement : MonoBehaviour
 
     void GetHit()
     {
-        if(BloodSplat)
+        ScoreManager._nb_hit++;
+        if (BloodSplat)
             BloodSplat.Play();
         anim.SetBool("isHealing", false);
         //anim.SetTrigger("finishedHealing");
