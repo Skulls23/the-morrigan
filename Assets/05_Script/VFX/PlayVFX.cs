@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using AK.Wwise;
+
 public class PlayVFX : MonoBehaviour
 {
     public ParticleSystem Vfx;
@@ -78,5 +80,12 @@ public class PlayVFX : MonoBehaviour
     public void StopVisualEffect3()
     {
         VisualEffect3.Stop();
+    }
+
+    //SOUND
+
+    public void PlaySound()
+    {
+        AkSoundEngine.PostEvent("ENV_Portal_Ouverture_Play", gameObject);
     }
 }

@@ -59,6 +59,8 @@ public class CharacterMovement : MonoBehaviour
 
     public bool isRootMotionActive;
 
+    public bool isInvincible;
+
 
     private float FallTimeTimer;
 
@@ -519,14 +521,21 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity = ResetMoveVelocity;
         anim.SetTrigger("getHit");
 
-        if (UIPSManager.PlayerGetHit())
-        {
-            Die();
-        }
-        else
+        if (isInvincible)
         {
             StartCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
         }
+        else
+        {
+            if (UIPSManager.PlayerGetHit())
+            {
+                Die();
+            }
+            else
+            {
+                StartCoroutine(IELockMovementTimer(player.DamageLockMovementTimer));
+            }
+        }      
     }
 
     void Die()

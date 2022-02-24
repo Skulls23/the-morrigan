@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (GameObject.FindGameObjectsWithTag("GameManager").Length > 1)
+        {
+            Destroy(GameObject.FindGameObjectsWithTag("GameManager")[0]);
+        }
         DontDestroyOnLoad(this);
     }
 
@@ -37,6 +41,26 @@ public class GameManager : MonoBehaviour
             SM._nbEnnemies = 0;
         }
 
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            GameObject.Find("JeuneCelte").GetComponent<CharacterMovement>().isInvincible = !GameObject.Find("JeuneCelte").GetComponent<CharacterMovement>().isInvincible;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            RestartGame();
+        }
+
+    }
+
+    public void RestartGame()
+    {
+        GameObject.Destroy(GameObject.Find("WwiseGlobal").gameObject);
+        GameObject.Destroy(GameObject.Find("AudioManager").gameObject);
+        GameObject.Destroy(GameObject.Find("Chara_YoungCeltGroup001(Clone)").gameObject);
+        _timeElapsedInGame = 0;
+        _IsTimeElapsing = false;
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator LoadAsyncScene(string sceneName)
