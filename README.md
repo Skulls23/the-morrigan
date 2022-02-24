@@ -1,7 +1,7 @@
 # the-morrigan
 
 Master HIC 2021-2022 Game Project<br/>
-REMINDER TO MYSELF : Use git lfs once the project is done!<br/>
+<!--REMINDER TO MYSELF : Use git lfs once the project is done!<br/>-->
 
 ## Name
 The Morrígan
@@ -12,11 +12,11 @@ The gameplay is based on fighting. Each ennemy has a weak point, if the player h
 This is hard and punitive, but completely intended
 
 ## Visuals
-TBA
+To be added
 
 ## Installation
 This is the code version of the game. All this has to be added to a unity project
-.exe TBA
+<!--.exe TBA-->
 
 ## Support
 As a student project, their will be no support.
