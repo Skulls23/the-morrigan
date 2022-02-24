@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private PlayerInput _playerInput;
+    public PlayerInput _playerInput;
     [SerializeField]
     private BlessingManager _blessingManager;
 
@@ -24,7 +24,10 @@ public class UIManager : MonoBehaviour
     
     public void Update()
     {
-        if (_UIActive) _playerInput.SwitchCurrentActionMap("UI");
+        if (_UIActive && _playerInput)
+        {
+            _playerInput.SwitchCurrentActionMap("UI");
+        }
     }
 
     public void OnNavigate(InputAction.CallbackContext context)

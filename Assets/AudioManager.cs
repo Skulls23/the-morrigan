@@ -8,6 +8,11 @@ public class AudioManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         AkSoundEngine.PostEvent("ENV_Menu_Music_Play", gameObject);
-        //AkSoundEngine.PostEvent("ENV_Amb_Forest", gameObject);
+    }
+
+   public void LaunchForest()
+    {
+        AkSoundEngine.PostEvent("ENV_Menu_Music_Stop", gameObject);
+        AkSoundEngine.PostEvent("ENV_Amb_Forest", gameObject);
     }
 }

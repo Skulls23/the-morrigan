@@ -87,6 +87,7 @@ public class CharacterMovement : MonoBehaviour
         rP = GetComponentInChildren<RotatePlayer>();
         SM = GetComponent<StaminaManager>();
         player = GetComponent<Player>();
+
         if (GameObject.Find("Game Manager"))
         {
             ScoreManager = GameObject.Find("Game Manager").transform.GetChild(0).GetComponent<ScoreManager>();
