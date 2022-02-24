@@ -19,6 +19,7 @@ namespace AK
         static const AkUniqueID ENV_AMB_FOREST = 2234303157U;
         static const AkUniqueID ENV_MENU_MUSIC_PLAY = 725810461U;
         static const AkUniqueID ENV_MENU_MUSIC_STOP = 2911652491U;
+        static const AkUniqueID ENV_PORTAL_OVERTURE_PLAY = 3855165651U;
         static const AkUniqueID WEA_HIT_FLESH = 2627352527U;
         static const AkUniqueID WEA_HIT_SWOOSH = 3270747314U;
         static const AkUniqueID WEA_HIT_WEAKPOINT = 2569330039U;

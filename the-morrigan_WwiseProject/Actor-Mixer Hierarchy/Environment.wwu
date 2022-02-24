@@ -86,6 +86,43 @@
 						</Sound>
 					</ChildrenList>
 				</ActorMixer>
+				<ActorMixer Name="ENV_Portal_Overture" ID="{92BCF75A-2952-4C81-9A9F-1C3D7580712E}" ShortID="891795506">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="Portal_Attenuation" ID="{9D0AB297-58BC-4899-9B04-7F50E70C6A07}" WorkUnitID="{2EBEDD83-0394-476E-9286-C22B50B4CFF1}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Rock_Gate" ID="{F5C0DBB0-9327-4D78-A914-9C276DA02EF6}" ShortID="131063173">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E68E8A1F-2CCF-4EB6-8AC5-3B38DE806CBC}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{826FCC56-B9BA-4313-B6D9-965832E6C7B8}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Rock_Gate" ID="{1E72C309-C18F-4190-8AA4-E2035BDA5FCD}" ShortID="1007331523">
+									<Language>SFX</Language>
+									<AudioFile>Portal\Rock_Gate.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Rock_Gate" ID="{1E72C309-C18F-4190-8AA4-E2035BDA5FCD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
