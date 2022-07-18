@@ -19,7 +19,7 @@ This is the code version of the game. All this has to be added to a unity projec
 <!--.exe TBA-->
 
 ## Support
-As a student project, their will be no support.
+As a student project, there will be no support.
 
 ## Authors and acknowledgment
 - Full members :
