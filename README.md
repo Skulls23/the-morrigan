@@ -1,7 +1,6 @@
 # the-morrigan
 
 Master HIC 2021-2022 Game Project<br/>
-<!--REMINDER TO MYSELF : Use git lfs once the project is done!<br/>-->
 
 ## Name
 The Morrígan
@@ -10,6 +9,17 @@ The Morrígan
 The morrigan is a soul-like game, made by 10 students. It allows the player to play as the young celt in a deep forest full of corrupted monsters.
 The gameplay is based on fighting. Each ennemy has a weak point, if the player hit it, the monster gets a lot a damage, if the player miss it, the monster takes damage but he corrupts a heart of the player. Each time the monster hit you, you lose 1 heart and 1 corrupted heart if you got one.
 This is hard and punitive, but completely intended
+
+## My work
+
+I was a <b>Dev</b> in that project for 6 months on that project, from the first brain-storming to the end (when we deliver the game), the deadline was 13 months, I have joined the game as a first year game developer in midterm<br/>
+
+I've done :
+<ul>
+  <li>The Artificial Intelligence</li>
+  <li>The UI scripts</li>
+  <li>3D models integration</li>
+</ul>
 
 ## Visuals
 To be added
